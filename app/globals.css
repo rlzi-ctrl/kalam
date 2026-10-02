@@ -1,0 +1,111 @@
+:root {
+  --bg: #f6f7f5;
+  --card: #ffffff;
+  --text: #1c1f1d;
+  --muted: #69716c;
+  --border: #dde2de;
+  --accent: #0f766e;
+  --accent-text: #ffffff;
+  --rec: #dc2626;
+  --warn: #b45309;
+  --bar: #e7ebe8;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121514;
+    --card: #1b1f1d;
+    --text: #e8ece9;
+    --muted: #98a19c;
+    --border: #2c322f;
+    --accent: #2dd4bf;
+    --accent-text: #062a26;
+    --rec: #f87171;
+    --warn: #fbbf24;
+    --bar: #2c322f;
+  }
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--text); }
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.45;
+  -webkit-text-size-adjust: 100%;
+}
+.container { max-width: 1100px; margin: 0 auto; padding: 16px 16px 48px; }
+h1 { font-size: 1.25rem; margin: 0 0 8px; }
+h2 { font-size: 1rem; margin: 0 0 8px; }
+.muted { color: var(--muted); }
+.small { font-size: 0.85rem; }
+.warn { color: var(--warn); margin: 4px 0; }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+}
+.btn {
+  font: inherit;
+  min-height: 44px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  cursor: pointer;
+}
+.btn:disabled { opacity: 0.45; cursor: default; }
+.btn.primary { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }
+.link { font: inherit; background: none; border: none; color: var(--accent); padding: 4px 0; cursor: pointer; }
+
+.prompt { margin-top: 8px; }
+.prompt-nav { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.prompt-nav .btn { font-size: 1.4rem; width: 52px; padding: 0; }
+.prompt-en { font-size: 1.3rem; font-weight: 600; margin: 12px 0 4px; }
+.answer { font-family: ui-monospace, Menlo, monospace; margin: 4px 0 0; }
+
+.record { display: flex; flex-direction: column; align-items: center; gap: 8px; margin: 24px 0 16px; }
+.record-btn {
+  width: 168px;
+  height: 168px;
+  border-radius: 50%;
+  border: none;
+  font: inherit;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--rec);
+  box-shadow: 0 6px 20px rgb(0 0 0 / 0.18);
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+.record-btn.recording { animation: pulse 1.2s ease-in-out infinite; }
+.record-btn:disabled { opacity: 0.6; }
+@keyframes pulse { 50% { transform: scale(0.94); } }
+.player { width: 100%; max-width: 420px; }
+
+.actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 16px; }
+.grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 720px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1040px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+.provider.unconfigured { opacity: 0.6; }
+.transcript { font-size: 1.15rem; margin: 0 0 4px; word-break: break-word; }
+
+.grade { border-top: 1px solid var(--border); margin-top: 10px; padding-top: 10px; }
+.overall { margin: 0 0 6px; }
+.overall strong { font-size: 1.5rem; }
+.bar { display: grid; grid-template-columns: 72px 1fr 32px; align-items: center; gap: 8px; font-size: 0.85rem; }
+.bar-track { height: 8px; background: var(--bar); border-radius: 4px; overflow: hidden; }
+.bar-fill { display: block; height: 100%; background: var(--accent); }
+.bar-value { text-align: right; }
+.corrected { font-family: ui-monospace, Menlo, monospace; margin: 10px 0 2px; }
+.corrected.arabic { font-family: inherit; font-size: 1.25rem; margin-top: 0; }
+.errors { padding-left: 18px; margin: 8px 0; }
+.errors li { margin-bottom: 6px; }
+.tag { font-size: 0.75rem; background: var(--bar); border-radius: 6px; padding: 1px 6px; }
+.encourage { color: var(--accent); }
+pre { white-space: pre-wrap; word-break: break-word; font-size: 0.78rem; background: var(--bg); padding: 8px; border-radius: 8px; }
+.passcode { display: flex; flex-direction: column; gap: 10px; max-width: 360px; }
+.passcode input { font: inherit; font-size: 16px; min-height: 44px; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg); color: var(--text); }
+.foot { margin-top: 24px; font-size: 0.85rem; text-align: center; }
