@@ -1,8 +1,13 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { GradeCard } from "@/components/GradeCard";
-import { toWav16kMono } from "@/lib/audio/wav";
+import { ModelToggle, useModelChoice } from "@/components/ModelToggle";
+import { Nav } from "@/components/Nav";
+import { PasscodeScreen } from "@/components/PasscodeScreen";
+import { postGrade, transcribeAll } from "@/lib/client/transcribe";
+import { useAppApi } from "@/lib/client/useAppApi";
+import { useRecorder } from "@/lib/client/useRecorder";
 import type { Transcript } from "@/lib/consensus";
 import {
   consensusStatus,
@@ -13,7 +18,6 @@ import {
   type ConsensusRun,
   type GradeState,
   type PromptSession,
-  type ProviderResult,
   type Row,
 } from "@/lib/results";
 import { TEST_PROMPTS } from "@/lib/seed";
@@ -21,34 +25,6 @@ import type { ProviderInfo } from "@/lib/stt/registry";
 
 const MAX_SECONDS = 60;
 const COUNTDOWN_FROM = 10;
-const PASSCODE_KEY = "kalam_passcode";
-const MODEL_KEY = "kalam_grader_model";
-
-type ModelOption = { id: string; label: string };
-type Meta = {
-  providers: ProviderInfo[];
-  grader: { configured: boolean; defaultModel: string; models: ModelOption[] };
-  passcodeEnabled: boolean;
-};
-type RecState = "idle" | "recording" | "processing";
-
-class AuthError extends Error {}
-
-function readStored(key: string): string {
-  try {
-    return localStorage.getItem(key) ?? "";
-  } catch {
-    return "";
-  }
-}
-
-function writeStored(key: string, value: string) {
-  try {
-    localStorage.setItem(key, value);
-  } catch {
-    // Private mode: the value lasts for this page load only.
-  }
-}
 
 function freshSession(providers: ProviderInfo[]): PromptSession {
   return {
@@ -81,23 +57,15 @@ async function copyText(text: string): Promise<boolean> {
 }
 
 export default function Home() {
-  const [passcode, setPasscode] = useState("");
-  const [passcodeDraft, setPasscodeDraft] = useState("");
-  const [needPasscode, setNeedPasscode] = useState(false);
-  const [meta, setMeta] = useState<Meta | null>(null);
-  const [loadError, setLoadError] = useState("");
-  const [model, setModel] = useState("");
+  const { api, meta, loadError, needPasscode, passcodeTried, submitPasscode } = useAppApi();
+  const { model, choose: chooseModel, label: modelLabel } = useModelChoice(meta);
+  const recorder = useRecorder(MAX_SECONDS);
 
   const [promptIndex, setPromptIndex] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
-  const [rec, setRec] = useState<RecState>("idle");
-  const [elapsed, setElapsed] = useState(0);
   const [sessions, setSessions] = useState<Record<string, PromptSession>>({});
-  const [recError, setRecError] = useState("");
   const [copied, setCopied] = useState("");
 
-  const recorderRef = useRef<MediaRecorder | null>(null);
-  const timerRef = useRef<number | null>(null);
   // Per-prompt attempt counter: a new recording bumps it, so late responses for an old clip are dropped.
   const attemptRef = useRef<Record<string, number>>({});
   const modelRef = useRef("");
@@ -105,44 +73,6 @@ export default function Home() {
 
   const prompt = TEST_PROMPTS[promptIndex];
   const session = sessions[prompt.id] ?? (meta ? freshSession(meta.providers) : undefined);
-  const modelLabel = (id: string) => meta?.grader.models.find((m) => m.id === id)?.label ?? id;
-
-  const api = useCallback(
-    async (path: string, init: RequestInit = {}) => {
-      const headers = new Headers(init.headers);
-      if (passcode) headers.set("x-app-passcode", passcode);
-      const res = await fetch(path, { ...init, headers });
-      if (res.status === 401) {
-        setNeedPasscode(true);
-        throw new AuthError("passcode required");
-      }
-      return res;
-    },
-    [passcode],
-  );
-
-  useEffect(() => {
-    setPasscode(readStored(PASSCODE_KEY));
-  }, []);
-
-  useEffect(() => {
-    let cancelled = false;
-    api("/api/providers")
-      .then((r) => r.json())
-      .then((m: Meta) => {
-        if (cancelled) return;
-        setMeta(m);
-        setNeedPasscode(false);
-        const stored = readStored(MODEL_KEY);
-        setModel(m.grader.models.some((x) => x.id === stored) ? stored : m.grader.defaultModel);
-      })
-      .catch((err) => {
-        if (!cancelled && !(err instanceof AuthError)) setLoadError(String(err));
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, [api]);
 
   /** Applies fn to a prompt's session, unless a newer recording has replaced that attempt. */
   const update = useCallback(
@@ -159,22 +89,13 @@ export default function Home() {
   const updateRun = (promptId: string, attempt: number, key: string, run: ConsensusRun) =>
     update(promptId, attempt, (s) => ({ ...s, consensus: s.consensus.map((c) => (c.key === key ? run : c)) }));
 
-  const postGrade = async (promptId: string, mode: "consensus" | "single", transcripts: Transcript[], gradeModel: string) => {
-    const res = await api("/api/grade", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ promptId, mode, model: gradeModel, transcripts }),
-    });
-    return { ok: res.ok, status: res.status, json: await res.json() };
-  };
-
   const runConsensus = async (promptId: string, attempt: number, transcripts: Transcript[]) => {
     const gradeModel = modelRef.current;
     const key = `${Date.now()}-${Math.random()}`;
     const pending: ConsensusRun = { key, status: "loading", requestedModel: gradeModel, used: [], discarded: [] };
     update(promptId, attempt, (s) => ({ ...s, consensus: [...s.consensus, pending] }));
     try {
-      const { ok, status, json } = await postGrade(promptId, "consensus", transcripts, gradeModel);
+      const { ok, status, json } = await postGrade(api, { promptId, mode: "consensus", model: gradeModel, transcripts });
       const base = { key, requestedModel: gradeModel, used: json.used ?? [], discarded: json.discarded ?? [] };
       updateRun(
         promptId,
@@ -195,7 +116,7 @@ export default function Home() {
     let grade: GradeState;
     try {
       const transcript = { providerId: row.id, label: row.label, text: row.result.text };
-      const { ok, status, json } = await postGrade(promptId, "single", [transcript], gradeModel);
+      const { ok, status, json } = await postGrade(api, { promptId, mode: "single", model: gradeModel, transcripts: [transcript] });
       grade = ok
         ? { ...json, status: "done", requestedModel: gradeModel }
         : { status: "error", requestedModel: gradeModel, error: json.error ?? `HTTP ${status}`, ms: json.ms };
@@ -205,96 +126,29 @@ export default function Home() {
     updateRow(promptId, attempt, row.id, { grade });
   };
 
-  const transcribeAll = async (promptId: string, attempt: number, wav: Blob): Promise<Transcript[]> => {
-    const targets = (meta?.providers ?? []).filter((p) => p.configured);
-    const results = await Promise.all(
-      targets.map(async (p): Promise<Transcript | null> => {
-        updateRow(promptId, attempt, p.id, { result: { status: "loading" } });
-        let result: ProviderResult;
-        try {
-          const form = new FormData();
-          form.append("provider", p.id);
-          form.append("audio", wav, "clip.wav");
-          const res = await api("/api/transcribe", { method: "POST", body: form });
-          const json = await res.json();
-          result = res.ok
-            ? { status: "done", text: json.text, note: json.note, ms: json.ms }
-            : { status: "error", error: json.error ?? `HTTP ${res.status}`, ms: json.ms };
-        } catch (err) {
-          result = { status: "error", error: String(err) };
-        }
-        updateRow(promptId, attempt, p.id, { result });
-        return result.status === "done" ? { providerId: p.id, label: p.label, text: result.text } : null;
-      }),
-    );
-    return results.filter((t): t is Transcript => t !== null);
-  };
-
-  const stopTimer = () => {
-    if (timerRef.current != null) window.clearInterval(timerRef.current);
-    timerRef.current = null;
-  };
-
   const startRecording = async () => {
     if (!meta) return;
     const promptId = prompt.id;
-    setRecError("");
-    let stream: MediaStream;
-    try {
-      stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true } });
-    } catch (err) {
-      setRecError(`Microphone unavailable: ${String(err)}`);
-      return;
-    }
-
     // A new recording replaces this prompt's previous attempt; other prompts keep theirs.
     const attempt = (attemptRef.current[promptId] ?? 0) + 1;
+    const started = await recorder.start(async ({ wav, seconds }) => {
+      update(promptId, attempt, (s) => ({ ...s, clip: { url: URL.createObjectURL(wav), seconds } }));
+      const configured = meta.providers.filter((p) => p.configured);
+      const transcripts = await transcribeAll(api, configured, wav, (id, result) => updateRow(promptId, attempt, id, { result }));
+      // Consensus grading runs by default once the transcripts are in.
+      if (meta.grader.configured && transcripts.length > 0) await runConsensus(promptId, attempt, transcripts);
+    });
+    if (!started) return;
     attemptRef.current[promptId] = attempt;
     setSessions((all) => {
       const old = all[promptId]?.clip;
       if (old) URL.revokeObjectURL(old.url);
       return { ...all, [promptId]: freshSession(meta.providers) };
     });
-
-    const recorder = new MediaRecorder(stream);
-    const chunks: Blob[] = [];
-    recorder.ondataavailable = (e) => {
-      if (e.data.size > 0) chunks.push(e.data);
-    };
-    recorder.onstop = async () => {
-      stopTimer();
-      stream.getTracks().forEach((t) => t.stop());
-      setRec("processing");
-      try {
-        const { wav, seconds } = await toWav16kMono(new Blob(chunks, { type: recorder.mimeType }));
-        update(promptId, attempt, (s) => ({ ...s, clip: { url: URL.createObjectURL(wav), seconds } }));
-        setRec("idle");
-        const transcripts = await transcribeAll(promptId, attempt, wav);
-        // Consensus grading runs by default once the transcripts are in.
-        if (meta.grader.configured && transcripts.length > 0) await runConsensus(promptId, attempt, transcripts);
-      } catch (err) {
-        setRecError(`Could not process recording: ${String(err)}`);
-        setRec("idle");
-      }
-    };
-    recorderRef.current = recorder;
-    recorder.start();
-    setRec("recording");
-    setElapsed(0);
-    const started = Date.now();
-    timerRef.current = window.setInterval(() => {
-      const s = (Date.now() - started) / 1000;
-      setElapsed(s);
-      if (s >= MAX_SECONDS && recorder.state === "recording") recorder.stop();
-    }, 200);
-  };
-
-  const stopRecording = () => {
-    if (recorderRef.current?.state === "recording") recorderRef.current.stop();
   };
 
   const goToPrompt = (i: number) => {
-    if (rec !== "idle") return;
+    if (recorder.rec !== "idle") return;
     setPromptIndex((i + TEST_PROMPTS.length) % TEST_PROMPTS.length);
     setShowAnswer(false);
   };
@@ -312,38 +166,9 @@ export default function Home() {
     flashCopied((await copyText(formatEverythingText(TEST_PROMPTS, sessions))) ? "everything" : "failed");
   };
 
-  const chooseModel = (id: string) => {
-    setModel(id);
-    writeStored(MODEL_KEY, id);
-  };
+  if (needPasscode) return <PasscodeScreen tried={passcodeTried} onSubmit={submitPasscode} />;
 
-  const savePasscode = (e: React.FormEvent) => {
-    e.preventDefault();
-    writeStored(PASSCODE_KEY, passcodeDraft);
-    setPasscode(passcodeDraft);
-  };
-
-  if (needPasscode) {
-    return (
-      <main className="container">
-        <h1>Kalam · voice spike</h1>
-        <form className="card passcode" onSubmit={savePasscode}>
-          <label htmlFor="pc">Passcode</label>
-          <input
-            id="pc"
-            type="password"
-            autoComplete="current-password"
-            value={passcodeDraft}
-            onChange={(e) => setPasscodeDraft(e.target.value)}
-          />
-          <button type="submit" className="btn primary">Unlock</button>
-          {passcode && <p className="muted">That passcode didn&apos;t work.</p>}
-        </form>
-      </main>
-    );
-  }
-
-  const remaining = Math.max(0, Math.ceil(MAX_SECONDS - elapsed));
+  const { rec, elapsed, remaining } = recorder;
   const counting = rec === "recording" && remaining <= COUNTDOWN_FROM;
   const recordLabel = rec === "recording" ? (counting ? String(remaining) : "Stop") : rec === "processing" ? "…" : "Record";
   const status = session ? consensusStatus(session.rows) : {};
@@ -353,29 +178,14 @@ export default function Home() {
 
   return (
     <main className="container">
+      <Nav />
       <header className="top">
-        <h1>Kalam · voice spike</h1>
         {meta && !meta.passcodeEnabled && <p className="warn">APP_PASSCODE is not set — anyone with this URL can use your API keys.</p>}
         {meta && !meta.grader.configured && <p className="warn">ANTHROPIC_API_KEY is not set — grading is disabled.</p>}
         {loadError && <p className="warn">{loadError}</p>}
       </header>
 
-      {meta && (
-        <div className="model-toggle" role="radiogroup" aria-label="Grader model">
-          <span className="muted small">Grader</span>
-          {meta.grader.models.map((m) => (
-            <button
-              key={m.id}
-              role="radio"
-              aria-checked={model === m.id}
-              className={`seg ${model === m.id ? "on" : ""}`}
-              onClick={() => chooseModel(m.id)}
-            >
-              {m.label}
-            </button>
-          ))}
-        </div>
-      )}
+      {meta && <ModelToggle meta={meta} model={model} onChange={chooseModel} />}
 
       <section className="card prompt">
         <div className="prompt-nav">
@@ -406,7 +216,7 @@ export default function Home() {
       <section className="record">
         <button
           className={`record-btn ${rec} ${counting ? "counting" : ""}`}
-          onClick={rec === "recording" ? stopRecording : startRecording}
+          onClick={rec === "recording" ? recorder.stop : startRecording}
           disabled={rec === "processing" || !meta}
           aria-label={rec === "recording" ? "Stop recording" : "Record"}
         >
@@ -422,7 +232,7 @@ export default function Home() {
               : "Tap, say it in Levantine, tap again"}
         </p>
         {session?.clip && <audio controls src={session.clip.url} className="player" />}
-        {recError && <p className="warn">{recError}</p>}
+        {recorder.error && <p className="warn">{recorder.error}</p>}
       </section>
 
       <section className="actions">
@@ -469,7 +279,7 @@ export default function Home() {
         {session?.rows.map((row) => (
           <article key={row.id} className={`card provider ${row.result.status}`}>
             <h2>{row.label}</h2>
-            <ProviderBody result={row.result} />
+            <ProviderBody row={row} />
             {row.result.status === "done" && status[row.id] && (
               <p className={`small ${status[row.id].startsWith("discarded") ? "warn" : "muted"}`}>{status[row.id]}</p>
             )}
@@ -502,7 +312,8 @@ export default function Home() {
   );
 }
 
-function ProviderBody({ result }: { result: ProviderResult }) {
+function ProviderBody({ row }: { row: Row }) {
+  const result = row.result;
   switch (result.status) {
     case "unconfigured":
       return <p className="muted">Not configured (set {result.missing.join(", ")})</p>;

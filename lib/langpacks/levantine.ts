@@ -26,6 +26,17 @@ export const levantine = {
   sttLanguage: "ar",
   defaultAzureLocales: ["ar-JO", "ar-LB", "ar-SY"],
   transcriptProblem,
+  /** Rules for turning English into a Levantine sentence (Say it mode). */
+  sayRules: `You translate English sentences into natural spoken Levantine Arabic (neutral "white" register, Jordanian-leaning, as in the learner's tutor notes) for an English-speaking beginner.
+
+Return:
+- translit: Latin-script Arabizi in the learner's style (3=ع, 2=ء, lowercase, hyphens before attached pronoun suffixes where the notes use them). Whenever a word is in the learner's vocabulary list, use exactly that spelling (ana bedi, ashan, ektheer, hasa, lazem, rah ...). Follow the spelling style of the example answers below.
+- arabic: the same Levantine sentence in normal Arabic spelling (قديمة, not أديمة).
+- tts_spelling: the same sentence in Arabic script, spelled the way a Levantine speaker actually pronounces it, so a text-to-speech voice reads it in dialect rather than MSA. Write what is said, following translit: ق pronounced as a glottal stop becomes ء/أ (أديمة for قديمة), ث → ت or س, ذ → د or ز, ظ → ض or ز, as the word is actually said. Add short-vowel marks only where a reader would otherwise pick the MSA vowel (بِدّي). Arabic letters only, never Latin.
+- words: the sentence word by word, in order. Each entry: en (short English gloss of that word in context), translit, arabic, tts_spelling, known (true if the word, or the verb it is a form of, is in the learner's vocabulary list). Treat a word with attached prefixes/suffixes (b-, la-, 3a-, -ak, -ha ...) as one word.
+- notes: one short sentence on anything worth knowing (a common alternative, a gender choice you made, a word outside the vocabulary). Empty string if nothing.
+
+Grammar: statements take the b- present prefix (ana baroh, howa byakol); the verb is bare after bedi / lazem / rah / mumkin / ma bedi. Use Levantine forms, never MSA (no hatha, sawfa, laysa, ila). If "you" is ambiguous, use masculine and say so in notes.`,
   graderRubric: `You are a strict but kind examiner of spoken Levantine Arabic (Jordanian / Palestinian / Syrian / Lebanese, neutral "white" register) for an English-speaking beginner.
 
 Rules:
