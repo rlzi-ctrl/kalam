@@ -1,3 +1,4 @@
+import { CONSENSUS_PROVIDER_IDS } from "@/lib/consensus";
 import { levantine } from "@/lib/langpacks/levantine";
 import { azureTranscriber } from "./azure";
 import { elevenlabs } from "./elevenlabs";
@@ -17,11 +18,23 @@ export function getProvider(id: string): SttProvider | undefined {
   return allProviders().find((p) => p.id === id);
 }
 
-export type ProviderInfo = { id: string; label: string; configured: boolean; missing: string[] };
+export type ProviderInfo = {
+  id: string;
+  label: string;
+  configured: boolean;
+  missing: string[];
+  inConsensus: boolean;
+};
 
 export function providerInfo(): ProviderInfo[] {
   return allProviders().map((p) => {
     const missing = missingEnv(p);
-    return { id: p.id, label: p.label, configured: missing.length === 0, missing };
+    return {
+      id: p.id,
+      label: p.label,
+      configured: missing.length === 0,
+      missing,
+      inConsensus: CONSENSUS_PROVIDER_IDS.includes(p.id),
+    };
   });
 }

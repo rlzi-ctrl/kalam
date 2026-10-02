@@ -1,6 +1,8 @@
 import { requirePasscode } from "@/lib/auth";
-import { graderModel } from "@/lib/grader/grade";
+import { blobConfigured } from "@/lib/blob";
+import { availableGraderModels, defaultGraderModel } from "@/lib/grader/models";
 import { providerInfo } from "@/lib/stt/registry";
+import { voiceInfo } from "@/lib/tts/registry";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -10,7 +12,14 @@ export async function GET(req: Request) {
   if (denied) return denied;
   return Response.json({
     providers: providerInfo(),
-    grader: { model: graderModel(), configured: Boolean(process.env.ANTHROPIC_API_KEY) },
+    grader: {
+      configured: Boolean(process.env.ANTHROPIC_API_KEY),
+      defaultModel: defaultGraderModel(),
+      models: availableGraderModels(),
+    },
+    voices: voiceInfo(),
+    /** Vercel Blob: audio cache + saved cards. */
+    storageConfigured: blobConfigured(),
     passcodeEnabled: Boolean(process.env.APP_PASSCODE),
   });
 }

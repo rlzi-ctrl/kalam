@@ -12,6 +12,9 @@ describe("provider registry", () => {
       "elevenlabs", "openai-gpt-4o-transcribe", "openai-whisper-1", "azure-ar-JO", "azure-ar-LB", "azure-ar-SY",
     ]);
     expect(info.every((p) => !p.configured)).toBe(true);
+    expect(info.filter((p) => p.inConsensus).map((p) => p.id)).toEqual([
+      "elevenlabs", "openai-gpt-4o-transcribe", "openai-whisper-1",
+    ]);
     expect(info.find((p) => p.id === "azure-ar-JO")?.missing).toEqual(["AZURE_SPEECH_KEY", "AZURE_SPEECH_REGION"]);
   });
 

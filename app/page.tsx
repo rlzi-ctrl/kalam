@@ -1,348 +1,303 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { GradeCard } from "@/components/GradeCard";
-import { toWav16kMono } from "@/lib/audio/wav";
-import { formatResultsText, type GradeState, type ProviderResult, type Row } from "@/lib/results";
+import { ModelToggle, useModelChoice } from "@/components/ModelToggle";
+import { Nav } from "@/components/Nav";
+import { PasscodeScreen } from "@/components/PasscodeScreen";
+import { postGrade, transcribeAll } from "@/lib/client/transcribe";
+import { useAppApi } from "@/lib/client/useAppApi";
+import { useRecorder } from "@/lib/client/useRecorder";
+import type { Transcript } from "@/lib/consensus";
+import {
+  consensusStatus,
+  doneTranscripts,
+  formatEverythingText,
+  formatPromptText,
+  hasResults,
+  type ConsensusRun,
+  type GradeState,
+  type PromptSession,
+  type Row,
+} from "@/lib/results";
 import { TEST_PROMPTS } from "@/lib/seed";
 import type { ProviderInfo } from "@/lib/stt/registry";
 
-const MAX_SECONDS = 30;
-const PASSCODE_KEY = "kalam_passcode";
+const MAX_SECONDS = 60;
+const COUNTDOWN_FROM = 10;
 
-type Meta = { providers: ProviderInfo[]; grader: { model: string; configured: boolean }; passcodeEnabled: boolean };
-type Clip = { wav: Blob; url: string; seconds: number };
-type RecState = "idle" | "recording" | "processing";
-
-class AuthError extends Error {}
-
-function readStoredPasscode(): string {
-  try {
-    return localStorage.getItem(PASSCODE_KEY) ?? "";
-  } catch {
-    return "";
-  }
+function freshSession(providers: ProviderInfo[]): PromptSession {
+  return {
+    clip: null,
+    consensus: [],
+    rows: providers.map((p) => ({
+      id: p.id,
+      label: p.label,
+      inConsensus: p.inConsensus,
+      result: p.configured ? { status: "idle" } : { status: "unconfigured", missing: p.missing },
+      grade: { status: "idle" },
+    })),
+  };
 }
 
-function freshRows(providers: ProviderInfo[]): Row[] {
-  return providers.map((p) => ({
-    id: p.id,
-    label: p.label,
-    result: p.configured ? { status: "idle" } : { status: "unconfigured", missing: p.missing },
-    grade: { status: "idle" },
-  }));
+async function copyText(text: string): Promise<boolean> {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch {
+    // Fallback for browsers without async clipboard access.
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    const ok = document.execCommand("copy");
+    ta.remove();
+    return ok;
+  }
 }
 
 export default function Home() {
-  const [passcode, setPasscode] = useState("");
-  const [passcodeDraft, setPasscodeDraft] = useState("");
-  const [needPasscode, setNeedPasscode] = useState(false);
-  const [meta, setMeta] = useState<Meta | null>(null);
-  const [loadError, setLoadError] = useState("");
+  const { api, meta, loadError, needPasscode, passcodeTried, submitPasscode } = useAppApi();
+  const { model, choose: chooseModel, label: modelLabel } = useModelChoice(meta);
+  const recorder = useRecorder(MAX_SECONDS);
 
   const [promptIndex, setPromptIndex] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
-  const [rec, setRec] = useState<RecState>("idle");
-  const [elapsed, setElapsed] = useState(0);
-  const [clip, setClip] = useState<Clip | null>(null);
-  const [rows, setRows] = useState<Row[]>([]);
-  const [recError, setRecError] = useState("");
-  const [copyState, setCopyState] = useState<"" | "copied" | "failed">("");
+  const [sessions, setSessions] = useState<Record<string, PromptSession>>({});
+  const [copied, setCopied] = useState("");
 
-  const recorderRef = useRef<MediaRecorder | null>(null);
-  const timerRef = useRef<number | null>(null);
-  // Bumped whenever results are reset, so late responses for an old clip/prompt are dropped.
-  const runRef = useRef(0);
+  // Per-prompt attempt counter: a new recording bumps it, so late responses for an old clip are dropped.
+  const attemptRef = useRef<Record<string, number>>({});
+  const modelRef = useRef("");
+  modelRef.current = model;
 
   const prompt = TEST_PROMPTS[promptIndex];
+  const session = sessions[prompt.id] ?? (meta ? freshSession(meta.providers) : undefined);
 
-  const api = useCallback(
-    async (path: string, init: RequestInit = {}) => {
-      const headers = new Headers(init.headers);
-      if (passcode) headers.set("x-app-passcode", passcode);
-      const res = await fetch(path, { ...init, headers });
-      if (res.status === 401) {
-        setNeedPasscode(true);
-        throw new AuthError("passcode required");
-      }
-      return res;
+  /** Applies fn to a prompt's session, unless a newer recording has replaced that attempt. */
+  const update = useCallback(
+    (promptId: string, attempt: number, fn: (s: PromptSession) => PromptSession) => {
+      if (!meta || attemptRef.current[promptId] !== attempt) return;
+      setSessions((all) => ({ ...all, [promptId]: fn(all[promptId] ?? freshSession(meta.providers)) }));
     },
-    [passcode],
+    [meta],
   );
 
-  useEffect(() => {
-    setPasscode(readStoredPasscode());
-  }, []);
+  const updateRow = (promptId: string, attempt: number, id: string, patch: Partial<Row>) =>
+    update(promptId, attempt, (s) => ({ ...s, rows: s.rows.map((r) => (r.id === id ? { ...r, ...patch } : r)) }));
 
-  useEffect(() => {
-    let cancelled = false;
-    api("/api/providers")
-      .then((r) => r.json())
-      .then((m: Meta) => {
-        if (cancelled) return;
-        setMeta(m);
-        setNeedPasscode(false);
-        setRows(freshRows(m.providers));
-      })
-      .catch((err) => {
-        if (!cancelled && !(err instanceof AuthError)) setLoadError(String(err));
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, [api]);
+  const updateRun = (promptId: string, attempt: number, key: string, run: ConsensusRun) =>
+    update(promptId, attempt, (s) => ({ ...s, consensus: s.consensus.map((c) => (c.key === key ? run : c)) }));
 
-  const resetResults = useCallback(() => {
-    runRef.current++;
-    setClip((old) => {
-      if (old) URL.revokeObjectURL(old.url);
-      return null;
-    });
-    if (meta) setRows(freshRows(meta.providers));
-    setCopyState("");
-  }, [meta]);
-
-  const goToPrompt = (i: number) => {
-    if (rec !== "idle") return;
-    setPromptIndex((i + TEST_PROMPTS.length) % TEST_PROMPTS.length);
-    setShowAnswer(false);
-    resetResults();
-  };
-
-  const updateRow = (run: number, id: string, patch: { result?: ProviderResult; grade?: GradeState }) => {
-    if (run !== runRef.current) return;
-    setRows((rs) => rs.map((r) => (r.id === id ? { ...r, ...patch } : r)));
-  };
-
-  const transcribeAll = async (wav: Blob, run: number) => {
-    const targets = (meta?.providers ?? []).filter((p) => p.configured);
-    await Promise.all(
-      targets.map(async (row) => {
-        updateRow(run, row.id, { result: { status: "loading" }, grade: { status: "idle" } });
-        try {
-          const form = new FormData();
-          form.append("provider", row.id);
-          form.append("audio", wav, "clip.wav");
-          const res = await api("/api/transcribe", { method: "POST", body: form });
-          const json = await res.json();
-          if (!res.ok) {
-            updateRow(run, row.id, { result: { status: "error", error: json.error ?? `HTTP ${res.status}`, ms: json.ms } });
-          } else {
-            updateRow(run, row.id, { result: { status: "done", text: json.text, note: json.note, ms: json.ms } });
-          }
-        } catch (err) {
-          updateRow(run, row.id, { result: { status: "error", error: String(err) } });
-        }
-      }),
-    );
-  };
-
-  const gradeRow = async (row: Row) => {
-    if (row.result.status !== "done" || !row.result.text) return;
-    const run = runRef.current;
-    updateRow(run, row.id, { grade: { status: "loading" } });
+  const runConsensus = async (promptId: string, attempt: number, transcripts: Transcript[]) => {
+    const gradeModel = modelRef.current;
+    const key = `${Date.now()}-${Math.random()}`;
+    const pending: ConsensusRun = { key, status: "loading", requestedModel: gradeModel, used: [], discarded: [] };
+    update(promptId, attempt, (s) => ({ ...s, consensus: [...s.consensus, pending] }));
     try {
-      const res = await api("/api/grade", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ promptId: prompt.id, transcript: row.result.text, providerLabel: row.label }),
-      });
-      const json = await res.json();
-      if (!res.ok) {
-        updateRow(run, row.id, { grade: { status: "error", error: json.error ?? `HTTP ${res.status}` } });
-      } else {
-        updateRow(run, row.id, { grade: { status: "done", ...json } });
-      }
+      const { ok, status, json } = await postGrade(api, { promptId, mode: "consensus", model: gradeModel, transcripts });
+      const base = { key, requestedModel: gradeModel, used: json.used ?? [], discarded: json.discarded ?? [] };
+      updateRun(
+        promptId,
+        attempt,
+        key,
+        ok ? { ...base, ...json, status: "done" } : { ...base, status: "error", error: json.error ?? `HTTP ${status}`, ms: json.ms },
+      );
     } catch (err) {
-      updateRow(run, row.id, { grade: { status: "error", error: String(err) } });
+      updateRun(promptId, attempt, key, { key, status: "error", requestedModel: gradeModel, error: String(err), used: [], discarded: [] });
     }
   };
 
-  const gradable = rows.filter(
-    (r) => r.result.status === "done" && r.result.text && r.grade.status !== "loading" && r.grade.status !== "done",
-  );
-
-  const stopTimer = () => {
-    if (timerRef.current != null) window.clearInterval(timerRef.current);
-    timerRef.current = null;
+  const gradeAlone = async (promptId: string, row: Row) => {
+    if (row.result.status !== "done" || !row.result.text) return;
+    const attempt = attemptRef.current[promptId];
+    const gradeModel = modelRef.current;
+    updateRow(promptId, attempt, row.id, { grade: { status: "loading", requestedModel: gradeModel } });
+    let grade: GradeState;
+    try {
+      const transcript = { providerId: row.id, label: row.label, text: row.result.text };
+      const { ok, status, json } = await postGrade(api, { promptId, mode: "single", model: gradeModel, transcripts: [transcript] });
+      grade = ok
+        ? { ...json, status: "done", requestedModel: gradeModel }
+        : { status: "error", requestedModel: gradeModel, error: json.error ?? `HTTP ${status}`, ms: json.ms };
+    } catch (err) {
+      grade = { status: "error", requestedModel: gradeModel, error: String(err) };
+    }
+    updateRow(promptId, attempt, row.id, { grade });
   };
 
   const startRecording = async () => {
-    setRecError("");
-    resetResults();
-    let stream: MediaStream;
-    try {
-      stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true } });
-    } catch (err) {
-      setRecError(`Microphone unavailable: ${String(err)}`);
-      return;
-    }
-    const recorder = new MediaRecorder(stream);
-    const chunks: Blob[] = [];
-    recorder.ondataavailable = (e) => {
-      if (e.data.size > 0) chunks.push(e.data);
-    };
-    recorder.onstop = async () => {
-      stopTimer();
-      stream.getTracks().forEach((t) => t.stop());
-      setRec("processing");
-      const run = runRef.current;
-      try {
-        const { wav, seconds } = await toWav16kMono(new Blob(chunks, { type: recorder.mimeType }));
-        if (run !== runRef.current) return;
-        setClip({ wav, url: URL.createObjectURL(wav), seconds });
-        setRec("idle");
-        await transcribeAll(wav, run);
-      } catch (err) {
-        setRecError(`Could not process recording: ${String(err)}`);
-        setRec("idle");
-      }
-    };
-    recorderRef.current = recorder;
-    recorder.start();
-    setRec("recording");
-    setElapsed(0);
-    const started = Date.now();
-    timerRef.current = window.setInterval(() => {
-      const s = (Date.now() - started) / 1000;
-      setElapsed(s);
-      if (s >= MAX_SECONDS && recorder.state === "recording") recorder.stop();
-    }, 200);
+    if (!meta) return;
+    const promptId = prompt.id;
+    // A new recording replaces this prompt's previous attempt; other prompts keep theirs.
+    const attempt = (attemptRef.current[promptId] ?? 0) + 1;
+    const started = await recorder.start(async ({ wav, seconds }) => {
+      update(promptId, attempt, (s) => ({ ...s, clip: { url: URL.createObjectURL(wav), seconds } }));
+      const configured = meta.providers.filter((p) => p.configured);
+      const transcripts = await transcribeAll(api, configured, wav, (id, result) => updateRow(promptId, attempt, id, { result }));
+      // Consensus grading runs by default once the transcripts are in.
+      if (meta.grader.configured && transcripts.length > 0) await runConsensus(promptId, attempt, transcripts);
+    });
+    if (!started) return;
+    attemptRef.current[promptId] = attempt;
+    setSessions((all) => {
+      const old = all[promptId]?.clip;
+      if (old) URL.revokeObjectURL(old.url);
+      return { ...all, [promptId]: freshSession(meta.providers) };
+    });
   };
 
-  const stopRecording = () => {
-    if (recorderRef.current?.state === "recording") recorderRef.current.stop();
+  const goToPrompt = (i: number) => {
+    if (recorder.rec !== "idle") return;
+    setPromptIndex((i + TEST_PROMPTS.length) % TEST_PROMPTS.length);
+    setShowAnswer(false);
   };
 
-  const copyAll = async () => {
-    const text = formatResultsText(prompt, rows, clip?.seconds ?? null);
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopyState("copied");
-    } catch {
-      // Fallback for browsers without async clipboard access.
-      const ta = document.createElement("textarea");
-      ta.value = text;
-      document.body.appendChild(ta);
-      ta.select();
-      const ok = document.execCommand("copy");
-      ta.remove();
-      setCopyState(ok ? "copied" : "failed");
-    }
-    window.setTimeout(() => setCopyState(""), 2500);
+  const flashCopied = (label: string) => {
+    setCopied(label);
+    window.setTimeout(() => setCopied(""), 2500);
   };
 
-  const savePasscode = (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      localStorage.setItem(PASSCODE_KEY, passcodeDraft);
-    } catch {
-      // Private mode: passcode lasts for this page load only.
-    }
-    setPasscode(passcodeDraft);
+  const copyPrompt = async () => {
+    flashCopied((await copyText(formatPromptText(prompt, session))) ? "prompt" : "failed");
   };
 
-  if (needPasscode) {
-    return (
-      <main className="container">
-        <h1>Kalam · voice spike</h1>
-        <form className="card passcode" onSubmit={savePasscode}>
-          <label htmlFor="pc">Passcode</label>
-          <input
-            id="pc"
-            type="password"
-            autoComplete="current-password"
-            value={passcodeDraft}
-            onChange={(e) => setPasscodeDraft(e.target.value)}
-          />
-          <button type="submit" className="btn primary">Unlock</button>
-          {passcode && <p className="muted">That passcode didn&apos;t work.</p>}
-        </form>
-      </main>
-    );
-  }
+  const copyEverything = async () => {
+    flashCopied((await copyText(formatEverythingText(TEST_PROMPTS, sessions))) ? "everything" : "failed");
+  };
 
-  const recordLabel = rec === "recording" ? "Stop" : rec === "processing" ? "…" : "Record";
+  if (needPasscode) return <PasscodeScreen tried={passcodeTried} onSubmit={submitPasscode} />;
+
+  const { rec, elapsed, remaining } = recorder;
+  const counting = rec === "recording" && remaining <= COUNTDOWN_FROM;
+  const recordLabel = rec === "recording" ? (counting ? String(remaining) : "Stop") : rec === "processing" ? "…" : "Record";
+  const status = session ? consensusStatus(session.rows) : {};
+  const consensusInput = session ? doneTranscripts(session.rows).filter((t) => status[t.providerId] === "used in consensus") : [];
+  const consensusBusy = session?.consensus.some((c) => c.status === "loading") ?? false;
+  const answeredCount = TEST_PROMPTS.filter((p) => hasResults(sessions[p.id])).length;
 
   return (
     <main className="container">
+      <Nav />
       <header className="top">
-        <h1>Kalam · voice spike</h1>
         {meta && !meta.passcodeEnabled && <p className="warn">APP_PASSCODE is not set — anyone with this URL can use your API keys.</p>}
         {meta && !meta.grader.configured && <p className="warn">ANTHROPIC_API_KEY is not set — grading is disabled.</p>}
         {loadError && <p className="warn">{loadError}</p>}
       </header>
+
+      {meta && <ModelToggle meta={meta} model={model} onChange={chooseModel} />}
 
       <section className="card prompt">
         <div className="prompt-nav">
           <button className="btn" onClick={() => goToPrompt(promptIndex - 1)} disabled={rec !== "idle"} aria-label="Previous prompt">‹</button>
           <span className="muted">
             {promptIndex + 1} / {TEST_PROMPTS.length} · {prompt.kind}
+            {hasResults(sessions[prompt.id]) ? " · has results" : ""}
           </span>
           <button className="btn" onClick={() => goToPrompt(promptIndex + 1)} disabled={rec !== "idle"} aria-label="Next prompt">›</button>
         </div>
         <p className="prompt-en">{prompt.en}</p>
-        {(prompt.referenceTranslit || prompt.tutorPartial) && (
+        {(prompt.answerKey || prompt.referenceTranslit || prompt.tutorPartial) && (
           <button className="link" onClick={() => setShowAnswer((s) => !s)}>
-            {showAnswer ? "Hide" : "Show"} {prompt.referenceTranslit ? "answer" : "tutor hint"}
+            {showAnswer ? "Hide" : "Show"} answer
           </button>
         )}
+        {showAnswer && prompt.answerKey && (
+          <div className="answer">
+            <span className="tag">answer key · {prompt.answerKey.status}</span>
+            <p>{prompt.answerKey.translit}</p>
+            <p className="arabic" dir="rtl" lang="ar">{prompt.answerKey.arabic}</p>
+          </div>
+        )}
         {showAnswer && prompt.referenceTranslit && <p className="answer">{prompt.referenceTranslit}</p>}
-        {showAnswer && prompt.tutorPartial && <p className="answer">Tutor started: {prompt.tutorPartial}…</p>}
+        {showAnswer && prompt.tutorPartial && <p className="answer muted">Tutor started: {prompt.tutorPartial}…</p>}
       </section>
 
       <section className="record">
         <button
-          className={`record-btn ${rec}`}
-          onClick={rec === "recording" ? stopRecording : startRecording}
+          className={`record-btn ${rec} ${counting ? "counting" : ""}`}
+          onClick={rec === "recording" ? recorder.stop : startRecording}
           disabled={rec === "processing" || !meta}
+          aria-label={rec === "recording" ? "Stop recording" : "Record"}
         >
           {recordLabel}
         </button>
-        <p className="muted">
+        <p className={counting ? "countdown" : "muted"}>
           {rec === "recording"
-            ? `${elapsed.toFixed(1)} s / ${MAX_SECONDS} s`
-            : clip
-              ? `Clip: ${clip.seconds.toFixed(1)} s`
+            ? counting
+              ? `Stopping in ${remaining} s`
+              : `${elapsed.toFixed(0)} s / ${MAX_SECONDS} s`
+            : session?.clip
+              ? `Clip: ${session.clip.seconds.toFixed(1)} s`
               : "Tap, say it in Levantine, tap again"}
         </p>
-        {clip && <audio controls src={clip.url} className="player" />}
-        {recError && <p className="warn">{recError}</p>}
+        {session?.clip && <audio controls src={session.clip.url} className="player" />}
+        {recorder.error && <p className="warn">{recorder.error}</p>}
       </section>
 
       <section className="actions">
         <button
           className="btn primary"
-          disabled={gradable.length === 0 || !meta?.grader.configured}
-          onClick={() => gradable.forEach(gradeRow)}
+          disabled={!meta?.grader.configured || consensusInput.length === 0 || consensusBusy}
+          onClick={() => runConsensus(prompt.id, attemptRef.current[prompt.id], consensusInput)}
         >
-          Grade all ({gradable.length})
+          {session?.consensus.length ? `Grade again with ${modelLabel(model)}` : `Consensus grade (${consensusInput.length})`}
         </button>
-        <button className="btn" onClick={copyAll} disabled={!meta}>
-          {copyState === "copied" ? "Copied ✓" : copyState === "failed" ? "Copy failed" : "Copy all results"}
+        <button className="btn" onClick={copyPrompt} disabled={!meta}>
+          {copied === "prompt" ? "Copied ✓" : "Copy this prompt"}
         </button>
+        <button className="btn" onClick={copyEverything} disabled={!meta}>
+          {copied === "everything" ? "Copied ✓" : `Copy everything (${answeredCount})`}
+        </button>
+        {copied === "failed" && <p className="warn">Copy failed</p>}
       </section>
 
+      {session?.consensus.length ? (
+        <section className="consensus">
+          {session.consensus.map((run, i) => (
+            <article key={run.key} className="card">
+              <h2>
+                Consensus grade{session.consensus.length > 1 ? ` ${i + 1}` : ""} · {modelLabel(run.requestedModel)}
+                {run.status === "done" ? ` · ${(run.ms / 1000).toFixed(1)} s` : ""}
+              </h2>
+              {run.discarded.length > 0 && (
+                <ul className="discarded small">
+                  {run.discarded.map((d) => (
+                    <li key={d.providerId}>Discarded {d.label}: {d.reason}</li>
+                  ))}
+                </ul>
+              )}
+              {run.status === "loading" && <p className="muted">Grading…</p>}
+              {run.status === "error" && <p className="warn">{run.error}</p>}
+              {run.status === "done" && <GradeCard state={run} modelLabel={modelLabel} />}
+            </article>
+          ))}
+        </section>
+      ) : null}
+
       <section className="grid">
-        {rows.map((row) => (
+        {session?.rows.map((row) => (
           <article key={row.id} className={`card provider ${row.result.status}`}>
             <h2>{row.label}</h2>
-            <ProviderBody result={row.result} />
+            <ProviderBody row={row} />
+            {row.result.status === "done" && status[row.id] && (
+              <p className={`small ${status[row.id].startsWith("discarded") ? "warn" : "muted"}`}>{status[row.id]}</p>
+            )}
             {row.result.status === "done" && row.result.text && (
               <>
                 {row.grade.status === "idle" && (
-                  <button className="btn" onClick={() => gradeRow(row)} disabled={!meta?.grader.configured}>
-                    Grade
+                  <button className="link small" onClick={() => gradeAlone(prompt.id, row)} disabled={!meta?.grader.configured}>
+                    Grade this transcript alone
                   </button>
                 )}
                 {row.grade.status === "loading" && <p className="muted">Grading…</p>}
                 {row.grade.status === "error" && (
                   <>
                     <p className="warn">{row.grade.error}</p>
-                    <button className="btn" onClick={() => gradeRow(row)}>Retry grade</button>
+                    <button className="link small" onClick={() => gradeAlone(prompt.id, row)}>Retry</button>
                   </>
                 )}
-                {row.grade.status === "done" && <GradeCard state={row.grade} />}
+                {row.grade.status === "done" && <GradeCard state={row.grade} modelLabel={modelLabel} />}
               </>
             )}
           </article>
@@ -350,13 +305,15 @@ export default function Home() {
       </section>
 
       <footer className="muted foot">
-        Grader: {meta?.grader.model ?? "…"}. Transcripts are what each system heard — not a pronunciation score.
+        Consensus uses ElevenLabs, whisper-1 and gpt-4o-transcribe. Transcripts are what each system heard — not a
+        pronunciation score.
       </footer>
     </main>
   );
 }
 
-function ProviderBody({ result }: { result: ProviderResult }) {
+function ProviderBody({ row }: { row: Row }) {
+  const result = row.result;
   switch (result.status) {
     case "unconfigured":
       return <p className="muted">Not configured (set {result.missing.join(", ")})</p>;

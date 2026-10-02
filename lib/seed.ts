@@ -8,10 +8,14 @@ export type TestPrompt = {
   referenceTranslit?: string;
   /** Partial answer the tutor wrote in the notes (some sentences). */
   tutorPartial?: string;
+  /** Canonical answer for practice sentences; the grader marks against it. */
+  answerKey?: AnswerKey;
 };
 
+export type AnswerKey = { translit: string; arabic: string; status: "unverified" | "verified" };
+
 type SeedPhrase = { en: string; translit: string };
-type SeedSentence = { en: string; partial_translit_from_tutor?: string };
+type SeedSentence = { en: string; partial_translit_from_tutor?: string; answer_key?: AnswerKey };
 
 // Phase 0 test set, chosen by English prefix so the seed file stays the source of truth.
 const PHRASE_PREFIXES = [
@@ -53,6 +57,7 @@ export const TEST_PROMPTS: TestPrompt[] = [
       kind: "sentence",
       en: item.en,
       tutorPartial: item.partial_translit_from_tutor,
+      answerKey: item.answer_key,
     };
   }),
 ];

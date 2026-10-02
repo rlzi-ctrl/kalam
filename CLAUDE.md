@@ -16,6 +16,7 @@ A do-it-at-your-own-pace speaking coach for an English speaker learning **Levant
 2. **Write drill** — same, typed Arabizi. Run a deterministic normalizer before the LLM grader.
 3. **Persona conversation** — voice chat with a persona (e.g. *Rami, taxi driver in Amman*; *Lina, colleague at the office*; *Abu Khaled, shop owner*; *neighbour inviting you for coffee*). Persona stays in character, speaks slowly, uses known vocab, asks follow-up questions. Learner can tap "help" for an English hint. Corrections are collected silently and shown in an **end-of-session report** (overall score, top 3 errors, new words used, sentences to drill). Optional toggle: correct after every turn.
 4. **Mistake bank + spaced repetition** — every corrected item becomes a review card (SM-2 or FSRS). Daily session = due reviews + 5 new sentences + optional 5-minute persona chat.
+6. **Say it (reverse direction)** — type English → Claude returns `translit` (seed spellings), `arabic`, `tts_spelling` (Arabic script spelled as Levantine is pronounced, e.g. أديمة for قديمة, used as the TTS input) and a word-by-word breakdown, status "unverified". Player: loop, 0.75×, tap a word, shadowing (play → pause to repeat → replay), optional recorded attempt graded by consensus. Every sentence is saved as a review card; ★ marks "ask my tutor"; saved sentences export as one MP3 playlist with pauses. TTS sits behind a provider interface like STT (Azure ar-JO/LB/SY, ElevenLabs); audio is cached in Vercel Blob keyed by voice + model + text. The voice test page (/voices) is for the tutor to pick a voice.
 5. **Add lesson** — paste raw tutor notes → LLM structures them into the seed format → review screen where I approve/edit before they go live. Flag likely errors instead of silently fixing them.
 
 ### Grader output (strict JSON)
@@ -30,10 +31,15 @@ A do-it-at-your-own-pace speaking coach for an English speaker learning **Levant
   "corrected_arabic": "string",
   "errors": [{"type": "conjugation|suffix|gender|msa_form|word_choice|word_order|missing_word", "learner": "...", "fix": "...", "tip": "one short sentence"}],
   "overall": 0-100,
-  "encouragement": "one short line"
+  "encouragement": "one short line",
+  "consensus_note": "string"   // where STT transcripts agreed, which disagreements were treated as noise
 }
 ```
-Pass the grader: target English, any tutor partial answer from the seed, the learner's unlocked vocab, the language pack's rubric notes, and the normalized learner input. Temperature low. Validate JSON; retry once on parse failure.
+Pass the grader: target English, the answer key (or any tutor partial answer) from the seed, the learner's unlocked vocab, the language pack's rubric notes, and the normalized learner input. Temperature low. Validate JSON; retry once on parse failure.
+
+**Consensus grading (from Phase 0 results).** No single STT is reliable; agreement between providers is the signal. Speak mode sends one clip to ElevenLabs Scribe, whisper-1 and gpt-4o-transcribe, discards any transcript with non-Arabic letters (Latin, or Persian/Urdu letters such as ک ی ے ھ), and makes one grader call with the rest. An error counts against the learner only if most remaining transcripts show it; otherwise it is STT noise.
+
+**Answer key.** Each practice sentence has one canonical Levantine `answer_key` (translit + Arabic) in the seed. The grader marks against it and uses its exact spellings. Keys start as `"status": "unverified"` until the tutor confirms them.
 
 ### Suggested stack (open to Claude Code's recommendation)
 - Next.js (App Router) + TypeScript, installable as a PWA so it works on my phone browser without app stores.
