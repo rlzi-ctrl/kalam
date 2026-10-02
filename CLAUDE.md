@@ -30,10 +30,15 @@ A do-it-at-your-own-pace speaking coach for an English speaker learning **Levant
   "corrected_arabic": "string",
   "errors": [{"type": "conjugation|suffix|gender|msa_form|word_choice|word_order|missing_word", "learner": "...", "fix": "...", "tip": "one short sentence"}],
   "overall": 0-100,
-  "encouragement": "one short line"
+  "encouragement": "one short line",
+  "consensus_note": "string"   // where STT transcripts agreed, which disagreements were treated as noise
 }
 ```
-Pass the grader: target English, any tutor partial answer from the seed, the learner's unlocked vocab, the language pack's rubric notes, and the normalized learner input. Temperature low. Validate JSON; retry once on parse failure.
+Pass the grader: target English, the answer key (or any tutor partial answer) from the seed, the learner's unlocked vocab, the language pack's rubric notes, and the normalized learner input. Temperature low. Validate JSON; retry once on parse failure.
+
+**Consensus grading (from Phase 0 results).** No single STT is reliable; agreement between providers is the signal. Speak mode sends one clip to ElevenLabs Scribe, whisper-1 and gpt-4o-transcribe, discards any transcript with non-Arabic letters (Latin, or Persian/Urdu letters such as ک ی ے ھ), and makes one grader call with the rest. An error counts against the learner only if most remaining transcripts show it; otherwise it is STT noise.
+
+**Answer key.** Each practice sentence has one canonical Levantine `answer_key` (translit + Arabic) in the seed. The grader marks against it and uses its exact spellings. Keys start as `"status": "unverified"` until the tutor confirms them.
 
 ### Suggested stack (open to Claude Code's recommendation)
 - Next.js (App Router) + TypeScript, installable as a PWA so it works on my phone browser without app stores.

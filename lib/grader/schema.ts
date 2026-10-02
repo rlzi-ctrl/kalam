@@ -30,6 +30,7 @@ export const ModelGradeSchema = z.object({
   ),
   overall: score,
   encouragement: z.string(),
+  consensus_note: z.string(),
 });
 
 export type Grade = z.infer<typeof ModelGradeSchema> & { heard: string };
@@ -51,6 +52,7 @@ export const GRADE_JSON_SCHEMA = {
     "errors",
     "overall",
     "encouragement",
+    "consensus_note",
   ],
   properties: {
     meaning: int,
@@ -75,5 +77,6 @@ export const GRADE_JSON_SCHEMA = {
     },
     overall: int,
     encouragement: str,
+    consensus_note: str,
   },
 };

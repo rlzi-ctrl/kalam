@@ -109,3 +109,25 @@ pre { white-space: pre-wrap; word-break: break-word; font-size: 0.78rem; backgro
 .passcode { display: flex; flex-direction: column; gap: 10px; max-width: 360px; }
 .passcode input { font: inherit; font-size: 16px; min-height: 44px; padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg); color: var(--text); }
 .foot { margin-top: 24px; font-size: 0.85rem; text-align: center; }
+
+.model-toggle { display: flex; align-items: center; gap: 6px; justify-content: center; margin: 8px 0 4px; }
+.seg {
+  font: inherit;
+  min-height: 40px;
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  border-radius: 999px;
+  cursor: pointer;
+}
+.seg.on { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }
+.record-btn.counting { animation: pulse 0.5s ease-in-out infinite; font-size: 3rem; }
+.countdown { color: var(--rec); font-weight: 700; font-size: 1.2rem; margin: 0; }
+.answer p { margin: 4px 0 0; }
+.answer .arabic { font-family: inherit; font-size: 1.2rem; }
+.consensus { display: grid; gap: 12px; margin-bottom: 12px; }
+.consensus .card { border-color: var(--accent); }
+.discarded { color: var(--warn); padding-left: 18px; margin: 4px 0; }
+.latency { float: right; font-size: 0.85rem; color: var(--muted); padding-top: 8px; }
+.consensus-note { border-left: 3px solid var(--accent); padding-left: 8px; }

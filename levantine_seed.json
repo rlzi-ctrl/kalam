@@ -1488,125 +1488,320 @@
  ],
  "practice_sentences": [
   {
-   "en": "Because I was busy yesterday, I will clean the whole house today."
+   "en": "Because I was busy yesterday, I will clean the whole house today.",
+   "answer_key": {
+    "translit": "ashan kont mashghol ams, rah anathef kol el-beit el-yom",
+    "arabic": "عشان كنت مشغول أمس، رح أنظّف كل البيت اليوم",
+    "status": "unverified"
+   }
   },
   {
    "en": "Their car is very old, but his car is new and expensive.",
-   "partial_translit_from_tutor": "sayyarit hom"
+   "partial_translit_from_tutor": "sayyarit hom",
+   "answer_key": {
+    "translit": "sayyarit-hom adeemea ektheer, bas sayyartoh jadeedea w ghalyea",
+    "arabic": "سيارتهم قديمة كتير، بس سيارته جديدة وغالية",
+    "status": "unverified"
+   }
   },
   {
    "en": "She was at the airport two hours ago because her brother is traveling",
-   "partial_translit_from_tutor": "heya kanat fil matar qabel sa3tein"
+   "partial_translit_from_tutor": "heya kanat fil matar qabel sa3tein",
+   "answer_key": {
+    "translit": "heya kanat fil matar qabel sa3tein ashan akhoha msafer",
+    "arabic": "هي كانت في المطار قبل ساعتين عشان أخوها مسافر",
+    "status": "unverified"
+   }
   },
   {
    "en": "We don't have enough money, that’s why we want a cheap apartment",
-   "partial_translit_from_tutor": "ehna ma endnaa kaafi ,"
+   "partial_translit_from_tutor": "ehna ma endnaa kaafi ,",
+   "answer_key": {
+    "translit": "ehna ma endna eflos kafi, 3shan heek bedna shaqa rkheesa",
+    "arabic": "إحنا ما عنّا فلوس كافي، عشان هيك بدنا شقة رخيصة",
+    "status": "unverified"
+   }
   },
   {
-   "en": "I think he will stay in his office until evening because he has a lot of work."
+   "en": "I think he will stay in his office until evening because he has a lot of work.",
+   "answer_key": {
+    "translit": "ana bafaker eno rah yadall fi maktaboh lal-masa ashan endoh shoghol ektheer",
+    "arabic": "أنا بفكّر إنه رح يضل في مكتبه للمسا عشان عنده شغل كتير",
+    "status": "unverified"
+   }
   },
   {
-   "en": "Our family was happy in the summer because the weather was beautiful in our city."
+   "en": "Our family was happy in the summer because the weather was beautiful in our city.",
+   "answer_key": {
+    "translit": "3eletna kanat mabsoota fil sef ashan el-jaw kan jameel fi madenetna",
+    "arabic": "عيلتنا كانت مبسوطة في الصيف عشان الجو كان جميل في مدينتنا",
+    "status": "unverified"
+   }
   },
   {
-   "en": "I asked her about her opinion, but she said \"I don't know yet."
+   "en": "I asked her about her opinion, but she said \"I don't know yet.",
+   "answer_key": {
+    "translit": "ana sa2altha 3an ra2yha, bas qalat: lesa ma ba3ref",
+    "arabic": "أنا سألتها عن رأيها، بس قالت: لسا ما بعرف",
+    "status": "unverified"
+   }
   },
   {
-   "en": "Maybe you (m) can't see the building because it is behind the park."
+   "en": "Maybe you (m) can't see the building because it is behind the park.",
+   "answer_key": {
+    "translit": "yemken anta ma btiqdar tshoof el-3emara ashan heya waraa el-hadeqa",
+    "arabic": "يمكن إنت ما بتقدر تشوف العمارة عشان هي ورا الحديقة",
+    "status": "unverified"
+   }
   },
   {
-   "en": "I saw your (m) friend in the street and he told me that his father is tired."
+   "en": "I saw your (m) friend in the street and he told me that his father is tired.",
+   "answer_key": {
+    "translit": "ana shoft sahbak fil share3 w qalli eno aboh ta3ban",
+    "arabic": "أنا شفت صاحبك في الشارع وقلّي إنه أبوه تعبان",
+    "status": "unverified"
+   }
   },
   {
-   "en": "We were thirsty after we walked a lot in the sun."
+   "en": "We were thirsty after we walked a lot in the sun.",
+   "answer_key": {
+    "translit": "ehna kona 3atshanin ba3d ma mashina ektheer fil shams",
+    "arabic": "إحنا كنا عطشانين بعد ما مشينا كتير في الشمس",
+    "status": "unverified"
+   }
   },
   {
-   "en": "Last week, I was in their house and I saw his daughter, she is very tall now."
+   "en": "Last week, I was in their house and I saw his daughter, she is very tall now.",
+   "answer_key": {
+    "translit": "el-osbo3 el-madi kont fi beit-hom w shoft bentoh, heya taweelea ektheer hasa",
+    "arabic": "الأسبوع الماضي كنت في بيتهم وشفت بنته، هي طويلة كتير هسا",
+    "status": "unverified"
+   }
   },
   {
-   "en": "Before I go out, I have to finish my work because I want to be ready for the weekend.- ana bedi akhoon jahez la"
+   "en": "Before I go out, I have to finish my work because I want to be ready for the weekend.- ana bedi akhoon jahez la",
+   "answer_key": {
+    "translit": "qabel ma atla3, lazem akhalles shoghli ashan bedi akoon jahez lal-ejazea",
+    "arabic": "قبل ما أطلع، لازم أخلّص شغلي عشان بدي أكون جاهز للإجازة",
+    "status": "unverified"
+   }
   },
   {
-   "en": "He said that he will buy her a new phone because her old phone is bad."
+   "en": "He said that he will buy her a new phone because her old phone is bad.",
+   "answer_key": {
+    "translit": "howa qal eno rah yeshtrilha telefon jaded ashan telefonha el-adeem say2",
+    "arabic": "هو قال إنه رح يشتريلها تلفون جديد عشان تلفونها القديم سيء",
+    "status": "unverified"
+   }
   },
   {
-   "en": "Why were you (m) late yesterday? Was there a problem with your car or the street?"
+   "en": "Why were you (m) late yesterday? Was there a problem with your car or the street?",
+   "answer_key": {
+    "translit": "lesh kont met2akhir ams? kan fi moshkela ma3 sayyartak aw fil share3?",
+    "arabic": "ليش كنت متأخر أمس؟ كان في مشكلة مع سيارتك أو في الشارع؟",
+    "status": "unverified"
+   }
   },
   {
-   "en": "Our kitchen is small, but we always clean it because we like to eat at home."
+   "en": "Our kitchen is small, but we always clean it because we like to eat at home.",
+   "answer_key": {
+    "translit": "matbakhna zgheer, bas ehna dayman bnnathfoh ashan bnheb nakol fil beit",
+    "arabic": "مطبخنا زغير، بس إحنا دايماً بننظّفه عشان بنحب ناكل في البيت",
+    "status": "unverified"
+   }
   },
   {
-   "en": "If the weather is hot tomorrow, we will go to the sea with our friends."
+   "en": "If the weather is hot tomorrow, we will go to the sea with our friends.",
+   "answer_key": {
+    "translit": "etha kan el-jaw haar bukra, rah nroh 3al bahar ma3 ashabna",
+    "arabic": "إذا كان الجو حار بكرا، رح نروح عالبحر مع أصحابنا",
+    "status": "unverified"
+   }
   },
   {
-   "en": "I want to tell you (m) something, but please don’t ask me how I know it."
+   "en": "I want to tell you (m) something, but please don’t ask me how I know it.",
+   "answer_key": {
+    "translit": "bedi a2ollak eshi, bas law samaht ma tes2alni keef ba3rfoh",
+    "arabic": "بدي أقلّك إشي، بس لو سمحت ما تسألني كيف بعرفه",
+    "status": "unverified"
+   }
   },
   {
-   "en": "She thinks that her brother is at the hospital, but he is actually still at his office."
+   "en": "She thinks that her brother is at the hospital, but he is actually still at his office.",
+   "answer_key": {
+    "translit": "heya btfaker eno akhoha fil mostashfa, bas howa fe3lan lesa fi maktaboh",
+    "arabic": "هي بتفكّر إنه أخوها في المستشفى، بس هو فعلاً لسا في مكتبه",
+    "status": "unverified"
+   }
   },
   {
-   "en": "We saw them at the airport, they were tired because the plane was late for three hours."
+   "en": "We saw them at the airport, they were tired because the plane was late for three hours.",
+   "answer_key": {
+    "translit": "ehna shofnahom fil matar, kano ta3banin ashan el-teyara t2akharat tlat sa3at",
+    "arabic": "إحنا شفناهم في المطار، كانوا تعبانين عشان الطيارة تأخرت تلات ساعات",
+    "status": "unverified"
+   }
   },
   {
-   "en": "I didn't see your (f) message (risalea) because I was sleeping, and my phone was behind the bed."
+   "en": "I didn't see your (f) message (risalea) because I was sleeping, and my phone was behind the bed.",
+   "answer_key": {
+    "translit": "ana ma shoft resaltik ashan kont nayem, w telefoni kan waraa el-sreer",
+    "arabic": "أنا ما شفت رسالتك عشان كنت نايم، وتلفوني كان ورا السرير",
+    "status": "unverified"
+   }
   },
   {
    "en": "I wanted to travel with them last year, but I didn't have enough money and my salary was low.",
-   "partial_translit_from_tutor": "ana kan bedi"
+   "partial_translit_from_tutor": "ana kan bedi",
+   "answer_key": {
+    "translit": "ana kan bedi asafer ma3hom el-sanea el-madyea, bas ma kan endi eflos kafi w ratebi kan qaleel",
+    "arabic": "أنا كان بدي أسافر معهم السنة الماضية، بس ما كان عندي فلوس كافي وراتبي كان قليل",
+    "status": "unverified"
+   }
   },
   {
-   "en": "If you (f) go to the market, can you buy me a white shirt? Because mine is dirty."
+   "en": "If you (f) go to the market, can you buy me a white shirt? Because mine is dirty.",
+   "answer_key": {
+    "translit": "etha rohti 3al soo2, btiqdari teshtrili qamees abyad? ashan qameesi wesekh",
+    "arabic": "إذا رحتي عالسوق، بتقدري تشتريلي قميص أبيض؟ عشان قميصي وسخ",
+    "status": "unverified"
+   }
   },
   {
-   "en": "They told us that their family is staying in a big apartment next to the garden."
+   "en": "They told us that their family is staying in a big apartment next to the garden.",
+   "answer_key": {
+    "translit": "hom qalolna eno 3elet-hom nazleen fi shaqa kbeera janb el-hadeqa",
+    "arabic": "هم قالولنا إنه عيلتهم نازلين في شقة كبيرة جنب الحديقة",
+    "status": "unverified"
+   }
   },
   {
-   "en": "He will not arrive (yusal) early today because his car is broken (has a problem) and he is walking in the street now."
+   "en": "He will not arrive (yusal) early today because his car is broken (has a problem) and he is walking in the street now.",
+   "answer_key": {
+    "translit": "howa mish rah yowsal badri el-yom ashan sayyartoh fiha moshkela w howa mashi fil share3 hasa",
+    "arabic": "هو مش رح يوصل بدري اليوم عشان سيارته فيها مشكلة وهو ماشي في الشارع هسا",
+    "status": "unverified"
+   }
   },
   {
-   "en": "Why didn't you (m) tell me his name before we went to his office? Now I am embarrassed (sad/ashamed)."
+   "en": "Why didn't you (m) tell me his name before we went to his office? Now I am embarrassed (sad/ashamed).",
+   "answer_key": {
+    "translit": "lesh ma qolteli ismoh qabel ma rohna 3a maktaboh? hasa ana mestehi",
+    "arabic": "ليش ما قلتلي اسمه قبل ما رحنا عمكتبه؟ هسا أنا مستحي",
+    "status": "unverified"
+   }
   },
   {
-   "en": "Our manager (boss) said that we have to work more than eight hours a day next month."
+   "en": "Our manager (boss) said that we have to work more than eight hours a day next month.",
+   "answer_key": {
+    "translit": "el-mudeer taba3na qal eno lazem neshtaghel akthar men tamn sa3at bel-yom el-shahar el-jay",
+    "arabic": "المدير تبعنا قال إنه لازم نشتغل أكتر من تمن ساعات باليوم الشهر الجاي",
+    "status": "unverified"
+   }
   },
   {
-   "en": "She was at the airport, but she didn't see him because there were a lot of people there (hunak)."
+   "en": "She was at the airport, but she didn't see him because there were a lot of people there (hunak).",
+   "answer_key": {
+    "translit": "heya kanat fil matar, bas ma shafatoh ashan kan fi nas ektheer hunak",
+    "arabic": "هي كانت في المطار، بس ما شافته عشان كان في ناس كتير هناك",
+    "status": "unverified"
+   }
   },
   {
-   "en": "I think his opinion is wrong, but I don't want to say that to his face."
+   "en": "I think his opinion is wrong, but I don't want to say that to his face.",
+   "answer_key": {
+    "translit": "ana bafaker eno ra2yoh ghalat, bas ma bedi a2olloh hada b-wejhoh",
+    "arabic": "أنا بفكّر إنه رأيه غلط، بس ما بدي أقلّه هاد بوجهه",
+    "status": "unverified"
+   }
   },
   {
-   "en": "We were in the living room when we heard a loud sound coming from the kitchen."
+   "en": "We were in the living room when we heard a loud sound coming from the kitchen.",
+   "answer_key": {
+    "translit": "ehna kona fil salon lama sme3na sot 3ali jay men el-matbakh",
+    "arabic": "إحنا كنا في الصالون لما سمعنا صوت عالي جاي من المطبخ",
+    "status": "unverified"
+   }
   },
   {
-   "en": "My sister said she will call her friend because she needs to ask her about the price of the suite."
+   "en": "My sister said she will call her friend because she needs to ask her about the price of the suite.",
+   "answer_key": {
+    "translit": "okhti qalat eno rah tetasel b-sahbet-ha ashan btehtaj tes2alha 3an se3r el-badlea",
+    "arabic": "أختي قالت إنه رح تتصل بصاحبتها عشان بتحتاج تسألها عن سعر البدلة",
+    "status": "unverified"
+   }
   },
   {
-   "en": "Last week, I was thinking about her, but I didn't know if she was still in the same city or if she traveled to the north."
+   "en": "Last week, I was thinking about her, but I didn't know if she was still in the same city or if she traveled to the north.",
+   "answer_key": {
+    "translit": "el-osbo3 el-madi kont afaker fiha, bas ma kont a3ref etha heya lesa fi nafs el-madeena aw safarat 3al shamal",
+    "arabic": "الأسبوع الماضي كنت أفكّر فيها، بس ما كنت أعرف إذا هي لسا في نفس المدينة أو سافرت عالشمال",
+    "status": "unverified"
+   }
   },
   {
-   "en": "They said that their father had a big problem with his car, that's why they didn't come to our house early."
+   "en": "They said that their father had a big problem with his car, that's why they didn't come to our house early.",
+   "answer_key": {
+    "translit": "hom qalo eno abohom kan endoh moshkela kbeera ma3 sayyartoh, 3shan heek ma ejo 3a beitna badri",
+    "arabic": "هم قالوا إنه أبوهم كان عنده مشكلة كبيرة مع سيارته، عشان هيك ما إجو عبيتنا بدري",
+    "status": "unverified"
+   }
   },
   {
-   "en": "If you (f) want to see the new building, you have to go with your brother because it's very far and the weather is hot."
+   "en": "If you (f) want to see the new building, you have to go with your brother because it's very far and the weather is hot.",
+   "answer_key": {
+    "translit": "etha bedik tshoofi el-3emara el-jadeedea, lazem trohi ma3 akhoki ashan heya ba3eedea ektheer w el-jaw haar",
+    "arabic": "إذا بدك تشوفي العمارة الجديدة، لازم تروحي مع أخوكي عشان هي بعيدة كتير والجو حار",
+    "status": "unverified"
+   }
   },
   {
-   "en": "I didn't finish my work because I was busy cleaning the kitchen and the bedroom with my sister."
+   "en": "I didn't finish my work because I was busy cleaning the kitchen and the bedroom with my sister.",
+   "answer_key": {
+    "translit": "ana ma khallast shoghli ashan kont mashghol b-tantheef el-matbakh w ghorfet el-noom ma3 okhti",
+    "arabic": "أنا ما خلّصت شغلي عشان كنت مشغول بتنظيف المطبخ وغرفة النوم مع أختي",
+    "status": "unverified"
+   }
   },
   {
-   "en": "When (Lamma) we were kids, we always liked to sit in front of the sea during the summer because it was beautiful."
+   "en": "When (Lamma) we were kids, we always liked to sit in front of the sea during the summer because it was beautiful.",
+   "answer_key": {
+    "translit": "lama kona zghar, dayman kona nheb nog3od qodam el-bahar khelal el-sef ashan kan jameel",
+    "arabic": "لما كنا زغار، دايماً كنا نحب نقعد قدام البحر خلال الصيف عشان كان جميل",
+    "status": "unverified"
+   }
   },
   {
-   "en": "Why do you (m) think that he will buy this cheap shirt? He told me that he only likes expensive clothes."
+   "en": "Why do you (m) think that he will buy this cheap shirt? He told me that he only likes expensive clothes.",
+   "answer_key": {
+    "translit": "lesh btfaker eno rah yeshtri hal-qamees el-rkhees? howa qalli eno bas bihebb el-malabes el-ghalyea",
+    "arabic": "ليش بتفكّر إنه رح يشتري هالقميص الرخيص؟ هو قلّي إنه بس بيحب الملابس الغالية",
+    "status": "unverified"
+   }
   },
   {
-   "en": "Yesterday, she took my book and put it behind the chair in the living room, but I didn't see it until now."
+   "en": "Yesterday, she took my book and put it behind the chair in the living room, but I didn't see it until now.",
+   "answer_key": {
+    "translit": "ams heya akhadat ektabi w hattatoh waraa el-korsi fil salon, bas ma shoftoh la-hasa",
+    "arabic": "أمس هي أخدت كتابي وحطّته ورا الكرسي في الصالون، بس ما شفته لهسا",
+    "status": "unverified"
+   }
   },
   {
-   "en": "We need to talk to them before next week because they want to know our opinion about their new project."
+   "en": "We need to talk to them before next week because they want to know our opinion about their new project.",
+   "answer_key": {
+    "translit": "ehna mehtajeen nehki ma3hom qabel el-osbo3 el-jay ashan bedhom ya3rfo ra2yna 3an mashroo3hom el-jaded",
+    "arabic": "إحنا محتاجين نحكي معهم قبل الأسبوع الجاي عشان بدهم يعرفوا رأينا عن مشروعهم الجديد",
+    "status": "unverified"
+   }
   },
   {
-   "en": "I saw her walking alone in the airport, she was wearing a long black suite and she had a heavy bag in her hand, maybe she was traveling to the south."
+   "en": "I saw her walking alone in the airport, she was wearing a long black suite and she had a heavy bag in her hand, maybe she was traveling to the south.",
+   "answer_key": {
+    "translit": "ana shoftha mashyea la-halha fil matar, kanat labsea badlea sawda taweelea w kan ma3ha shanta tqeelea b-eedha, yemken kanat msafrea 3al janob",
+    "arabic": "أنا شفتها ماشية لحالها في المطار، كانت لابسة بدلة سودا طويلة وكان معها شنطة تقيلة بإيدها، يمكن كانت مسافرة عالجنوب",
+    "status": "unverified"
+   }
   }
  ],
  "review_flags": [

@@ -1,5 +1,5 @@
 import { requirePasscode } from "@/lib/auth";
-import { graderModel } from "@/lib/grader/grade";
+import { availableGraderModels, defaultGraderModel } from "@/lib/grader/models";
 import { providerInfo } from "@/lib/stt/registry";
 
 export const runtime = "nodejs";
@@ -10,7 +10,11 @@ export async function GET(req: Request) {
   if (denied) return denied;
   return Response.json({
     providers: providerInfo(),
-    grader: { model: graderModel(), configured: Boolean(process.env.ANTHROPIC_API_KEY) },
+    grader: {
+      configured: Boolean(process.env.ANTHROPIC_API_KEY),
+      defaultModel: defaultGraderModel(),
+      models: availableGraderModels(),
+    },
     passcodeEnabled: Boolean(process.env.APP_PASSCODE),
   });
 }

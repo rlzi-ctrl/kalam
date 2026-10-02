@@ -1,6 +1,4 @@
-import type { GradeState } from "@/lib/results";
-
-type Done = Extract<GradeState, { status: "done" }>;
+import type { GradeDone } from "@/lib/results";
 
 function Bar({ label, value }: { label: string; value: number }) {
   return (
@@ -14,13 +12,17 @@ function Bar({ label, value }: { label: string; value: number }) {
   );
 }
 
-export function GradeCard({ state }: { state: Done }) {
+export function GradeCard({ state, modelLabel }: { state: GradeDone; modelLabel: (id: string) => string }) {
   const { grade, usage } = state;
   return (
     <div className="grade">
       <p className="overall">
         Overall <strong>{grade.overall}</strong>
+        <span className="latency">
+          {modelLabel(state.requestedModel)} · {(state.ms / 1000).toFixed(1)} s
+        </span>
       </p>
+      {state.model !== state.requestedModel && <p className="small warn">Answered by fallback model {state.model}</p>}
       <Bar label="Meaning" value={grade.meaning} />
       <Bar label="Grammar" value={grade.grammar} />
       <Bar label="Vocab" value={grade.vocabulary} />
@@ -39,11 +41,12 @@ export function GradeCard({ state }: { state: Done }) {
           ))}
         </ul>
       )}
+      <p className="small consensus-note">{grade.consensus_note}</p>
       <p className="small">{grade.fluency_note}</p>
       <p className="small encourage">{grade.encouragement}</p>
       <details>
         <summary className="small">
-          Raw JSON · {state.ms} ms · {usage.input_tokens}/{usage.output_tokens} tok
+          Raw JSON · {usage.input_tokens}/{usage.output_tokens} tok
           {state.attempts > 1 ? ` · ${state.attempts} attempts` : ""}
         </summary>
         <pre>{JSON.stringify(grade, null, 2)}</pre>

@@ -1,9 +1,19 @@
 import { requirePasscode } from "@/lib/auth";
-import { gradeTranscript } from "@/lib/grader/grade";
+import { selectForConsensus, type Transcript } from "@/lib/consensus";
+import { gradeTranscripts } from "@/lib/grader/grade";
+import { resolveGraderModel } from "@/lib/grader/models";
 import { findPrompt } from "@/lib/seed";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
+
+type Body = {
+  promptId?: string;
+  /** "consensus" (default): filter and combine the consensus providers. "single": grade one transcript as-is. */
+  mode?: "consensus" | "single";
+  model?: string;
+  transcripts?: Transcript[];
+};
 
 export async function POST(req: Request) {
   const denied = requirePasscode(req);
@@ -12,22 +22,49 @@ export async function POST(req: Request) {
     return Response.json({ error: "grader not configured (ANTHROPIC_API_KEY)" }, { status: 412 });
   }
 
-  const body = (await req.json().catch(() => null)) as
-    | { promptId?: string; transcript?: string; providerLabel?: string }
-    | null;
+  const body = (await req.json().catch(() => null)) as Body | null;
   const prompt = body?.promptId ? findPrompt(body.promptId) : undefined;
-  const transcript = body?.transcript?.trim() ?? "";
   if (!prompt) return Response.json({ error: "unknown promptId" }, { status: 400 });
-  if (!transcript) return Response.json({ error: "empty transcript" }, { status: 400 });
-  if (transcript.length > 2000) return Response.json({ error: "transcript too long" }, { status: 400 });
+  const model = resolveGraderModel(body?.model);
+  if (!model) return Response.json({ error: `model not allowed: ${body?.model}` }, { status: 400 });
+
+  const transcripts = (Array.isArray(body?.transcripts) ? body.transcripts : [])
+    .filter((t) => typeof t?.providerId === "string" && typeof t?.label === "string" && typeof t?.text === "string")
+    .map((t) => ({ providerId: t.providerId, label: t.label, text: t.text.trim() }));
+  if (transcripts.length === 0 || transcripts.length > 8) {
+    return Response.json({ error: "expected 1-8 transcripts" }, { status: 400 });
+  }
+  if (transcripts.some((t) => t.text.length > 2000)) {
+    return Response.json({ error: "transcript too long" }, { status: 400 });
+  }
+
+  let used: Transcript[];
+  let discarded: ReturnType<typeof selectForConsensus>["discarded"] = [];
+  if (body?.mode === "single") {
+    if (transcripts.length !== 1 || !transcripts[0].text) {
+      return Response.json({ error: "single mode needs one non-empty transcript" }, { status: 400 });
+    }
+    used = transcripts;
+  } else {
+    ({ used, discarded } = selectForConsensus(transcripts));
+    if (used.length === 0) {
+      return Response.json({ error: "no usable transcripts for consensus", discarded }, { status: 422 });
+    }
+  }
 
   const started = Date.now();
   try {
-    const outcome = await gradeTranscript(prompt, transcript, body?.providerLabel ?? "unknown");
-    return Response.json({ ...outcome, ms: Date.now() - started });
+    const outcome = await gradeTranscripts(prompt, used, model);
+    return Response.json({
+      ...outcome,
+      requestedModel: model,
+      used: used.map((t) => t.providerId),
+      discarded,
+      ms: Date.now() - started,
+    });
   } catch (err) {
     // Always 502: an upstream 401 must not look like a wrong app passcode to the client.
     const message = err instanceof Error ? err.message : String(err);
-    return Response.json({ error: message, ms: Date.now() - started }, { status: 502 });
+    return Response.json({ error: message, discarded, ms: Date.now() - started }, { status: 502 });
   }
 }

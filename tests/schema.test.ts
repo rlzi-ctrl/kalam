@@ -11,6 +11,7 @@ const sample = {
   errors: [{ type: "conjugation", learner: "ana aheb", fix: "ana baheb", tip: "Statements take b-." }],
   overall: 80,
   encouragement: "Nice!",
+  consensus_note: "Two of three transcripts agreed.",
 };
 
 describe("grade schema", () => {
