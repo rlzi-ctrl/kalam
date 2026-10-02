@@ -1,0 +1,1658 @@
+{
+ "meta": {
+  "source": "Preply Levantine Arabic notes, lessons 1-20",
+  "dialect": "Levantine (white/neutral)",
+  "learner_writes": "Latin-script transliteration (Arabizi; 3=ع, 7=ح, 2=ء accepted)",
+  "review_flags_note": "Flags are suggestions to confirm with a tutor, not auto-applied corrections."
+ },
+ "vocab_by_lesson": [
+  {
+   "lesson": 1,
+   "items": [
+    {
+     "en": "What",
+     "translit": "sho"
+    },
+    {
+     "en": "How many..much",
+     "translit": "kam"
+    },
+    {
+     "en": "I can",
+     "translit": "ana aqdar"
+    },
+    {
+     "en": "I dont know",
+     "translit": "ana maa aaref"
+    },
+    {
+     "en": "I want",
+     "translit": "ana bedi"
+    },
+    {
+     "en": "You want",
+     "translit": "anta bedak"
+    },
+    {
+     "en": "I have",
+     "translit": "ana endi"
+    },
+    {
+     "en": "You have",
+     "translit": "anta endak"
+    },
+    {
+     "en": "I go",
+     "translit": "ana aroh"
+    },
+    {
+     "en": "I eat",
+     "translit": "ana akol"
+    },
+    {
+     "en": "Because",
+     "translit": "ashan"
+    },
+    {
+     "en": "Im hungry",
+     "translit": "ana joaan(m)-ana joanea(F)"
+    },
+    {
+     "en": "When",
+     "translit": "mata"
+    },
+    {
+     "en": "Now",
+     "translit": "hasa"
+    },
+    {
+     "en": "In",
+     "translit": "fee"
+    },
+    {
+     "en": "From",
+     "translit": "min"
+    },
+    {
+     "en": "To",
+     "translit": "ela"
+    },
+    {
+     "en": "Or",
+     "translit": "aw"
+    },
+    {
+     "en": "A lot",
+     "translit": "ektheer"
+    },
+    {
+     "en": "Little",
+     "translit": "eshway"
+    },
+    {
+     "en": "After",
+     "translit": "baed"
+    }
+   ]
+  },
+  {
+   "lesson": 2,
+   "items": [
+    {
+     "en": "I stay",
+     "translit": "ana-adal"
+    },
+    {
+     "en": "I go out",
+     "translit": "ana atl3"
+    },
+    {
+     "en": "outside",
+     "translit": "bara"
+    },
+    {
+     "en": "day",
+     "translit": "yoom"
+    },
+    {
+     "en": "Week",
+     "translit": "osbo3"
+    },
+    {
+     "en": "Month",
+     "translit": "shahar"
+    },
+    {
+     "en": "Year",
+     "translit": "sanea"
+    },
+    {
+     "en": "Next week",
+     "translit": "osbo3-aljay"
+    },
+    {
+     "en": "Last week",
+     "translit": "osbo3-almadi"
+    },
+    {
+     "en": "Last time",
+     "translit": "akher-mara"
+    },
+    {
+     "en": "every",
+     "translit": "kol"
+    },
+    {
+     "en": "Before",
+     "translit": "qabel"
+    },
+    {
+     "en": "Yesterday",
+     "translit": "ams"
+    },
+    {
+     "en": "which//any",
+     "translit": "ay"
+    },
+    {
+     "en": "Usually",
+     "translit": "ghaleban"
+    },
+    {
+     "en": "Sometimes",
+     "translit": "ahyanan"
+    },
+    {
+     "en": "Always",
+     "translit": "dayman"
+    },
+    {
+     "en": "With",
+     "translit": "ma3"
+    },
+    {
+     "en": "Who",
+     "translit": "meen"
+    },
+    {
+     "en": "weekend//holiday (day off)",
+     "translit": "ejazea"
+    }
+   ]
+  },
+  {
+   "lesson": 3,
+   "items": [
+    {
+     "en": "I sleep",
+     "translit": "ana-anam"
+    },
+    {
+     "en": "I say//talk",
+     "translit": "ana ahki"
+    },
+    {
+     "en": "Im thirsty",
+     "translit": "3tshan"
+    },
+    {
+     "en": "Never",
+     "translit": "abadan"
+    },
+    {
+     "en": "Hour",
+     "translit": "sa3"
+    },
+    {
+     "en": "Minute",
+     "translit": "daqeq"
+    },
+    {
+     "en": "Front of",
+     "translit": "qodam"
+    },
+    {
+     "en": "Behind of",
+     "translit": "waraa"
+    },
+    {
+     "en": "Next to",
+     "translit": "janb"
+    },
+    {
+     "en": "Weather",
+     "translit": "jaw"
+    },
+    {
+     "en": "Cold",
+     "translit": "bared"
+    },
+    {
+     "en": "Hot",
+     "translit": "haar"
+    },
+    {
+     "en": "More",
+     "translit": "akthar"
+    },
+    {
+     "en": "More than",
+     "translit": "akthar-men"
+    },
+    {
+     "en": "Why",
+     "translit": "lesh"
+    },
+    {
+     "en": "Morning",
+     "translit": "sabah"
+    },
+    {
+     "en": "Evening",
+     "translit": "masa"
+    },
+    {
+     "en": "sunday",
+     "translit": "al-ahad"
+    },
+    {
+     "en": "monday",
+     "translit": "al-ethneen"
+    },
+    {
+     "en": "tuesday",
+     "translit": "al-tholatha"
+    },
+    {
+     "en": "wednesday",
+     "translit": "al-arbe3"
+    },
+    {
+     "en": "thursday",
+     "translit": "al-khames"
+    },
+    {
+     "en": "friday",
+     "translit": "al-jomaa"
+    },
+    {
+     "en": "saturday",
+     "translit": "al-sabt"
+    }
+   ]
+  },
+  {
+   "lesson": 4,
+   "items": [
+    {
+     "en": "I sit",
+     "translit": "ana aghod"
+    },
+    {
+     "en": "I will",
+     "translit": "ana rah"
+    },
+    {
+     "en": "I have to//should be",
+     "translit": "ana lazem",
+     "arabic": "انا لازم"
+    },
+    {
+     "en": "Early",
+     "translit": "badri",
+     "arabic": "بدري"
+    },
+    {
+     "en": "Late",
+     "translit": "met-akhir",
+     "arabic": "مِتأخر"
+    },
+    {
+     "en": "Busy",
+     "translit": "mashghol"
+    },
+    {
+     "en": "Happy",
+     "translit": "mabsot"
+    },
+    {
+     "en": "Sad",
+     "translit": "z3lan"
+    },
+    {
+     "en": "Sea",
+     "translit": "bahar"
+    },
+    {
+     "en": "On",
+     "translit": "3ala"
+    },
+    {
+     "en": "Chair",
+     "translit": "korsi"
+    },
+    {
+     "en": "Room",
+     "translit": "ghorfea",
+     "arabic": "غُرفَة"
+    },
+    {
+     "en": "bedroom",
+     "translit": "Ghorfet-noom",
+     "arabic": "غُرفة نوم"
+    },
+    {
+     "en": "Living room",
+     "translit": "salon"
+    },
+    {
+     "en": "bathroom",
+     "translit": "hamam"
+    },
+    {
+     "en": "Kitchen",
+     "translit": "matbakh"
+    },
+    {
+     "en": "Office",
+     "translit": "maktab"
+    }
+   ]
+  },
+  {
+   "lesson": 5,
+   "items": [
+    {
+     "en": "I pay",
+     "translit": "ana adf3"
+    },
+    {
+     "en": "I buy",
+     "translit": "ana ashtari"
+    },
+    {
+     "en": "Expensive",
+     "translit": "ghali"
+    },
+    {
+     "en": "Cheap",
+     "translit": "erkhes"
+    },
+    {
+     "en": "Money",
+     "translit": "eflos"
+    },
+    {
+     "en": "price",
+     "translit": "se3r"
+    },
+    {
+     "en": "Family",
+     "translit": "3ela  (My family - 3ela-ty)"
+    },
+    {
+     "en": "Dad",
+     "translit": "abo"
+    },
+    {
+     "en": "Mom",
+     "translit": "om"
+    },
+    {
+     "en": "Sister",
+     "translit": "okht"
+    },
+    {
+     "en": "Brother",
+     "translit": "akho"
+    },
+    {
+     "en": "Son",
+     "translit": "ebn"
+    },
+    {
+     "en": "Daughter",
+     "translit": "bent"
+    },
+    {
+     "en": "Kids",
+     "translit": "awlad"
+    },
+    {
+     "en": "Girl",
+     "translit": "bent"
+    },
+    {
+     "en": "Boy",
+     "translit": "walad"
+    },
+    {
+     "en": "People",
+     "translit": "nas"
+    },
+    {
+     "en": "Person",
+     "translit": "shakhs"
+    }
+   ]
+  },
+  {
+   "lesson": 6,
+   "items": [
+    {
+     "en": "I take",
+     "translit": "ana akhod"
+    },
+    {
+     "en": "I like",
+     "translit": "Ana-aheb",
+     "arabic": "انا احب"
+    },
+    {
+     "en": "I do",
+     "translit": "ana aamal"
+    },
+    {
+     "en": "Close",
+     "translit": "qareb"
+    },
+    {
+     "en": "Far",
+     "translit": "ba3ed"
+    },
+    {
+     "en": "also//as well",
+     "translit": "kaman"
+    },
+    {
+     "en": "Again",
+     "translit": "kaman-mara"
+    },
+    {
+     "en": "still//not yet",
+     "translit": "lesa"
+    },
+    {
+     "en": "Thing",
+     "translit": "eshi"
+    },
+    {
+     "en": "Tired",
+     "translit": "t3ban"
+    },
+    {
+     "en": "just//only",
+     "translit": "bas"
+    },
+    {
+     "en": "bad",
+     "translit": "say"
+    }
+   ]
+  },
+  {
+   "lesson": 7,
+   "items": [
+    {
+     "en": "I see",
+     "translit": "ana ashuf"
+    },
+    {
+     "en": "I walk",
+     "translit": "ana amshi"
+    },
+    {
+     "en": "I travel",
+     "translit": "Ana asafer"
+    },
+    {
+     "en": "Street",
+     "translit": "share3"
+    },
+    {
+     "en": "Airport",
+     "translit": "Matar"
+    },
+    {
+     "en": "Plane",
+     "translit": "Teyara"
+    },
+    {
+     "en": "Food",
+     "translit": "akel"
+    },
+    {
+     "en": "this",
+     "translit": "had(m)"
+    },
+    {
+     "en": "Same",
+     "translit": "Nafs"
+    }
+   ]
+  },
+  {
+   "lesson": 8,
+   "items": [
+    {
+     "en": "I clean",
+     "translit": "ana anathef"
+    },
+    {
+     "en": "Tall",
+     "translit": "taweel"
+    },
+    {
+     "en": "Short",
+     "translit": "qaseer"
+    },
+    {
+     "en": "Clean",
+     "translit": "enthef"
+    },
+    {
+     "en": "Dirty",
+     "translit": "wesekh"
+    },
+    {
+     "en": "Less",
+     "translit": "aqal"
+    },
+    {
+     "en": "Color",
+     "translit": "lon"
+    },
+    {
+     "en": "Yellow",
+     "translit": "asfar"
+    },
+    {
+     "en": "City",
+     "translit": "madena"
+    },
+    {
+     "en": "Country",
+     "translit": "dawlea"
+    },
+    {
+     "en": "Better",
+     "translit": "ahsan"
+    }
+   ]
+  },
+  {
+   "lesson": 9,
+   "items": [
+    {
+     "en": "I wear",
+     "translit": "ana albes"
+    },
+    {
+     "en": "Season",
+     "translit": "fasel"
+    },
+    {
+     "en": "Winter",
+     "translit": "sheta"
+    },
+    {
+     "en": "Summer",
+     "translit": "sef"
+    },
+    {
+     "en": "Spring",
+     "translit": "rabe3"
+    },
+    {
+     "en": "Autumn",
+     "translit": "kharef"
+    },
+    {
+     "en": "Rain",
+     "translit": "sheta"
+    },
+    {
+     "en": "Clothes",
+     "translit": "malabes"
+    },
+    {
+     "en": "Shirt",
+     "translit": "qames"
+    },
+    {
+     "en": "T",
+     "translit": "shirt -ebloza"
+    },
+    {
+     "en": "Suite",
+     "translit": "badlea"
+    },
+    {
+     "en": "Pantes",
+     "translit": "bantlon"
+    },
+    {
+     "en": "Opinion",
+     "translit": "ra`ay"
+    }
+   ]
+  },
+  {
+   "lesson": 10,
+   "items": [
+    {
+     "en": "Still..not yet",
+     "translit": "lesa",
+     "arabic": "لسا"
+    },
+    {
+     "en": "Please",
+     "translit": "law-samaht",
+     "arabic": "لو سمحت"
+    },
+    {
+     "en": "Problem",
+     "translit": "moshkela",
+     "arabic": "مُشكِلَة"
+    },
+    {
+     "en": "Bed",
+     "translit": "esrer",
+     "arabic": "سرير"
+    },
+    {
+     "en": "Nice",
+     "translit": "helo",
+     "arabic": "حلو"
+    },
+    {
+     "en": "If",
+     "translit": "etha",
+     "arabic": "اذا"
+    },
+    {
+     "en": "Even",
+     "translit": "hatta"
+    }
+   ]
+  },
+  {
+   "lesson": 11,
+   "items": [
+    {
+     "en": "I start",
+     "translit": "ana abdaa"
+    },
+    {
+     "en": "I finish",
+     "translit": "ana akhales"
+    },
+    {
+     "en": "I try",
+     "translit": "ana ahawel"
+    },
+    {
+     "en": "I hear",
+     "translit": "ana asm3"
+    },
+    {
+     "en": "I work",
+     "translit": "ana ashtaghel"
+    },
+    {
+     "en": "I give",
+     "translit": "ana a3ti"
+    },
+    {
+     "en": "Sound //voice",
+     "translit": "sot"
+    },
+    {
+     "en": "Building",
+     "translit": "3emara"
+    },
+    {
+     "en": "Apartment",
+     "translit": "shaqa"
+    },
+    {
+     "en": "Maybe",
+     "translit": "yemken",
+     "arabic": "يمكن"
+    },
+    {
+     "en": "About",
+     "translit": "3an",
+     "arabic": "عن"
+    }
+   ]
+  },
+  {
+   "lesson": 12,
+   "items": [
+    {
+     "en": "New",
+     "translit": "jaded"
+    },
+    {
+     "en": "Old",
+     "translit": "eqdem"
+    },
+    {
+     "en": "Beautiful",
+     "translit": "jameel"
+    },
+    {
+     "en": "until//even",
+     "translit": "hatha"
+    },
+    {
+     "en": "Thats why",
+     "translit": "3shan-heek"
+    },
+    {
+     "en": "Experience",
+     "translit": "khebra",
+     "arabic": "خِبرَة"
+    },
+    {
+     "en": "Of course",
+     "translit": "tab3an"
+    },
+    {
+     "en": "Sure",
+     "translit": "aked"
+    },
+    {
+     "en": "Level",
+     "translit": "mostawa"
+    },
+    {
+     "en": "% bel",
+     "translit": "meyaa"
+    },
+    {
+     "en": "Half",
+     "translit": "nos"
+    }
+   ]
+  },
+  {
+   "lesson": 13,
+   "items": [
+    {
+     "en": "I need",
+     "translit": "ana ahtag",
+     "arabic": "انا احتاج"
+    },
+    {
+     "en": "Animal",
+     "translit": "haywan"
+    },
+    {
+     "en": "Cut",
+     "translit": "besa"
+    },
+    {
+     "en": "Correct",
+     "translit": "sah"
+    },
+    {
+     "en": "Wrong",
+     "translit": "khataa"
+    },
+    {
+     "en": "Salary",
+     "translit": "rateb"
+    },
+    {
+     "en": "Kind",
+     "translit": "latef"
+    },
+    {
+     "en": "then//later",
+     "translit": "b3den"
+    },
+    {
+     "en": "Between",
+     "translit": "been"
+    },
+    {
+     "en": "Time",
+     "translit": "waqet"
+    },
+    {
+     "en": "For me",
+     "translit": "eli"
+    },
+    {
+     "en": "Place",
+     "translit": "makan"
+    }
+   ]
+  },
+  {
+   "lesson": 14,
+   "items": [
+    {
+     "en": "I wake up",
+     "translit": "ana ashaa (as7aa)"
+    },
+    {
+     "en": "I write",
+     "translit": "ana aktop"
+    },
+    {
+     "en": "I read",
+     "translit": "ana aqraa"
+    },
+    {
+     "en": "South",
+     "translit": "janob"
+    },
+    {
+     "en": "North",
+     "translit": "shamal"
+    },
+    {
+     "en": "West",
+     "translit": "gharb"
+    },
+    {
+     "en": "East",
+     "translit": "sharq"
+    },
+    {
+     "en": "Ready",
+     "translit": "jahez"
+    },
+    {
+     "en": "Book",
+     "translit": "ektab"
+    },
+    {
+     "en": "Culture",
+     "translit": "thaqafea"
+    },
+    {
+     "en": "In general",
+     "translit": "beshakel-3am"
+    }
+   ]
+  },
+  {
+   "lesson": 15,
+   "items": [
+    {
+     "en": "I answer",
+     "translit": "ana ajaweb",
+     "arabic": "انا اجاوب"
+    },
+    {
+     "en": "I ask",
+     "translit": "ana as`al",
+     "arabic": "انا اسأل"
+    },
+    {
+     "en": "I call",
+     "translit": "ana atasel",
+     "arabic": "انا اتصل"
+    },
+    {
+     "en": "I wash",
+     "translit": "ana aghsel"
+    },
+    {
+     "en": "Pain",
+     "translit": "waj3"
+    },
+    {
+     "en": "Hospital",
+     "translit": "mostashfaa"
+    },
+    {
+     "en": "Even",
+     "translit": "hata"
+    },
+    {
+     "en": "Since",
+     "translit": "min"
+    },
+    {
+     "en": "Body",
+     "translit": "jesem"
+    },
+    {
+     "en": "head",
+     "translit": "ras"
+    },
+    {
+     "en": "Hair",
+     "translit": "sha3ar"
+    },
+    {
+     "en": "Face",
+     "translit": "wejeh"
+    },
+    {
+     "en": "eye",
+     "translit": "3en"
+    },
+    {
+     "en": "Nose",
+     "translit": "anf"
+    },
+    {
+     "en": "Neck",
+     "translit": "raqabea"
+    },
+    {
+     "en": "Back",
+     "translit": "thaher"
+    },
+    {
+     "en": "Stomitch",
+     "translit": "baten"
+    },
+    {
+     "en": "Hand",
+     "translit": "eed"
+    },
+    {
+     "en": "Foot",
+     "translit": "ejr"
+    }
+   ]
+  },
+  {
+   "lesson": 16,
+   "items": [
+    {
+     "en": "I come",
+     "translit": "ana aji",
+     "arabic": "انا اجي"
+    },
+    {
+     "en": "I come back",
+     "translit": "ana arj3"
+    },
+    {
+     "en": "I think",
+     "translit": "ana afaker",
+     "arabic": "انا افكر"
+    },
+    {
+     "en": "Government",
+     "translit": "hokoma"
+    },
+    {
+     "en": "Word",
+     "translit": "kaleam"
+    },
+    {
+     "en": "Litter",
+     "translit": "haraf"
+    },
+    {
+     "en": "Sentence",
+     "translit": "jomlea"
+    },
+    {
+     "en": "Instead of",
+     "translit": "badel men"
+    },
+    {
+     "en": "Meaning",
+     "translit": "ma3na"
+    },
+    {
+     "en": "Other",
+     "translit": "(m)-thani"
+    },
+    {
+     "en": "Other (f)",
+     "translit": "thanyaa"
+    },
+    {
+     "en": "Park //garden",
+     "translit": "hadeqa"
+    }
+   ]
+  },
+  {
+   "lesson": 17,
+   "items": [
+    {
+     "en": "I send",
+     "translit": "ana arsel"
+    },
+    {
+     "en": "I open",
+     "translit": "ana aftah"
+    },
+    {
+     "en": "I close",
+     "translit": "ana asaker"
+    },
+    {
+     "en": "Door",
+     "translit": "bab"
+    },
+    {
+     "en": "Window",
+     "translit": "shobak"
+    },
+    {
+     "en": "Sun",
+     "translit": "shams"
+    },
+    {
+     "en": "Sky",
+     "translit": "sama"
+    },
+    {
+     "en": "Strong",
+     "translit": "qawi"
+    },
+    {
+     "en": "Weak",
+     "translit": "da3ef"
+    },
+    {
+     "en": "During",
+     "translit": "khelal"
+    },
+    {
+     "en": "Through",
+     "translit": "men-khelal"
+    },
+    {
+     "en": "By",
+     "translit": "bel"
+    },
+    {
+     "en": "Msg",
+     "translit": "resala"
+    },
+    {
+     "en": "Conversation",
+     "translit": "mohadathea"
+    }
+   ]
+  },
+  {
+   "lesson": 18,
+   "items": [
+    {
+     "en": "I feel",
+     "translit": "ana ahes"
+    },
+    {
+     "en": "Specific",
+     "translit": "mo3yan"
+    },
+    {
+     "en": "Idea",
+     "translit": "fekra"
+    },
+    {
+     "en": "Life",
+     "translit": "hayaa"
+    },
+    {
+     "en": "Allowed",
+     "translit": "masmoh"
+    },
+    {
+     "en": "Prohibited",
+     "translit": "mamno3"
+    },
+    {
+     "en": "Hard",
+     "translit": "sa3eb"
+    },
+    {
+     "en": "easy",
+     "translit": "sahel"
+    },
+    {
+     "en": "almost//nearly",
+     "translit": "taqreban"
+    }
+   ]
+  },
+  {
+   "lesson": 19,
+   "items": [
+    {
+     "en": "when(For not question )",
+     "translit": "lama"
+    },
+    {
+     "en": "Energy",
+     "translit": "taqa"
+    },
+    {
+     "en": "Difference",
+     "translit": "farq"
+    },
+    {
+     "en": "Crowded",
+     "translit": "azmea"
+    }
+   ]
+  },
+  {
+   "lesson": 20,
+   "items": [
+    {
+     "en": "I put",
+     "translit": null,
+     "status": "translit_missing"
+    },
+    {
+     "en": "I agree",
+     "translit": null,
+     "status": "translit_missing"
+    },
+    {
+     "en": "Horse",
+     "translit": null,
+     "status": "translit_missing"
+    },
+    {
+     "en": "Monkey",
+     "translit": null,
+     "status": "translit_missing"
+    },
+    {
+     "en": "Bird",
+     "translit": null,
+     "status": "translit_missing"
+    },
+    {
+     "en": "Hat",
+     "translit": null,
+     "status": "translit_missing"
+    },
+    {
+     "en": "First",
+     "translit": null,
+     "status": "translit_missing"
+    },
+    {
+     "en": "Second",
+     "translit": null,
+     "status": "translit_missing"
+    },
+    {
+     "en": "Third",
+     "translit": null,
+     "status": "translit_missing"
+    },
+    {
+     "en": "Library",
+     "translit": null,
+     "status": "translit_missing"
+    },
+    {
+     "en": "Health",
+     "translit": null,
+     "status": "translit_missing"
+    },
+    {
+     "en": "Healthy",
+     "translit": null,
+     "status": "translit_missing"
+    },
+    {
+     "en": "Although",
+     "translit": null,
+     "status": "translit_missing"
+    },
+    {
+     "en": "Fast",
+     "translit": null,
+     "status": "translit_missing"
+    },
+    {
+     "en": "Slow",
+     "translit": null,
+     "status": "translit_missing"
+    }
+   ]
+  }
+ ],
+ "grammar": {
+  "present_tense_prefixes_from_notes": {
+   "I": "a-",
+   "he": "ya-/yi-",
+   "she": "ta-/ti-",
+   "you_m": "ta-/ti-",
+   "you_f": "ta-/ti- ... -i",
+   "they_and_you_pl": "ya-/yi- ... -u",
+   "we": "na-/ni-"
+  },
+  "possessive_object_suffixes": {
+   "my/me": "-i / -ni",
+   "his/him": "-o / -oh",
+   "her": "-ha",
+   "their/them": "-hom",
+   "our/us": "-na",
+   "your_m": "-ak",
+   "your_f": "-ik"
+  },
+  "past_of_to_be": {
+   "I was": "ana kont",
+   "he was": "howa kan",
+   "she was": "heya kanat",
+   "you were (m)": "anta kont",
+   "you were (f)": "anti konti",
+   "they were": "hom kano",
+   "we were": "ehna kona"
+  },
+  "had": {
+   "I had": "ana kan endi",
+   "you (m) had": "anta kan endak"
+  },
+  "conjugation_tables": {
+   "I can": {
+    "he": "howa yaqdar",
+    "she": "heya tiqdar",
+    "you_m": "anta tiqdar",
+    "you_f": "anti tiqdari",
+    "they": "hom yaqdaroo",
+    "we": "ehna naqdar"
+   },
+   "I know": {
+    "he": "howa yaaref",
+    "she": "heya taaref",
+    "you_m": "anta taaref",
+    "you_f": "anti taarefi",
+    "they": "hom yarefoo",
+    "we": "ehna naaref"
+   },
+   "I want": {
+    "he": "howa bedoh",
+    "she": "heya bedhaa",
+    "you_m": "anta bedak",
+    "you_f": "anti bedik",
+    "they": "hom bedhom",
+    "we": "ehna bednaa"
+   },
+   "I have": {
+    "he": "howa endoh",
+    "she": "heya endhaa",
+    "you_m": "anta endak",
+    "you_f": "anti endik",
+    "they": "hom endhom",
+    "we": "ehna endna"
+   },
+   "I go": {
+    "he": "howa yaaroh",
+    "she": "heya taaroh",
+    "you_m": "anta taaroh",
+    "you_f": "anti taarohi",
+    "they": "hom yaroohoo",
+    "we": "ehna naroh"
+   },
+   "I eat": {
+    "he": "howa yakol",
+    "she": "heya takol",
+    "you_m": "anta takol",
+    "you_f": "anti takoli",
+    "they": "hom yakoloo",
+    "we": "ehna nakol"
+   },
+   "I stay": {
+    "he": "howa yadall",
+    "she": "heya tadal",
+    "you_m": "anta tadal",
+    "you_f": "anti tadalee",
+    "they": "hom yadaloo",
+    "we": "ehna nadall"
+   },
+   "I go out": {
+    "he": "howa yatla barra",
+    "she": "heya titla barra",
+    "you_m": "anta titla barra",
+    "you_f": "anti titlai barra",
+    "they": "hom yatlaoo barra",
+    "we": "ehna natla barra"
+   }
+  },
+  "verbs_to_conjugate_next": [
+   "sleep",
+   "talk",
+   "sit",
+   "pay",
+   "buy",
+   "take",
+   "like",
+   "do",
+   "see",
+   "walk",
+   "travel",
+   "clean",
+   "wear",
+   "start",
+   "finish",
+   "try",
+   "hear",
+   "work",
+   "give",
+   "need",
+   "wake up",
+   "write",
+   "read",
+   "answer",
+   "ask",
+   "call",
+   "wash",
+   "come",
+   "come back",
+   "think",
+   "send",
+   "open",
+   "close",
+   "feel",
+   "put",
+   "agree"
+  ]
+ },
+ "phrases": [
+  {
+   "en": "With me",
+   "translit": "maa-ii"
+  },
+  {
+   "en": "I like this",
+   "translit": "ana baheb haad"
+  },
+  {
+   "en": "This is my food",
+   "translit": "haad akli"
+  },
+  {
+   "en": "For me / him / her / them / us",
+   "translit": "ily / iloh / il-haa / il-hom / il-naa"
+  },
+  {
+   "en": "With us",
+   "translit": "maa-na"
+  },
+  {
+   "en": "I don't understand",
+   "translit": "la afham"
+  },
+  {
+   "en": "What happened?",
+   "translit": "shoo malak / malik"
+  },
+  {
+   "en": "Good job",
+   "translit": "shater"
+  },
+  {
+   "en": "I don't want to go anywhere",
+   "translit": "ana ma bedi aroh ay makan"
+  },
+  {
+   "en": "I play with my kids",
+   "translit": "ana al3ab maa awladi"
+  },
+  {
+   "en": "9:30",
+   "translit": "sa3a tis3a w nos"
+  },
+  {
+   "en": "Drop him / them off",
+   "translit": "bawasl-oh / bawasal-hom"
+  },
+  {
+   "en": "Friends",
+   "translit": "asdiqaa"
+  },
+  {
+   "en": "So",
+   "translit": "fa"
+  },
+  {
+   "en": "Not",
+   "translit": "mish"
+  },
+  {
+   "en": "He has",
+   "translit": "howa endoh"
+  },
+  {
+   "en": "He sees her",
+   "translit": "howa byishufha"
+  },
+  {
+   "en": "Different",
+   "translit": "mukhtalif"
+  },
+  {
+   "en": "Nothing / never mind",
+   "translit": "wala eshi / ma3lesh"
+  },
+  {
+   "en": "Better than you",
+   "translit": "ahsan minak"
+  },
+  {
+   "en": "Are you sure?",
+   "translit": "enta mit2akked?"
+  },
+  {
+   "en": "Please repeat",
+   "translit": "mumkin t3eed"
+  },
+  {
+   "en": "Middle East",
+   "translit": "sharq al awsat"
+  },
+  {
+   "en": "Exactly",
+   "translit": "bizabt"
+  },
+  {
+   "en": "Stressed",
+   "translit": "madh'hoot"
+  },
+  {
+   "en": "Please bring the bill",
+   "translit": "law samaht l'hsab"
+  },
+  {
+   "en": "She gave me / He gave me",
+   "translit": "a3tatni / a3tani"
+  },
+  {
+   "en": "He gives me / She gives me",
+   "translit": "bya3teeni / bta3teeni"
+  },
+  {
+   "en": "Relatives",
+   "translit": "araib"
+  },
+  {
+   "en": "All the best",
+   "translit": "bittawfiq"
+  },
+  {
+   "en": "Revise / follow up",
+   "translit": "moraja3a"
+  }
+ ],
+ "practice_sentences": [
+  {
+   "en": "Because I was busy yesterday, I will clean the whole house today."
+  },
+  {
+   "en": "Their car is very old, but his car is new and expensive.",
+   "partial_translit_from_tutor": "sayyarit hom"
+  },
+  {
+   "en": "She was at the airport two hours ago because her brother is traveling",
+   "partial_translit_from_tutor": "heya kanat fil matar qabel sa3tein"
+  },
+  {
+   "en": "We don't have enough money, that’s why we want a cheap apartment",
+   "partial_translit_from_tutor": "ehna ma endnaa kaafi ,"
+  },
+  {
+   "en": "I think he will stay in his office until evening because he has a lot of work."
+  },
+  {
+   "en": "Our family was happy in the summer because the weather was beautiful in our city."
+  },
+  {
+   "en": "I asked her about her opinion, but she said \"I don't know yet."
+  },
+  {
+   "en": "Maybe you (m) can't see the building because it is behind the park."
+  },
+  {
+   "en": "I saw your (m) friend in the street and he told me that his father is tired."
+  },
+  {
+   "en": "We were thirsty after we walked a lot in the sun."
+  },
+  {
+   "en": "Last week, I was in their house and I saw his daughter, she is very tall now."
+  },
+  {
+   "en": "Before I go out, I have to finish my work because I want to be ready for the weekend.- ana bedi akhoon jahez la"
+  },
+  {
+   "en": "He said that he will buy her a new phone because her old phone is bad."
+  },
+  {
+   "en": "Why were you (m) late yesterday? Was there a problem with your car or the street?"
+  },
+  {
+   "en": "Our kitchen is small, but we always clean it because we like to eat at home."
+  },
+  {
+   "en": "If the weather is hot tomorrow, we will go to the sea with our friends."
+  },
+  {
+   "en": "I want to tell you (m) something, but please don’t ask me how I know it."
+  },
+  {
+   "en": "She thinks that her brother is at the hospital, but he is actually still at his office."
+  },
+  {
+   "en": "We saw them at the airport, they were tired because the plane was late for three hours."
+  },
+  {
+   "en": "I didn't see your (f) message (risalea) because I was sleeping, and my phone was behind the bed."
+  },
+  {
+   "en": "I wanted to travel with them last year, but I didn't have enough money and my salary was low.",
+   "partial_translit_from_tutor": "ana kan bedi"
+  },
+  {
+   "en": "If you (f) go to the market, can you buy me a white shirt? Because mine is dirty."
+  },
+  {
+   "en": "They told us that their family is staying in a big apartment next to the garden."
+  },
+  {
+   "en": "He will not arrive (yusal) early today because his car is broken (has a problem) and he is walking in the street now."
+  },
+  {
+   "en": "Why didn't you (m) tell me his name before we went to his office? Now I am embarrassed (sad/ashamed)."
+  },
+  {
+   "en": "Our manager (boss) said that we have to work more than eight hours a day next month."
+  },
+  {
+   "en": "She was at the airport, but she didn't see him because there were a lot of people there (hunak)."
+  },
+  {
+   "en": "I think his opinion is wrong, but I don't want to say that to his face."
+  },
+  {
+   "en": "We were in the living room when we heard a loud sound coming from the kitchen."
+  },
+  {
+   "en": "My sister said she will call her friend because she needs to ask her about the price of the suite."
+  },
+  {
+   "en": "Last week, I was thinking about her, but I didn't know if she was still in the same city or if she traveled to the north."
+  },
+  {
+   "en": "They said that their father had a big problem with his car, that's why they didn't come to our house early."
+  },
+  {
+   "en": "If you (f) want to see the new building, you have to go with your brother because it's very far and the weather is hot."
+  },
+  {
+   "en": "I didn't finish my work because I was busy cleaning the kitchen and the bedroom with my sister."
+  },
+  {
+   "en": "When (Lamma) we were kids, we always liked to sit in front of the sea during the summer because it was beautiful."
+  },
+  {
+   "en": "Why do you (m) think that he will buy this cheap shirt? He told me that he only likes expensive clothes."
+  },
+  {
+   "en": "Yesterday, she took my book and put it behind the chair in the living room, but I didn't see it until now."
+  },
+  {
+   "en": "We need to talk to them before next week because they want to know our opinion about their new project."
+  },
+  {
+   "en": "I saw her walking alone in the airport, she was wearing a long black suite and she had a heavy bag in her hand, maybe she was traveling to the south."
+  }
+ ],
+ "review_flags": [
+  {
+   "item": "Cut - besa (L13)",
+   "note": "Almost certainly 'Cat' (bisse). Fix the English gloss."
+  },
+  {
+   "item": "Close - qareb (L6)",
+   "note": "Means near/close (distance). 'To close' is a different verb (asaker, L17)."
+  },
+  {
+   "item": "until//even - hatha (L12)",
+   "note": "Likely 'hatta'. 'hatha' is MSA for 'this'."
+  },
+  {
+   "item": "Old - eqdem (L12)",
+   "note": "'a2dam/eqdem' is 'older' (comparative); 'old' is 'adeem'."
+  },
+  {
+   "item": "Litter - haraf (L16)",
+   "note": "English gloss is 'Letter'."
+  },
+  {
+   "item": "Word - kaleam (L16)",
+   "note": "'kilme' = word; 'kalam' = speech/talk. Confirm with tutor."
+  },
+  {
+   "item": "To - ela (L1)",
+   "note": "'ila' leans MSA; everyday Levantine often uses '3a' / 'la' (barooh 3al mat3am)."
+  },
+  {
+   "item": "Present tense b- prefix",
+   "note": "Notes mostly give bare forms (ana aroh). Everyday Levantine statements usually add b- (ana barooh, howa byakol); bare form after bedi / lazem / rah. The app should accept and teach both contexts."
+  },
+  {
+   "item": "ana mudir yaa-ji met-akhir",
+   "note": "Likely 'mudiri byiji mit2akhkhir kil yom' (my boss comes late every day)."
+  },
+  {
+   "item": "This week - hatha al-osbo3",
+   "note": "MSA-ish; Levantine: 'hal-osbo3'."
+  },
+  {
+   "item": "Lesson 20",
+   "note": "15 words with no transliteration yet - marked translit_missing."
+  }
+ ]
+}
