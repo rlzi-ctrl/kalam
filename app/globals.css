@@ -185,3 +185,6 @@ pre { white-space: pre-wrap; word-break: break-word; font-size: 0.78rem; backgro
 .voice.unconfigured { opacity: 0.6; }
 .voice.chosen { border-color: var(--accent); }
 .voice-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.opt-in { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin: 4px 0; color: var(--muted); }
+.opt-in input { width: 18px; height: 18px; vertical-align: middle; }
+.skipped { padding-left: 18px; margin: 4px 0; }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { ConsensusOptIn, useConsensusOptIn } from "@/components/ConsensusOptIn";
 import { GradeCard } from "@/components/GradeCard";
 import { ModelToggle, useModelChoice } from "@/components/ModelToggle";
 import { Nav } from "@/components/Nav";
@@ -13,7 +14,7 @@ import { postGrade, transcribeAll } from "@/lib/client/transcribe";
 import { useAppApi } from "@/lib/client/useAppApi";
 import { useRecorder } from "@/lib/client/useRecorder";
 import { useTts } from "@/lib/client/useTts";
-import { selectForConsensus, type Discarded } from "@/lib/consensus";
+import { OPT_IN_VOTERS, selectForConsensus, type Discarded } from "@/lib/consensus";
 import type { GradeDone } from "@/lib/results";
 
 const MAX_SECONDS = 60;
@@ -30,6 +31,7 @@ export default function SayPage() {
   const { model, choose, label: modelLabel } = useModelChoice(meta);
   const getSpeech = useTts(api);
   const recorder = useRecorder(MAX_SECONDS);
+  const { optIn, toggle: toggleOptIn } = useConsensusOptIn();
 
   const [english, setEnglish] = useState("");
   const [generating, setGenerating] = useState(false);
@@ -125,9 +127,12 @@ export default function SayPage() {
     setAttempt(null);
     await recorder.start(async ({ wav }) => {
       setAttempt({ status: "transcribing" });
-      const providers = meta.providers.filter((p) => p.configured && p.inConsensus);
+      // Only providers that can vote; an opt-in provider that is switched off isn't called at all.
+      const providers = meta.providers.filter(
+        (p) => p.configured && p.inConsensus && (!OPT_IN_VOTERS.includes(p.id) || optIn.includes(p.id)),
+      );
       const transcripts = await transcribeAll(api, providers, wav, () => {});
-      const { used, discarded } = selectForConsensus(transcripts);
+      const { used, discarded } = selectForConsensus(transcripts, { optIn });
       if (used.length === 0) {
         return setAttempt({ status: "error", error: "No usable transcripts to grade.", discarded });
       }
@@ -138,6 +143,7 @@ export default function SayPage() {
           mode: "consensus",
           model,
           transcripts,
+          optIn,
         });
         if (!ok) throw new Error(json.error ?? `HTTP ${status}`);
         setAttempt({
@@ -230,6 +236,7 @@ export default function SayPage() {
           {voiceId && <Player text={current.tts_spelling} words={current.words} voiceId={voiceId} getSpeech={getSpeech} />}
 
           <div className="attempt">
+            {meta && <ConsensusOptIn meta={meta} optIn={optIn} onToggle={toggleOptIn} />}
             <button
               className={`btn ${recorder.rec === "recording" ? "rec-on" : ""}`}
               onClick={recorder.rec === "recording" ? recorder.stop : recordAttempt}

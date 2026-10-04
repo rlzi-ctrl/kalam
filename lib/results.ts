@@ -1,4 +1,4 @@
-import { selectForConsensus, type Discarded } from "@/lib/consensus";
+import { selectForConsensus, type ConsensusOptions, type Discarded, type Skipped } from "@/lib/consensus";
 import type { GradeUsage } from "@/lib/grader/grade";
 import type { Grade } from "@/lib/grader/schema";
 import type { TestPrompt } from "@/lib/seed";
@@ -20,7 +20,13 @@ export type GradeState =
   | GradeDone
   | { status: "error"; requestedModel: string; error: string; ms?: number };
 
-export type ConsensusRun = { key: string; used: string[]; discarded: Discarded[] } & Exclude<GradeState, { status: "idle" }>;
+export type ConsensusRun = {
+  key: string;
+  used: string[];
+  discarded: Discarded[];
+  skipped: Skipped[];
+  optIn: string[];
+} & Exclude<GradeState, { status: "idle" }>;
 
 export type ProviderResult =
   | { status: "unconfigured"; missing: string[] }
@@ -50,13 +56,16 @@ export function doneTranscripts(rows: Row[]) {
   );
 }
 
-/** Column badge: used in consensus, discarded (and why), or not part of it. */
-export function consensusStatus(rows: Row[]): Record<string, string> {
-  const { used, discarded } = selectForConsensus(doneTranscripts(rows));
+export const USED = "used in consensus";
+
+/** Column badge: used in consensus, discarded (and why), skipped (and why), or not part of it. */
+export function consensusStatus(rows: Row[], opts: ConsensusOptions = {}): Record<string, string> {
+  const { used, discarded, skipped } = selectForConsensus(doneTranscripts(rows), opts);
   const status: Record<string, string> = {};
   for (const r of rows) if (!r.inConsensus) status[r.id] = "not in consensus";
-  for (const t of used) status[t.providerId] = "used in consensus";
+  for (const t of used) status[t.providerId] = USED;
   for (const d of discarded) status[d.providerId] = `discarded: ${d.reason}`;
+  for (const s of skipped) status[s.providerId] = `not counted: ${s.reason}`;
   return status;
 }
 
@@ -84,7 +93,7 @@ function gradeLines(g: GradeState, title: string): string[] {
 }
 
 /** Plain-text dump of one prompt's comparison, for pasting elsewhere. */
-export function formatPromptText(prompt: TestPrompt, session: PromptSession | undefined): string {
+export function formatPromptText(prompt: TestPrompt, session: PromptSession | undefined, opts: ConsensusOptions = {}): string {
   const out: string[] = [];
   out.push(`Prompt ${prompt.id} (${prompt.kind}): ${prompt.en}`);
   if (prompt.answerKey) {
@@ -95,7 +104,7 @@ export function formatPromptText(prompt: TestPrompt, session: PromptSession | un
   if (!session) return [...out, "No recording."].join("\n");
   out.push(`Clip length: ${session.clip ? `${session.clip.seconds.toFixed(1)} s` : "no recording"}`);
 
-  const status = consensusStatus(session.rows);
+  const status = consensusStatus(session.rows, opts);
   for (const row of session.rows) {
     out.push("", `=== ${row.label} ===`);
     const r = row.result;
@@ -124,7 +133,9 @@ export function formatPromptText(prompt: TestPrompt, session: PromptSession | un
   session.consensus.forEach((run, i) => {
     out.push("", `=== Consensus grade ${i + 1} ===`);
     if (run.used.length) out.push(`Used: ${run.used.join(", ")}`);
+    out.push(`Opt-in voters: ${run.optIn.length ? run.optIn.join(", ") : "none"}`);
     for (const d of run.discarded) out.push(`Discarded: ${d.label} — ${d.reason}`);
+    for (const k of run.skipped) out.push(`Not counted: ${k.label} — ${k.reason}`);
     out.push(...gradeLines(run, "Grade"));
   });
   return out.join("\n");
@@ -134,10 +145,11 @@ export function formatPromptText(prompt: TestPrompt, session: PromptSession | un
 export function formatEverythingText(
   prompts: TestPrompt[],
   sessions: Record<string, PromptSession>,
+  opts: ConsensusOptions = {},
   now: Date = new Date(),
 ): string {
   const withResults = prompts.filter((p) => hasResults(sessions[p.id]));
   const header = `Kalam STT comparison — ${now.toISOString()} — ${withResults.length} of ${prompts.length} prompts`;
   if (withResults.length === 0) return `${header}\nNo results yet.`;
-  return [header, ...withResults.map((p) => formatPromptText(p, sessions[p.id]))].join(`\n\n${"#".repeat(40)}\n\n`);
+  return [header, ...withResults.map((p) => formatPromptText(p, sessions[p.id], opts))].join(`\n\n${"#".repeat(40)}\n\n`);
 }

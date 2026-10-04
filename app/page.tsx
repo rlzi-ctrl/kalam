@@ -2,6 +2,7 @@
 
 import { useCallback, useRef, useState } from "react";
 import { GradeCard } from "@/components/GradeCard";
+import { ConsensusOptIn, useConsensusOptIn } from "@/components/ConsensusOptIn";
 import { ModelToggle, useModelChoice } from "@/components/ModelToggle";
 import { Nav } from "@/components/Nav";
 import { PasscodeScreen } from "@/components/PasscodeScreen";
@@ -15,6 +16,7 @@ import {
   formatEverythingText,
   formatPromptText,
   hasResults,
+  USED,
   type ConsensusRun,
   type GradeState,
   type PromptSession,
@@ -59,6 +61,7 @@ async function copyText(text: string): Promise<boolean> {
 export default function Home() {
   const { api, meta, loadError, needPasscode, passcodeTried, submitPasscode } = useAppApi();
   const { model, choose: chooseModel, label: modelLabel } = useModelChoice(meta);
+  const { optIn, toggle: toggleOptIn } = useConsensusOptIn();
   const recorder = useRecorder(MAX_SECONDS);
 
   const [promptIndex, setPromptIndex] = useState(0);
@@ -70,6 +73,8 @@ export default function Home() {
   const attemptRef = useRef<Record<string, number>>({});
   const modelRef = useRef("");
   modelRef.current = model;
+  const optInRef = useRef<string[]>([]);
+  optInRef.current = optIn;
 
   const prompt = TEST_PROMPTS[promptIndex];
   const session = sessions[prompt.id] ?? (meta ? freshSession(meta.providers) : undefined);
@@ -91,12 +96,21 @@ export default function Home() {
 
   const runConsensus = async (promptId: string, attempt: number, transcripts: Transcript[]) => {
     const gradeModel = modelRef.current;
+    const runOptIn = optInRef.current;
     const key = `${Date.now()}-${Math.random()}`;
-    const pending: ConsensusRun = { key, status: "loading", requestedModel: gradeModel, used: [], discarded: [] };
+    const empty = { used: [], discarded: [], skipped: [], optIn: runOptIn };
+    const pending: ConsensusRun = { key, status: "loading", requestedModel: gradeModel, ...empty };
     update(promptId, attempt, (s) => ({ ...s, consensus: [...s.consensus, pending] }));
     try {
-      const { ok, status, json } = await postGrade(api, { promptId, mode: "consensus", model: gradeModel, transcripts });
-      const base = { key, requestedModel: gradeModel, used: json.used ?? [], discarded: json.discarded ?? [] };
+      const { ok, status, json } = await postGrade(api, { promptId, mode: "consensus", model: gradeModel, transcripts, optIn: runOptIn });
+      const base = {
+        key,
+        requestedModel: gradeModel,
+        used: json.used ?? [],
+        discarded: json.discarded ?? [],
+        skipped: json.skipped ?? [],
+        optIn: runOptIn,
+      };
       updateRun(
         promptId,
         attempt,
@@ -104,7 +118,7 @@ export default function Home() {
         ok ? { ...base, ...json, status: "done" } : { ...base, status: "error", error: json.error ?? `HTTP ${status}`, ms: json.ms },
       );
     } catch (err) {
-      updateRun(promptId, attempt, key, { key, status: "error", requestedModel: gradeModel, error: String(err), used: [], discarded: [] });
+      updateRun(promptId, attempt, key, { key, status: "error", requestedModel: gradeModel, error: String(err), ...empty });
     }
   };
 
@@ -159,11 +173,11 @@ export default function Home() {
   };
 
   const copyPrompt = async () => {
-    flashCopied((await copyText(formatPromptText(prompt, session))) ? "prompt" : "failed");
+    flashCopied((await copyText(formatPromptText(prompt, session, { optIn }))) ? "prompt" : "failed");
   };
 
   const copyEverything = async () => {
-    flashCopied((await copyText(formatEverythingText(TEST_PROMPTS, sessions))) ? "everything" : "failed");
+    flashCopied((await copyText(formatEverythingText(TEST_PROMPTS, sessions, { optIn }))) ? "everything" : "failed");
   };
 
   if (needPasscode) return <PasscodeScreen tried={passcodeTried} onSubmit={submitPasscode} />;
@@ -171,8 +185,10 @@ export default function Home() {
   const { rec, elapsed, remaining } = recorder;
   const counting = rec === "recording" && remaining <= COUNTDOWN_FROM;
   const recordLabel = rec === "recording" ? (counting ? String(remaining) : "Stop") : rec === "processing" ? "…" : "Record";
-  const status = session ? consensusStatus(session.rows) : {};
-  const consensusInput = session ? doneTranscripts(session.rows).filter((t) => status[t.providerId] === "used in consensus") : [];
+  const status = session ? consensusStatus(session.rows, { optIn }) : {};
+  // Send every transcript; the server picks the votes (one Azure vote, opt-ins) the same way the badges do.
+  const consensusInput = session ? doneTranscripts(session.rows) : [];
+  const votes = Object.values(status).filter((s) => s === USED).length;
   const consensusBusy = session?.consensus.some((c) => c.status === "loading") ?? false;
   const answeredCount = TEST_PROMPTS.filter((p) => hasResults(sessions[p.id])).length;
 
@@ -186,6 +202,7 @@ export default function Home() {
       </header>
 
       {meta && <ModelToggle meta={meta} model={model} onChange={chooseModel} />}
+      {meta && <ConsensusOptIn meta={meta} optIn={optIn} onToggle={toggleOptIn} />}
 
       <section className="card prompt">
         <div className="prompt-nav">
@@ -238,10 +255,10 @@ export default function Home() {
       <section className="actions">
         <button
           className="btn primary"
-          disabled={!meta?.grader.configured || consensusInput.length === 0 || consensusBusy}
+          disabled={!meta?.grader.configured || votes === 0 || consensusBusy}
           onClick={() => runConsensus(prompt.id, attemptRef.current[prompt.id], consensusInput)}
         >
-          {session?.consensus.length ? `Grade again with ${modelLabel(model)}` : `Consensus grade (${consensusInput.length})`}
+          {session?.consensus.length ? `Grade again with ${modelLabel(model)}` : `Consensus grade (${votes} ${votes === 1 ? "vote" : "votes"})`}
         </button>
         <button className="btn" onClick={copyPrompt} disabled={!meta}>
           {copied === "prompt" ? "Copied ✓" : "Copy this prompt"}
@@ -264,6 +281,13 @@ export default function Home() {
                 <ul className="discarded small">
                   {run.discarded.map((d) => (
                     <li key={d.providerId}>Discarded {d.label}: {d.reason}</li>
+                  ))}
+                </ul>
+              )}
+              {run.skipped.length > 0 && (
+                <ul className="skipped small muted">
+                  {run.skipped.map((d) => (
+                    <li key={d.providerId}>Not counted: {d.label} ({d.reason})</li>
                   ))}
                 </ul>
               )}
@@ -305,8 +329,8 @@ export default function Home() {
       </section>
 
       <footer className="muted foot">
-        Consensus uses ElevenLabs, whisper-1 and gpt-4o-transcribe. Transcripts are what each system heard — not a
-        pronunciation score.
+        Consensus votes: ElevenLabs, whisper-1, and Azure (all locales together count as one vote); gpt-4o-transcribe
+        only when switched on. Transcripts are what each system heard — not a pronunciation score.
       </footer>
     </main>
   );

@@ -19,13 +19,33 @@ function transcriptProblem(text: string): string | null {
   return `contains ${kind}: ${foreign.slice(0, 8).join(" ")}`;
 }
 
+/**
+ * Comparison form of an Arabic transcript: drops vowel marks, tatweel and punctuation and
+ * folds common spelling variants (أ/إ/آ → ا, ة → ه, ى → ي), so two STT outputs that differ
+ * only in spelling count as agreeing.
+ */
+function normalizeForComparison(text: string): string {
+  return text
+    .normalize("NFC")
+    .replace(/[\u064B-\u065F\u0670\u0640]/g, "")
+    .replace(/[أإآٱ]/g, "ا")
+    .replace(/ة/g, "ه")
+    .replace(/ى/g, "ي")
+    .replace(/[\p{P}\p{S}]/gu, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 export const levantine = {
   id: "levantine",
   name: "Levantine Arabic",
   /** ISO 639-1 code passed to STT providers. */
   sttLanguage: "ar",
   defaultAzureLocales: ["ar-JO", "ar-LB", "ar-SY"],
+  /** Azure counts as one consensus vote; this locale wins when the Azure locales disagree. */
+  preferredAzureLocale: "ar-JO",
   transcriptProblem,
+  normalizeForComparison,
   /** Rules for turning English into a Levantine sentence (Say it mode). */
   sayRules: `You translate English sentences into natural spoken Levantine Arabic (neutral "white" register, Jordanian-leaning, as in the learner's tutor notes) for an English-speaking beginner.
 

@@ -37,7 +37,7 @@ A do-it-at-your-own-pace speaking coach for an English speaker learning **Levant
 ```
 Pass the grader: target English, the answer key (or any tutor partial answer) from the seed, the learner's unlocked vocab, the language pack's rubric notes, and the normalized learner input. Temperature low. Validate JSON; retry once on parse failure.
 
-**Consensus grading (from Phase 0 results).** No single STT is reliable; agreement between providers is the signal. Speak mode sends one clip to ElevenLabs Scribe, whisper-1 and gpt-4o-transcribe, discards any transcript with non-Arabic letters (Latin, or Persian/Urdu letters such as ک ی ے ھ), and makes one grader call with the rest. An error counts against the learner only if most remaining transcripts show it; otherwise it is STT noise.
+**Consensus grading (from Phase 0 results).** No single STT is reliable; agreement between providers is the signal. Speak mode sends one clip to every configured STT provider, discards any transcript with non-Arabic letters (Latin, or Persian/Urdu letters such as ک ی ے ھ), and makes one grader call with the remaining votes: ElevenLabs Scribe, whisper-1, and Azure, whose locales (ar-JO / ar-LB / ar-SY) together count as ONE vote (the majority reading, or ar-JO if they disagree). gpt-4o-transcribe is opt-in (off by default) because it often returns unrelated text or the wrong script; every provider's column stays visible either way. An error counts against the learner only if most remaining transcripts show it; otherwise it is STT noise.
 
 **Answer key.** Each practice sentence has one canonical Levantine `answer_key` (translit + Arabic) in the seed. The grader marks against it and uses its exact spellings. Keys start as `"status": "unverified"` until the tutor confirms them.
 

@@ -33,16 +33,100 @@ describe("transcript filter", () => {
   });
 });
 
+const t = (providerId: string, text: string) => ({ providerId, label: providerId, text });
+const ids = (xs: { providerId: string }[]) => xs.map((x) => x.providerId);
+
 describe("selectForConsensus", () => {
-  it("keeps clean consensus transcripts, discards bad ones, ignores other providers", () => {
+  it("keeps clean core transcripts and discards ones with foreign letters", () => {
     const { used, discarded } = selectForConsensus([
-      { providerId: "elevenlabs", label: "EL", text: "انا بحب هاد" },
-      { providerId: "openai-whisper-1", label: "W", text: "من یحب هاد" },
-      { providerId: "openai-gpt-4o-transcribe", label: "G", text: "انا بحب هذا" },
-      { providerId: "azure-ar-JO", label: "Az", text: "انا بحب هاد" },
+      t("elevenlabs", "انا بحب هاد"),
+      t("openai-whisper-1", "من یحب هاد"),
+      t("some-other-provider", "انا بحب هاد"),
     ]);
-    expect(used.map((t) => t.providerId)).toEqual(["elevenlabs", "openai-gpt-4o-transcribe"]);
-    expect(discarded).toEqual([{ providerId: "openai-whisper-1", label: "W", reason: "contains non-Arabic letters: ی" }]);
+    expect(ids(used)).toEqual(["elevenlabs"]);
+    expect(discarded).toEqual([{ providerId: "openai-whisper-1", label: "openai-whisper-1", reason: "contains non-Arabic letters: ی" }]);
+  });
+
+  it("leaves gpt-4o-transcribe out unless opted in", () => {
+    const transcripts = [t("elevenlabs", "انا بحب هاد"), t("openai-gpt-4o-transcribe", "انا بحب هاد")];
+    const off = selectForConsensus(transcripts);
+    expect(ids(off.used)).toEqual(["elevenlabs"]);
+    expect(off.skipped).toEqual([{ providerId: "openai-gpt-4o-transcribe", label: "openai-gpt-4o-transcribe", reason: "opt-in, switched off" }]);
+    const on = selectForConsensus(transcripts, { optIn: ["openai-gpt-4o-transcribe"] });
+    expect(ids(on.used)).toEqual(["elevenlabs", "openai-gpt-4o-transcribe"]);
+    expect(on.skipped).toEqual([]);
+  });
+
+  it("filters an opted-in gpt-4o transcript like any other", () => {
+    const { used, discarded } = selectForConsensus([t("openai-gpt-4o-transcribe", "I like this")], { optIn: ["openai-gpt-4o-transcribe"] });
+    expect(used).toEqual([]);
+    expect(ids(discarded)).toEqual(["openai-gpt-4o-transcribe"]);
+  });
+});
+
+describe("Azure counts as one vote", () => {
+  const vote = (transcripts: ReturnType<typeof t>[]) => {
+    const { used, skipped, discarded } = selectForConsensus(transcripts);
+    const azure = used.filter((u) => u.providerId.startsWith("azure-"));
+    expect(azure).toHaveLength(Math.min(1, transcripts.length - discarded.length));
+    return { azure: azure[0], skipped, discarded, used };
+  };
+
+  it("uses the majority reading, ignoring spelling variants", () => {
+    const { azure, skipped } = vote([
+      t("azure-ar-JO", "انا بحب هاد"),
+      t("azure-ar-LB", "أنا بحبّ هاد."),
+      t("azure-ar-SY", "انا بحب هذا"),
+    ]);
+    expect(azure.providerId).toBe("azure-ar-JO");
+    expect(azure.label).toBe("azure-ar-JO — the Azure vote (2 of 3 Azure locales agreed, using ar-JO)");
+    expect(skipped.map((s) => s.reason)).toEqual([
+      "Azure counts as one vote: 2 of 3 Azure locales agreed, using ar-JO",
+      "Azure counts as one vote: 2 of 3 Azure locales agreed, using ar-JO",
+    ]);
+  });
+
+  it("follows the majority even when ar-JO is the odd one out", () => {
+    const { azure } = vote([
+      t("azure-ar-JO", "انا بحب هذا"),
+      t("azure-ar-LB", "انا بحب هاد"),
+      t("azure-ar-SY", "انا بحب هاد"),
+    ]);
+    expect(azure.providerId).toBe("azure-ar-LB");
+    expect(azure.text).toBe("انا بحب هاد");
+  });
+
+  it("falls back to ar-JO when all three disagree", () => {
+    const { azure } = vote([t("azure-ar-LB", "انا"), t("azure-ar-JO", "انا بحب"), t("azure-ar-SY", "انا بحب هاد")]);
+    expect(azure.providerId).toBe("azure-ar-JO");
+    expect(azure.label).toContain("Azure locales disagreed, using ar-JO");
+  });
+
+  it("drops English Azure output before voting", () => {
+    const { azure, discarded } = vote([
+      t("azure-ar-JO", "I'm not a hemispod."),
+      t("azure-ar-LB", "انا بحب هاد"),
+      t("azure-ar-SY", "انا بحب هاد"),
+    ]);
+    expect(ids(discarded)).toEqual(["azure-ar-JO"]);
+    expect(azure.providerId).toBe("azure-ar-LB");
+  });
+
+  it("uses the first usable locale if ar-JO is unusable and the rest disagree", () => {
+    const { azure } = vote([t("azure-ar-JO", "hello"), t("azure-ar-LB", "انا"), t("azure-ar-SY", "انا بحب")]);
+    expect(azure.providerId).toBe("azure-ar-LB");
+    expect(azure.label).toContain("ar-JO was unusable");
+  });
+
+  it("gives Azure exactly one vote next to the core voters", () => {
+    const { used } = vote([
+      t("elevenlabs", "انا بحب هاد"),
+      t("openai-whisper-1", "انا بحب هاد"),
+      t("azure-ar-JO", "انا بحب هاد"),
+      t("azure-ar-LB", "انا بحب هاد"),
+      t("azure-ar-SY", "انا بحب هاد"),
+    ]);
+    expect(ids(used)).toEqual(["elevenlabs", "openai-whisper-1", "azure-ar-JO"]);
   });
 });
 

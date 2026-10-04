@@ -2,6 +2,7 @@
 export const PASSCODE_KEY = "kalam_passcode";
 export const MODEL_KEY = "kalam_grader_model";
 export const VOICE_KEY = "kalam_tts_voice";
+export const OPT_IN_KEY = "kalam_consensus_opt_in";
 
 export function readStored(key: string): string {
   try {

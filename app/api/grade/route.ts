@@ -1,5 +1,5 @@
 import { requirePasscode } from "@/lib/auth";
-import { selectForConsensus, type Transcript } from "@/lib/consensus";
+import { OPT_IN_VOTERS, selectForConsensus, type ConsensusSelection, type Transcript } from "@/lib/consensus";
 import { gradeTranscripts } from "@/lib/grader/grade";
 import { resolveGraderModel } from "@/lib/grader/models";
 import { findPrompt, type TestPrompt } from "@/lib/seed";
@@ -15,6 +15,8 @@ type Body = {
   mode?: "consensus" | "single";
   model?: string;
   transcripts?: Transcript[];
+  /** Opt-in voters to include, e.g. ["openai-gpt-4o-transcribe"]. */
+  optIn?: string[];
 };
 
 export async function POST(req: Request) {
@@ -40,17 +42,20 @@ export async function POST(req: Request) {
     return Response.json({ error: "transcript too long" }, { status: 400 });
   }
 
+  const optIn = (Array.isArray(body?.optIn) ? body.optIn : []).filter((id) => OPT_IN_VOTERS.includes(id));
+
   let used: Transcript[];
-  let discarded: ReturnType<typeof selectForConsensus>["discarded"] = [];
+  let discarded: ConsensusSelection["discarded"] = [];
+  let skipped: ConsensusSelection["skipped"] = [];
   if (body?.mode === "single") {
     if (transcripts.length !== 1 || !transcripts[0].text) {
       return Response.json({ error: "single mode needs one non-empty transcript" }, { status: 400 });
     }
     used = transcripts;
   } else {
-    ({ used, discarded } = selectForConsensus(transcripts));
+    ({ used, discarded, skipped } = selectForConsensus(transcripts, { optIn }));
     if (used.length === 0) {
-      return Response.json({ error: "no usable transcripts for consensus", discarded }, { status: 422 });
+      return Response.json({ error: "no usable transcripts for consensus", discarded, skipped }, { status: 422 });
     }
   }
 
@@ -62,12 +67,14 @@ export async function POST(req: Request) {
       requestedModel: model,
       used: used.map((t) => t.providerId),
       discarded,
+      skipped,
+      optIn,
       ms: Date.now() - started,
     });
   } catch (err) {
     // Always 502: an upstream 401 must not look like a wrong app passcode to the client.
     const message = err instanceof Error ? err.message : String(err);
-    return Response.json({ error: message, discarded, ms: Date.now() - started }, { status: 502 });
+    return Response.json({ error: message, discarded, skipped, ms: Date.now() - started }, { status: 502 });
   }
 }
 
