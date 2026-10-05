@@ -16,6 +16,8 @@ type Props = {
   onPreferred?: (message: string) => void;
   voiceId: string;
   getSpeech: (voiceId: string, text: string) => Promise<TtsClip>;
+  /** A native reviewer's recording of the sentence: played instead of TTS (TTS is the fallback). */
+  native?: { key: string; load: () => Promise<{ url: string; bytes: ArrayBuffer }> };
 };
 
 type Phase = "idle" | "playing" | "listen" | "your-turn";
@@ -23,7 +25,7 @@ type Phase = "idle" | "playing" | "listen" | "your-turn";
 const SHADOW_EXTRA_SECONDS = 1;
 
 /** Loop, 0.75x, tap-a-word, and shadowing (play → pause for you to repeat → replay). */
-export function Player({ text, words, voiceId, getSpeech, concepts = [], lexicon, onPreferred }: Props) {
+export function Player({ text, words, voiceId, getSpeech, concepts = [], lexicon, onPreferred, native }: Props) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const sessionRef = useRef(0); // bumped to cancel shadowing / pending plays
   const [clip, setClip] = useState<TtsClip | null>(null);
@@ -40,10 +42,18 @@ export function Player({ text, words, voiceId, getSpeech, concepts = [], lexicon
     setClip(null);
     setError("");
     stop();
-    getSpeech(voiceId, text)
+    const tts = () => getSpeech(voiceId, text);
+    const sentence: Promise<TtsClip> = native
+      ? native
+          .load()
+          .then((n) => ({ ...n, cache: "native", chars: 0, ms: 0 }))
+          .catch(tts) // a missing or broken recording falls back to TTS
+      : tts();
+    sentence
       .then((c) => {
         if (cancelled) return;
         setClip(c);
+        // Word taps always use TTS; fetch them in the background.
         for (const w of words) getSpeech(voiceId, w.tts_spelling).catch(() => {});
       })
       .catch((err) => !cancelled && setError(String(err instanceof Error ? err.message : err)));
@@ -51,7 +61,7 @@ export function Player({ text, words, voiceId, getSpeech, concepts = [], lexicon
       cancelled = true;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [text, voiceId]);
+  }, [text, voiceId, native?.key]);
 
   useEffect(() => () => stop(), []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -170,7 +180,8 @@ export function Player({ text, words, voiceId, getSpeech, concepts = [], lexicon
       )}
       {clip && (
         <p className="muted small">
-          Audio {clip.cache === "hit" ? "from cache" : clip.cache === "miss" ? `generated (${clip.chars} chars, now cached)` : `generated (${clip.chars} chars, cache off)`}
+          {clip.cache === "native" ? "Native recording by your reviewer" : "Audio"}{" "}
+          {clip.cache === "native" ? "" : clip.cache === "hit" ? "from cache" : clip.cache === "miss" ? `generated (${clip.chars} chars, now cached)` : `generated (${clip.chars} chars, cache off)`}
         </p>
       )}
       {error && <p className="warn">{error}</p>}

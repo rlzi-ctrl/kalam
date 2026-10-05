@@ -4,7 +4,7 @@ import type { Sound } from "@/lib/langpacks/sounds";
 import { vocabPromptBlock, type Concept } from "@/lib/lexicon";
 import { PAIRS_JSON_SCHEMA, PairCandidatesSchema } from "./schema";
 
-const SYSTEM = `You build minimal-pair listening drills for an English speaker learning spoken Levantine Arabic. A minimal pair is two real words that differ only in one sound. Use common everyday words, preferring the learner's vocabulary (below). Both words must be real and their glosses correct: if you are not sure a word exists, leave the pair out. Fewer good pairs beat more doubtful ones. tts_spelling: the word in Arabic script spelled as a Levantine speaker says it, with vowel marks, so a text-to-speech voice keeps the contrast. translit in the learner's Arabizi style (3=ع, 7=ح, 5/kh=خ, gh=غ, 6=ط, 9=ص, 2=ء). note: one short line on the difference.`;
+const SYSTEM = `You build minimal-pair listening drills for an English speaker learning spoken ${levantine.dialect} Arabic. A minimal pair is two real words that differ only in one sound. Use common everyday words, preferring the learner's vocabulary (below). Both words must be real and their glosses correct: if you are not sure a word exists, leave the pair out. Fewer good pairs beat more doubtful ones. tts_spelling: the word in Arabic script spelled as a speaker of that dialect says it, with vowel marks, so a text-to-speech voice keeps the contrast. translit in the learner's Arabizi style (3=ع, 7=ح, 5/kh=خ, gh=غ, 6=ط, 9=ص, 2=ء). note: one short line on the difference.`;
 
 export async function generatePairs(sound: Sound, concepts: Concept[], model: string, count = 6) {
   const system = `${SYSTEM}\n\n<learner_known_vocabulary>\n${vocabPromptBlock(concepts)}\n</learner_known_vocabulary>`;

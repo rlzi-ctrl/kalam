@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { structuredCall } from "@/lib/claude/structured";
+import { levantine } from "@/lib/langpacks/levantine";
 import { type NonPreferredUse } from "@/lib/lexicon";
 
 const RewriteSchema = z.object({
@@ -23,7 +24,7 @@ const REWRITE_JSON_SCHEMA = {
   },
 };
 
-const SYSTEM = `You edit Levantine Arabic answer keys for a learner. You get a sentence (Latin-script Arabizi translit + Arabic script) and the learner's preferred forms for some concepts. Rewrite the sentence so it uses the preferred forms, adjusting only what the swap requires (agreement, attached pronoun suffixes, article). Change nothing else: keep every other word and spelling exactly as given. Keep the learner's translit style (3=ع, 2=ء, lowercase, hyphens). List each change as {from, to} in translit.`;
+const SYSTEM = `You edit ${levantine.dialect} Arabic answer keys for a learner. You get a sentence (Latin-script Arabizi translit + Arabic script) and the learner's preferred forms for some concepts. Rewrite the sentence so it uses the preferred forms, adjusting only what the swap requires (agreement, attached pronoun suffixes, article). Change nothing else: keep every other word and spelling exactly as given. Keep the learner's translit style (3=ع, 2=ء, lowercase, hyphens). List each change as {from, to} in translit.`;
 
 /** Proposes a rewrite of an answer key with the learner's preferred forms. Never saved without approval. */
 export async function proposeKeyRewrite(

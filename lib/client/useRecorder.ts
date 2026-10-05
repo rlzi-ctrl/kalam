@@ -4,7 +4,8 @@ import { useRef, useState } from "react";
 import { toWav16kMono } from "@/lib/audio/wav";
 
 export type RecState = "idle" | "recording" | "processing";
-export type Recording = { wav: Blob; seconds: number };
+/** wav: 16 kHz mono for STT; raw: what the browser recorded (better quality, e.g. for reviewer audio). */
+export type Recording = { wav: Blob; seconds: number; raw: Blob };
 
 /** Mic → 16 kHz mono WAV, auto-stopping at maxSeconds. */
 export function useRecorder(maxSeconds: number) {
@@ -39,8 +40,9 @@ export function useRecorder(maxSeconds: number) {
       stream.getTracks().forEach((t) => t.stop());
       setRec("processing");
       let recording: Recording;
+      const raw = new Blob(chunks, { type: recorder.mimeType });
       try {
-        recording = await toWav16kMono(new Blob(chunks, { type: recorder.mimeType }));
+        recording = { ...(await toWav16kMono(raw)), raw };
       } catch (err) {
         setError(`Could not process recording: ${String(err)}`);
         setRec("idle");
