@@ -1,6 +1,7 @@
 import { structuredCall, type ClaudeUsage } from "@/lib/claude/structured";
 import type { Transcript } from "@/lib/consensus";
 import { levantine } from "@/lib/langpacks/levantine";
+import type { Concept } from "@/lib/lexicon";
 import type { TestPrompt } from "@/lib/seed";
 import { buildSystemPrompt, buildUserMessage } from "./prompt";
 import { GRADE_JSON_SCHEMA, ModelGradeSchema, type Grade } from "./schema";
@@ -13,10 +14,11 @@ export async function gradeTranscripts(
   prompt: TestPrompt,
   transcripts: Transcript[],
   model: string,
+  concepts: Concept[],
 ): Promise<GradeOutcome> {
   const { data, ...rest } = await structuredCall({
     model,
-    system: buildSystemPrompt(levantine),
+    system: buildSystemPrompt(levantine, concepts),
     user: buildUserMessage(prompt, transcripts),
     jsonSchema: GRADE_JSON_SCHEMA,
     schema: ModelGradeSchema,

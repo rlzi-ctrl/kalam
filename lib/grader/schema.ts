@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { SOUND_IDS } from "@/lib/langpacks/sounds";
 
 export const ERROR_TYPES = [
   "conjugation",
@@ -31,6 +32,9 @@ export const ModelGradeSchema = z.object({
   overall: score,
   encouragement: z.string(),
   consensus_note: z.string(),
+  sound_errors: z.array(
+    z.object({ sound: z.enum(SOUND_IDS), word: z.string(), heard: z.string(), tip: z.string() }),
+  ),
 });
 
 export type Grade = z.infer<typeof ModelGradeSchema> & { heard: string };
@@ -53,6 +57,7 @@ export const GRADE_JSON_SCHEMA = {
     "overall",
     "encouragement",
     "consensus_note",
+    "sound_errors",
   ],
   properties: {
     meaning: int,
@@ -78,5 +83,14 @@ export const GRADE_JSON_SCHEMA = {
     overall: int,
     encouragement: str,
     consensus_note: str,
+    sound_errors: {
+      type: "array",
+      items: {
+        type: "object",
+        additionalProperties: false,
+        required: ["sound", "word", "heard", "tip"],
+        properties: { sound: { type: "string", enum: [...SOUND_IDS] }, word: str, heard: str, tip: str },
+      },
+    },
   },
 };

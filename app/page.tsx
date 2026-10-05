@@ -2,6 +2,7 @@
 
 import { useCallback, useRef, useState } from "react";
 import { GradeCard } from "@/components/GradeCard";
+import { AnswerKeyPanel } from "@/components/AnswerKeyPanel";
 import { ConsensusOptIn, useConsensusOptIn } from "@/components/ConsensusOptIn";
 import { ModelToggle, useModelChoice } from "@/components/ModelToggle";
 import { Nav } from "@/components/Nav";
@@ -219,13 +220,7 @@ export default function Home() {
             {showAnswer ? "Hide" : "Show"} answer
           </button>
         )}
-        {showAnswer && prompt.answerKey && (
-          <div className="answer">
-            <span className="tag">answer key · {prompt.answerKey.status}</span>
-            <p>{prompt.answerKey.translit}</p>
-            <p className="arabic" dir="rtl" lang="ar">{prompt.answerKey.arabic}</p>
-          </div>
-        )}
+        {showAnswer && prompt.answerKey && <AnswerKeyPanel api={api} prompt={prompt} model={model} />}
         {showAnswer && prompt.referenceTranslit && <p className="answer">{prompt.referenceTranslit}</p>}
         {showAnswer && prompt.tutorPartial && <p className="answer muted">Tutor started: {prompt.tutorPartial}…</p>}
       </section>

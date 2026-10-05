@@ -17,6 +17,12 @@ saved as a card; ★ = ask my tutor; saved sentences export as one MP3 with paus
 
 **Voices** (`/voices`): one sentence in every configured voice, for picking the best one.
 
+**Words** (`/words`): every concept with its forms. ★ is yours (used by Say it, answer keys and audio);
+the others are accepted without penalty. One tap changes your form; a reviewer can add forms.
+
+**Sounds** (`/sounds`): tips, audio and examples for ء ع ح خ غ ط ص and ق→2, "my weak sounds" (from
+the grader's `sound_errors`), and a minimal-pair listening drill whose pairs need reviewer approval.
+
 The spec lives in [CLAUDE.md](CLAUDE.md).
 
 ## Deploy (Vercel)
@@ -43,7 +49,11 @@ lib/grader/                  system prompt, JSON schema, model list, Claude call
 lib/langpacks/levantine.ts   language-specific rubric, script filter, STT settings
 lib/tts/                     TtsVoice interface, Azure + ElevenLabs voices, cache
 lib/say/                     Say it prompt, schema, Arabic-only output check
-lib/store/cards.ts           card storage (private Vercel Blob JSON; swappable for Postgres later)
+lib/store/                   private Vercel Blob JSON: cards, lexicon preferences, answer-key rewrites,
+                             minimal pairs, sound stats (swappable for Postgres later)
+lib/lexicon/                 concepts + variants, preferences, non-preferred-form detection
+lib/langpacks/sounds.ts      the practice sounds, their tips and likely STT swaps
+levantine_lexicon.json       built by `python3 scripts/build_lexicon.py` from the seed + scripts/lexicon_data.py
 lib/client/                  browser hooks: passcode/API, recorder, TTS memo, MP3 playlist builder
 lib/audio/wav.ts             browser recording → 16 kHz mono WAV (identical input for every provider)
 lib/seed.ts                  the 15 test prompts, answer keys, vocab and grammar from levantine_seed.json
@@ -60,3 +70,5 @@ npm test          # unit tests
 npm run typecheck
 npm run build
 ```
+
+`KALAM_LOCAL_BLOB_DIR=/some/folder` stores everything Blob would hold as local files (dev and tests only).

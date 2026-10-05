@@ -13,7 +13,9 @@ import { VOICE_KEY, readStored, writeStored } from "@/lib/client/prefs";
 import { postGrade, transcribeAll } from "@/lib/client/transcribe";
 import { useAppApi } from "@/lib/client/useAppApi";
 import { useRecorder } from "@/lib/client/useRecorder";
+import { useLexicon } from "@/lib/client/useLexicon";
 import { useTts } from "@/lib/client/useTts";
+import { findNonPreferred } from "@/lib/lexicon";
 import { OPT_IN_VOTERS, selectForConsensus, type Discarded } from "@/lib/consensus";
 import type { GradeDone } from "@/lib/results";
 
@@ -30,6 +32,8 @@ export default function SayPage() {
   const { api, meta, loadError, needPasscode, passcodeTried, submitPasscode } = useAppApi();
   const { model, choose, label: modelLabel } = useModelChoice(meta);
   const getSpeech = useTts(api);
+  const lexicon = useLexicon(api, Boolean(meta));
+  const [prefNotice, setPrefNotice] = useState("");
   const recorder = useRecorder(MAX_SECONDS);
   const { optIn, toggle: toggleOptIn } = useConsensusOptIn();
 
@@ -76,29 +80,34 @@ export default function SayPage() {
     writeStored(VOICE_KEY, id);
   };
 
-  const generate = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!english.trim()) return;
+  /** New sentence, or (with `card`) the same sentence again in the current preferred forms. */
+  const say = async (text: string, card?: Card) => {
     setGenerating(true);
     setGenError("");
     try {
       const res = await api("/api/say", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ english, model }),
+        body: JSON.stringify({ english: text, model, cardId: card?.id }),
       });
       const json = await res.json();
       if (!res.ok) throw new Error(json.error ?? `HTTP ${res.status}`);
       setCurrent(json.card);
       setAttempt(null);
-      setEnglish("");
-      if (json.saved) setCards((cs) => [...cs, json.card]);
+      setPrefNotice("");
+      if (!card) setEnglish("");
+      if (json.saved) setCards((cs) => (cs.some((c) => c.id === json.card.id) ? cs.map((c) => (c.id === json.card.id ? json.card : c)) : [...cs, json.card]));
       else if (json.saveError) setGenError(`Generated, but not saved: ${json.saveError}`);
     } catch (err) {
       setGenError(String(err instanceof Error ? err.message : err));
     } finally {
       setGenerating(false);
     }
+  };
+
+  const generate = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (english.trim()) void say(english);
   };
 
   const setStar = async (card: Card, starred: boolean) => {
@@ -222,6 +231,23 @@ export default function SayPage() {
             Spoken spelling (sent to TTS): <span dir="rtl" lang="ar" className="tts-spelling">{current.tts_spelling}</span>
           </p>
           {current.notes && <p className="small">{current.notes}</p>}
+          {(() => {
+            const stale = findNonPreferred(current.translit, lexicon.concepts);
+            if (!prefNotice && stale.length === 0) return null;
+            return (
+              <div className="pref-notice small">
+                {prefNotice && <p>{prefNotice}</p>}
+                {stale.length > 0 && (
+                  <p>
+                    This sentence uses {stale.map((u) => `${u.used.translit} (you prefer ${u.preferred.translit})`).join(", ")}.
+                  </p>
+                )}
+                <button className="btn" disabled={generating} onClick={() => say(current.english, current)}>
+                  {generating ? "Re-saying…" : "Re-say it with my forms"}
+                </button>
+              </div>
+            );
+          })()}
 
           {voices.length > 0 && (
             <label className="voice-pick small">
@@ -233,7 +259,17 @@ export default function SayPage() {
               </select>
             </label>
           )}
-          {voiceId && <Player text={current.tts_spelling} words={current.words} voiceId={voiceId} getSpeech={getSpeech} />}
+          {voiceId && (
+            <Player
+              text={current.tts_spelling}
+              words={current.words}
+              voiceId={voiceId}
+              getSpeech={getSpeech}
+              concepts={lexicon.concepts}
+              lexicon={lexicon}
+              onPreferred={setPrefNotice}
+            />
+          )}
 
           <div className="attempt">
             {meta && <ConsensusOptIn meta={meta} optIn={optIn} onToggle={toggleOptIn} />}

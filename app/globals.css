@@ -188,3 +188,48 @@ pre { white-space: pre-wrap; word-break: break-word; font-size: 0.78rem; backgro
 .opt-in { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin: 4px 0; color: var(--muted); }
 .opt-in input { width: 18px; height: 18px; vertical-align: middle; }
 .skipped { padding-left: 18px; margin: 4px 0; }
+
+/* Sounds: highlighted letters, tips, guide */
+.snd { color: #c05621; font-weight: 700; cursor: pointer; }
+@media (prefers-color-scheme: dark) { .snd { color: #fbb36b; } }
+.sound-tip { border: 1px solid var(--accent); border-radius: 10px; padding: 8px 12px; margin: 8px 0; background: var(--bg); }
+.sound-tip p { margin: 4px 0; }
+.sound-tip-letter, .sound-letter, .weak-letter { font-size: 1.4rem; }
+.sound { margin-top: 12px; scroll-margin-top: 12px; }
+.example-words, .drill-choices { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 10px; }
+.pairs { border-top: 1px solid var(--border); margin-top: 10px; padding-top: 8px; }
+.pair-review { list-style: none; padding: 0; margin: 8px 0; }
+.pair-review li { border-top: 1px solid var(--border); padding: 6px 0; }
+.pair-actions { display: inline-block; margin-left: 6px; }
+.drill { margin: 8px 0; }
+.drill-choice { min-width: 120px; }
+.drill-choice.right { border-color: var(--accent); background: var(--accent); color: var(--accent-text); }
+.drill-choice.wrong { border-color: var(--rec); }
+.weak-list { padding-left: 20px; margin: 6px 0; }
+.weak-list li { margin-bottom: 4px; }
+.sound-errors { padding-left: 18px; margin: 8px 0; }
+
+/* Variants: you'll also hear, preferences */
+.also { border-top: 1px dashed var(--border); margin-top: 8px; padding-top: 6px; }
+.also ul { list-style: none; padding: 0; margin: 4px 0; }
+.also li { margin-bottom: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.also-word { font-family: ui-monospace, Menlo, monospace; font-size: 0.85rem; }
+.also-chip { display: inline-flex; align-items: center; gap: 4px; border: 1px solid var(--border); border-radius: 999px; padding: 2px 10px; }
+.pref-notice { border-left: 3px solid var(--accent); padding: 4px 10px; margin: 8px 0; }
+.pref-notice p { margin: 4px 0; }
+.diff-old { color: var(--rec); font-family: ui-monospace, Menlo, monospace; margin: 2px 0; }
+.diff-new { color: var(--accent); font-family: ui-monospace, Menlo, monospace; margin: 2px 0; }
+
+/* Words page */
+.words-filter { display: flex; flex-direction: column; gap: 6px; margin: 8px 0; }
+.words-filter input[type="search"], .add-variant input, .add-variant select {
+  font: inherit; font-size: 16px; padding: 8px 10px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg); color: var(--text);
+}
+.concept-list { list-style: none; padding: 0; display: grid; gap: 8px; }
+.concept-en { font-weight: 600; margin: 0 0 4px; }
+.variant-list { list-style: none; padding: 0; margin: 4px 0; }
+.variant-list li { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 2px 0; }
+.variant-list li.on .variant-tr { font-weight: 700; }
+.variant-tr { font-family: ui-monospace, Menlo, monospace; }
+.add-variant { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.mine { color: #b7791f; }

@@ -2,12 +2,16 @@ import { requirePasscode } from "@/lib/auth";
 import { newCard } from "@/lib/cards";
 import { resolveGraderModel } from "@/lib/grader/models";
 import { generateSentence } from "@/lib/say/generate";
-import { cardStoreConfigured, saveCard } from "@/lib/store/cards";
+import { cardStoreConfigured, getCard, saveCard } from "@/lib/store/cards";
+import { loadLexicon } from "@/lib/store/lexicon";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
 
-/** POST {english, model?, save?} → a new unverified card (saved unless save=false, e.g. the voice test page). */
+/**
+ * POST {english, model?, save?, cardId?} → an unverified card in the learner's preferred forms (saved unless
+ * save=false, e.g. the voice test page). With cardId, regenerates that card in place (keeps its star and date).
+ */
 export async function POST(req: Request) {
   const denied = requirePasscode(req);
   if (denied) return denied;
@@ -15,7 +19,7 @@ export async function POST(req: Request) {
     return Response.json({ error: "not configured (ANTHROPIC_API_KEY)" }, { status: 412 });
   }
 
-  const body = (await req.json().catch(() => null)) as { english?: string; model?: string; save?: boolean } | null;
+  const body = (await req.json().catch(() => null)) as { english?: string; model?: string; save?: boolean; cardId?: string } | null;
   const english = body?.english?.trim() ?? "";
   if (!english) return Response.json({ error: "empty sentence" }, { status: 400 });
   if (english.length > 300) return Response.json({ error: "sentence too long (300 characters max)" }, { status: 400 });
@@ -25,12 +29,16 @@ export async function POST(req: Request) {
   const started = Date.now();
   let generated;
   try {
-    generated = await generateSentence(english, model);
+    generated = await generateSentence(english, model, await loadLexicon());
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
     return Response.json({ error: message, ms: Date.now() - started }, { status: 502 });
   }
-  const card = newCard(english, generated.data, generated.model);
+  const previous = body?.cardId && cardStoreConfigured() ? await getCard(body.cardId).catch(() => null) : null;
+  const fresh = newCard(english, generated.data, generated.model);
+  const card = previous
+    ? { ...fresh, id: previous.id, starred: previous.starred, created_at: previous.created_at, review: previous.review }
+    : fresh;
   const ms = Date.now() - started;
 
   let saved = false;

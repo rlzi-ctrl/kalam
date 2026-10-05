@@ -1517,16 +1517,16 @@
    "en": "We don't have enough money, that’s why we want a cheap apartment",
    "partial_translit_from_tutor": "ehna ma endnaa kaafi ,",
    "answer_key": {
-    "translit": "ehna ma endna eflos kafi, 3shan heek bedna shaqa rkheesa",
-    "arabic": "إحنا ما عنّا فلوس كافي، عشان هيك بدنا شقة رخيصة",
+    "translit": "ehna ma endna eflos kafi, 3shan heek bedna shaqa erkhes",
+    "arabic": "إحنا ما عنّا فلوس كافي، عشان هيك بدنا شقة أرخص",
     "status": "unverified"
    }
   },
   {
    "en": "I think he will stay in his office until evening because he has a lot of work.",
    "answer_key": {
-    "translit": "ana bafaker eno rah yadall fi maktaboh lal-masa ashan endoh shoghol ektheer",
-    "arabic": "أنا بفكّر إنه رح يضل في مكتبه للمسا عشان عنده شغل كتير",
+    "translit": "ana bafaker eno rah yadall fi maktaboh hatta el-masa ashan endoh shoghol ektheer",
+    "arabic": "أنا بفكّر إنه رح يضل في مكتبه حتى المسا عشان عنده شغل كتير",
     "status": "unverified"
    }
   },
@@ -1613,8 +1613,8 @@
   {
    "en": "If the weather is hot tomorrow, we will go to the sea with our friends.",
    "answer_key": {
-    "translit": "etha kan el-jaw haar bukra, rah nroh 3al bahar ma3 ashabna",
-    "arabic": "إذا كان الجو حار بكرا، رح نروح عالبحر مع أصحابنا",
+    "translit": "etha kan el-jaw haar bukra, rah nroh ela el-bahar ma3 asdiqa2na",
+    "arabic": "إذا كان الجو حار بكرا، رح نروح إلى البحر مع أصدقائنا",
     "status": "unverified"
    }
   },
@@ -1662,8 +1662,8 @@
   {
    "en": "If you (f) go to the market, can you buy me a white shirt? Because mine is dirty.",
    "answer_key": {
-    "translit": "etha rohti 3al soo2, btiqdari teshtrili qamees abyad? ashan qameesi wesekh",
-    "arabic": "إذا رحتي عالسوق، بتقدري تشتريلي قميص أبيض؟ عشان قميصي وسخ",
+    "translit": "etha rohti ela el-soo2, btiqdari teshtrili qamees abyad? ashan qameesi wesekh",
+    "arabic": "إذا رحتي إلى السوق، بتقدري تشتريلي قميص أبيض؟ عشان قميصي وسخ",
     "status": "unverified"
    }
   },
@@ -1686,8 +1686,8 @@
   {
    "en": "Why didn't you (m) tell me his name before we went to his office? Now I am embarrassed (sad/ashamed).",
    "answer_key": {
-    "translit": "lesh ma qolteli ismoh qabel ma rohna 3a maktaboh? hasa ana mestehi",
-    "arabic": "ليش ما قلتلي اسمه قبل ما رحنا عمكتبه؟ هسا أنا مستحي",
+    "translit": "lesh ma qolteli ismoh qabel ma rohna ela maktaboh? hasa ana mestehi",
+    "arabic": "ليش ما قلتلي اسمه قبل ما رحنا إلى مكتبه؟ هسا أنا مستحي",
     "status": "unverified"
    }
   },
@@ -1710,8 +1710,8 @@
   {
    "en": "I think his opinion is wrong, but I don't want to say that to his face.",
    "answer_key": {
-    "translit": "ana bafaker eno ra2yoh ghalat, bas ma bedi a2olloh hada b-wejhoh",
-    "arabic": "أنا بفكّر إنه رأيه غلط، بس ما بدي أقلّه هاد بوجهه",
+    "translit": "ana bafaker eno ra2yoh khataa, bas ma bedi a2olloh hada b-wejhoh",
+    "arabic": "أنا بفكّر إنه رأيه خطأ، بس ما بدي أقلّه هاد بوجهه",
     "status": "unverified"
    }
   },
@@ -1734,16 +1734,16 @@
   {
    "en": "Last week, I was thinking about her, but I didn't know if she was still in the same city or if she traveled to the north.",
    "answer_key": {
-    "translit": "el-osbo3 el-madi kont afaker fiha, bas ma kont a3ref etha heya lesa fi nafs el-madeena aw safarat 3al shamal",
-    "arabic": "الأسبوع الماضي كنت أفكّر فيها، بس ما كنت أعرف إذا هي لسا في نفس المدينة أو سافرت عالشمال",
+    "translit": "el-osbo3 el-madi kont afaker fiha, bas ma kont a3ref etha heya lesa fi nafs el-madeena aw safarat ela el-shamal",
+    "arabic": "الأسبوع الماضي كنت أفكّر فيها، بس ما كنت أعرف إذا هي لسا في نفس المدينة أو سافرت إلى الشمال",
     "status": "unverified"
    }
   },
   {
    "en": "They said that their father had a big problem with his car, that's why they didn't come to our house early.",
    "answer_key": {
-    "translit": "hom qalo eno abohom kan endoh moshkela kbeera ma3 sayyartoh, 3shan heek ma ejo 3a beitna badri",
-    "arabic": "هم قالوا إنه أبوهم كان عنده مشكلة كبيرة مع سيارته، عشان هيك ما إجو عبيتنا بدري",
+    "translit": "hom qalo eno abohom kan endoh moshkela kbeera ma3 sayyartoh, 3shan heek ma ejo ela beitna badri",
+    "arabic": "هم قالوا إنه أبوهم كان عنده مشكلة كبيرة مع سيارته، عشان هيك ما إجو إلى بيتنا بدري",
     "status": "unverified"
    }
   },
@@ -1774,16 +1774,16 @@
   {
    "en": "Why do you (m) think that he will buy this cheap shirt? He told me that he only likes expensive clothes.",
    "answer_key": {
-    "translit": "lesh btfaker eno rah yeshtri hal-qamees el-rkhees? howa qalli eno bas bihebb el-malabes el-ghalyea",
-    "arabic": "ليش بتفكّر إنه رح يشتري هالقميص الرخيص؟ هو قلّي إنه بس بيحب الملابس الغالية",
+    "translit": "lesh btfaker eno rah yeshtri hal-qamees el-erkhes? howa qalli eno bas bihebb el-malabes el-ghalyea",
+    "arabic": "ليش بتفكّر إنه رح يشتري هالقميص الأرخص؟ هو قلّي إنه بس بيحب الملابس الغالية",
     "status": "unverified"
    }
   },
   {
    "en": "Yesterday, she took my book and put it behind the chair in the living room, but I didn't see it until now.",
    "answer_key": {
-    "translit": "ams heya akhadat ektabi w hattatoh waraa el-korsi fil salon, bas ma shoftoh la-hasa",
-    "arabic": "أمس هي أخدت كتابي وحطّته ورا الكرسي في الصالون، بس ما شفته لهسا",
+    "translit": "ams heya akhadat ektabi w hattatoh waraa el-korsi fil salon, bas ma shoftoh hatta hasa",
+    "arabic": "أمس هي أخدت كتابي وحطّته ورا الكرسي في الصالون، بس ما شفته حتى هسا",
     "status": "unverified"
    }
   },
@@ -1798,8 +1798,8 @@
   {
    "en": "I saw her walking alone in the airport, she was wearing a long black suite and she had a heavy bag in her hand, maybe she was traveling to the south.",
    "answer_key": {
-    "translit": "ana shoftha mashyea la-halha fil matar, kanat labsea badlea sawda taweelea w kan ma3ha shanta tqeelea b-eedha, yemken kanat msafrea 3al janob",
-    "arabic": "أنا شفتها ماشية لحالها في المطار، كانت لابسة بدلة سودا طويلة وكان معها شنطة تقيلة بإيدها، يمكن كانت مسافرة عالجنوب",
+    "translit": "ana shoftha mashyea la-halha fil matar, kanat labsea badlea sawda taweelea w kan ma3ha shanta tqeelea b-eedha, yemken kanat msafrea ela el-janob",
+    "arabic": "أنا شفتها ماشية لحالها في المطار، كانت لابسة بدلة سودا طويلة وكان معها شنطة تقيلة بإيدها، يمكن كانت مسافرة إلى الجنوب",
     "status": "unverified"
    }
   }

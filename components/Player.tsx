@@ -2,12 +2,18 @@
 
 import { useEffect, useRef, useState } from "react";
 import type { TtsClip } from "@/lib/client/useTts";
+import type { Concept } from "@/lib/lexicon";
 import type { SayWord } from "@/lib/say/schema";
+import { WordBreakdown, type LexiconActions } from "./WordBreakdown";
 
 type Props = {
   /** Text sent to TTS for the whole sentence (the card's tts_spelling). */
   text: string;
   words: SayWord[];
+  /** Lexicon, for "you'll also hear" forms and one-tap preferences. */
+  concepts?: Concept[];
+  lexicon?: LexiconActions;
+  onPreferred?: (message: string) => void;
   voiceId: string;
   getSpeech: (voiceId: string, text: string) => Promise<TtsClip>;
 };
@@ -17,7 +23,7 @@ type Phase = "idle" | "playing" | "listen" | "your-turn";
 const SHADOW_EXTRA_SECONDS = 1;
 
 /** Loop, 0.75x, tap-a-word, and shadowing (play → pause for you to repeat → replay). */
-export function Player({ text, words, voiceId, getSpeech }: Props) {
+export function Player({ text, words, voiceId, getSpeech, concepts = [], lexicon, onPreferred }: Props) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const sessionRef = useRef(0); // bumped to cancel shadowing / pending plays
   const [clip, setClip] = useState<TtsClip | null>(null);
@@ -110,12 +116,13 @@ export function Player({ text, words, voiceId, getSpeech }: Props) {
     }
   };
 
-  const playWord = async (i: number) => {
+  /** Plays any short text (a word, or another form of it) on its own. */
+  const playText = async (tts: string, wordIndex: number | null = null) => {
     stop();
     const session = sessionRef.current;
-    setActiveWord(i);
+    setActiveWord(wordIndex);
     try {
-      const w = await getSpeech(voiceId, words[i].tts_spelling);
+      const w = await getSpeech(voiceId, tts);
       if (session !== sessionRef.current) return;
       await playOnce(w.url, session);
     } catch (err) {
@@ -134,16 +141,15 @@ export function Player({ text, words, voiceId, getSpeech }: Props) {
 
   return (
     <div className="player-box">
-      <div className="words" dir="rtl" lang="ar">
-        {words.map((w, i) => (
-          <button key={i} className={`word ${activeWord === i ? "on" : ""} ${w.known ? "" : "new"}`} onClick={() => playWord(i)} title={w.en}>
-            <span className="word-ar">{w.arabic}</span>
-            <span className="word-tr" dir="ltr">{w.translit}</span>
-            <span className="word-en" dir="ltr">{w.en}</span>
-          </button>
-        ))}
-      </div>
-      <p className="muted small">Tap a word to hear it alone. Dashed words are not in your vocab list yet.</p>
+      <WordBreakdown
+        words={words}
+        concepts={concepts}
+        activeWord={activeWord}
+        onPlayWord={(i) => playText(words[i].tts_spelling, i)}
+        onPlayText={(tts) => playText(tts)}
+        lexicon={lexicon}
+        onPreferred={onPreferred}
+      />
 
       <div className="player-controls">
         {phase === "idle" ? (

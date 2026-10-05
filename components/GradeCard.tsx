@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { soundById } from "@/lib/langpacks/sounds";
 import type { GradeDone } from "@/lib/results";
 
 function Bar({ label, value }: { label: string; value: number }) {
@@ -39,6 +41,26 @@ export function GradeCard({ state, modelLabel }: { state: GradeDone; modelLabel:
               <span className="muted small">{e.tip}</span>
             </li>
           ))}
+        </ul>
+      )}
+      {(grade.sound_errors ?? []).length > 0 && (
+        <ul className="sound-errors">
+          {grade.sound_errors.map((e, i) => {
+            const s = soundById(e.sound);
+            return (
+              <li key={i} className="small">
+                <span className="tag">sound</span>{" "}
+                <span dir="rtl" lang="ar">{e.word}</span> heard as <span dir="rtl" lang="ar">{e.heard}</span>
+                {s && (
+                  <>
+                    {" "}· <Link href={`/sounds#${s.id}`}>{s.letters[0]} {s.symbol} →</Link>
+                  </>
+                )}
+                <br />
+                <span className="muted">{e.tip}</span>
+              </li>
+            );
+          })}
         </ul>
       )}
       <p className="small consensus-note">{grade.consensus_note}</p>

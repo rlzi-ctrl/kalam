@@ -1,6 +1,7 @@
 import { majorityOf, type Transcript } from "@/lib/consensus";
 import type { LanguagePack } from "@/lib/langpacks/levantine";
-import { grammarForGrader, reviewFlagsForGrader, vocabForGrader, type TestPrompt } from "@/lib/seed";
+import { variantsPromptBlock, vocabPromptBlock, type Concept } from "@/lib/lexicon";
+import { grammarForGrader, reviewFlagsForGrader, type TestPrompt } from "@/lib/seed";
 
 const MARKING_RULES = `Marking against several transcripts:
 - You receive one or more independent STT transcripts of the same recording. No single transcript is reliable; agreement between them is the evidence.
@@ -14,18 +15,25 @@ Marking against the answer key:
 - corrected_translit and corrected_arabic must be the answer key copied exactly.
 - The key is unverified. If you think it contains a mistake, still mark against it, and add one sentence to consensus_note starting "Key check:".`;
 
-/** Stable across requests, so it is prompt-cached. */
-export function buildSystemPrompt(pack: LanguagePack): string {
+/** Stable until the learner changes a preference, so it is prompt-cached. */
+export function buildSystemPrompt(pack: LanguagePack, concepts: Concept[]): string {
   return `${pack.graderRubric}
 
 ${MARKING_RULES}
 
+${pack.soundRules()}
+
 Score each of meaning, grammar, vocabulary and overall from 0 to 100.
 
 <learner_known_vocabulary>
-Format: English = transliteration (Arabic, when the notes have it). Lessons 1-20 are all unlocked.
-${vocabForGrader()}
+Format: English = preferred transliteration (Arabic). Lessons 1-20 are all unlocked.
+${vocabPromptBlock(concepts)}
 </learner_known_vocabulary>
+
+<accepted_variants>
+Concepts with more than one accepted form. Any of them is correct with no penalty; use the preferred one in fixes.
+${variantsPromptBlock(concepts)}
+</accepted_variants>
 
 <grammar_from_tutor_notes>
 ${grammarForGrader()}

@@ -6,6 +6,7 @@ const grade = {
   meaning: 90, grammar: 80, vocabulary: 85, overall: 86, fluency_note: "ok", heard: "x",
   corrected_translit: "ana baheb haad", corrected_arabic: "أنا بحب هاد", errors: [], encouragement: "Nice",
   consensus_note: "All three agreed.",
+  sound_errors: [],
 };
 const usage = { input_tokens: 10, output_tokens: 20, cache_read_input_tokens: 5, cache_creation_input_tokens: 0 };
 
