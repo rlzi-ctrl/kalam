@@ -1,8 +1,11 @@
 import { requirePasscode } from "@/lib/auth";
-import { selectForConsensus, type Transcript } from "@/lib/consensus";
+import { OPT_IN_VOTERS, selectForConsensus, type ConsensusSelection, type Transcript } from "@/lib/consensus";
 import { gradeTranscripts } from "@/lib/grader/grade";
 import { resolveGraderModel } from "@/lib/grader/models";
-import { findPrompt, type TestPrompt } from "@/lib/seed";
+import { type TestPrompt } from "@/lib/seed";
+import { findPromptWithKey } from "@/lib/store/answerKeys";
+import { loadLexicon } from "@/lib/store/lexicon";
+import { recordSoundErrors } from "@/lib/store/soundStats";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -15,6 +18,8 @@ type Body = {
   mode?: "consensus" | "single";
   model?: string;
   transcripts?: Transcript[];
+  /** Opt-in voters to include, e.g. ["openai-gpt-4o-transcribe"]. */
+  optIn?: string[];
 };
 
 export async function POST(req: Request) {
@@ -25,7 +30,7 @@ export async function POST(req: Request) {
   }
 
   const body = (await req.json().catch(() => null)) as Body | null;
-  const prompt = body?.promptId ? findPrompt(body.promptId) : itemPrompt(body?.item);
+  const prompt = body?.promptId ? await findPromptWithKey(body.promptId) : itemPrompt(body?.item);
   if (!prompt) return Response.json({ error: "unknown promptId or invalid item" }, { status: 400 });
   const model = resolveGraderModel(body?.model);
   if (!model) return Response.json({ error: `model not allowed: ${body?.model}` }, { status: 400 });
@@ -40,34 +45,41 @@ export async function POST(req: Request) {
     return Response.json({ error: "transcript too long" }, { status: 400 });
   }
 
+  const optIn = (Array.isArray(body?.optIn) ? body.optIn : []).filter((id) => OPT_IN_VOTERS.includes(id));
+
   let used: Transcript[];
-  let discarded: ReturnType<typeof selectForConsensus>["discarded"] = [];
+  let discarded: ConsensusSelection["discarded"] = [];
+  let skipped: ConsensusSelection["skipped"] = [];
   if (body?.mode === "single") {
     if (transcripts.length !== 1 || !transcripts[0].text) {
       return Response.json({ error: "single mode needs one non-empty transcript" }, { status: 400 });
     }
     used = transcripts;
   } else {
-    ({ used, discarded } = selectForConsensus(transcripts));
+    ({ used, discarded, skipped } = selectForConsensus(transcripts, { optIn }));
     if (used.length === 0) {
-      return Response.json({ error: "no usable transcripts for consensus", discarded }, { status: 422 });
+      return Response.json({ error: "no usable transcripts for consensus", discarded, skipped }, { status: 422 });
     }
   }
 
   const started = Date.now();
   try {
-    const outcome = await gradeTranscripts(prompt, used, model);
+    const outcome = await gradeTranscripts(prompt, used, model, await loadLexicon());
+    // Weak-sounds tracking: consensus attempts only, so one noisy transcript can't add errors.
+    if (body?.mode !== "single") await recordSoundErrors(outcome.grade.sound_errors, body?.promptId ?? "say");
     return Response.json({
       ...outcome,
       requestedModel: model,
       used: used.map((t) => t.providerId),
       discarded,
+      skipped,
+      optIn,
       ms: Date.now() - started,
     });
   } catch (err) {
     // Always 502: an upstream 401 must not look like a wrong app passcode to the client.
     const message = err instanceof Error ? err.message : String(err);
-    return Response.json({ error: message, discarded, ms: Date.now() - started }, { status: 502 });
+    return Response.json({ error: message, discarded, skipped, ms: Date.now() - started }, { status: 502 });
   }
 }
 

@@ -3,9 +3,11 @@
 One page: pick a test prompt → record (up to 60 s) → the same clip goes to every configured STT
 provider → transcripts side by side → one consensus grade from Claude → copy the results as plain text.
 
-Consensus grading combines ElevenLabs, whisper-1 and gpt-4o-transcribe. Transcripts containing
-non-Arabic letters are discarded first, and an error only counts if most of the remaining
-transcripts show it. Practice sentences are marked against the unverified `answer_key` in the seed.
+Consensus grading combines ElevenLabs, whisper-1 and Azure (all Azure locales together are one
+vote: their majority reading, or ar-JO if they disagree); gpt-4o-transcribe votes only when
+switched on. Transcripts containing non-Arabic letters are discarded first, and an error only
+counts if most of the remaining votes show it. Azure columns show the exact request URL, which
+is also logged as `[azure-stt]` in the Vercel function logs. Practice sentences are marked against the unverified `answer_key` in the seed.
 The grader toggle switches between Opus 5.5 and Sonnet 5.5; each grade shows its latency.
 
 **Say it** (`/say`): type English → Levantine sentence (transliteration, Arabic, and a
@@ -14,6 +16,12 @@ tap a word, shadowing) → optionally record yourself for a consensus grade. Eve
 saved as a card; ★ = ask my tutor; saved sentences export as one MP3 with pauses.
 
 **Voices** (`/voices`): one sentence in every configured voice, for picking the best one.
+
+**Words** (`/words`): every concept with its forms. ★ is yours (used by Say it, answer keys and audio);
+the others are accepted without penalty. One tap changes your form; a reviewer can add forms.
+
+**Sounds** (`/sounds`): tips, audio and examples for ء ع ح خ غ ط ص and ق→2, "my weak sounds" (from
+the grader's `sound_errors`), and a minimal-pair listening drill whose pairs need reviewer approval.
 
 The spec lives in [CLAUDE.md](CLAUDE.md).
 
@@ -41,7 +49,11 @@ lib/grader/                  system prompt, JSON schema, model list, Claude call
 lib/langpacks/levantine.ts   language-specific rubric, script filter, STT settings
 lib/tts/                     TtsVoice interface, Azure + ElevenLabs voices, cache
 lib/say/                     Say it prompt, schema, Arabic-only output check
-lib/store/cards.ts           card storage (private Vercel Blob JSON; swappable for Postgres later)
+lib/store/                   private Vercel Blob JSON: cards, lexicon preferences, answer-key rewrites,
+                             minimal pairs, sound stats (swappable for Postgres later)
+lib/lexicon/                 concepts + variants, preferences, non-preferred-form detection
+lib/langpacks/sounds.ts      the practice sounds, their tips and likely STT swaps
+levantine_lexicon.json       built by `python3 scripts/build_lexicon.py` from the seed + scripts/lexicon_data.py
 lib/client/                  browser hooks: passcode/API, recorder, TTS memo, MP3 playlist builder
 lib/audio/wav.ts             browser recording → 16 kHz mono WAV (identical input for every provider)
 lib/seed.ts                  the 15 test prompts, answer keys, vocab and grammar from levantine_seed.json
@@ -58,3 +70,5 @@ npm test          # unit tests
 npm run typecheck
 npm run build
 ```
+
+`KALAM_LOCAL_BLOB_DIR=/some/folder` stores everything Blob would hold as local files (dev and tests only).

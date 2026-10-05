@@ -12,12 +12,19 @@ const sample = {
   overall: 80,
   encouragement: "Nice!",
   consensus_note: "Two of three transcripts agreed.",
+  sound_errors: [{ sound: "haa", word: "حلو", heard: "هلو", tip: "Breathe it from the throat." }],
 };
 
 describe("grade schema", () => {
   it("clamps and rounds scores", () => {
     const g = ModelGradeSchema.parse(sample);
     expect([g.meaning, g.grammar, g.vocabulary]).toEqual([100, 70, 0]);
+  });
+
+  it("rejects unknown sound ids", () => {
+    expect(() =>
+      ModelGradeSchema.parse({ ...sample, sound_errors: [{ ...sample.sound_errors[0], sound: "th" }] }),
+    ).toThrow();
   });
 
   it("rejects unknown error types", () => {

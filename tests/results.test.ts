@@ -6,6 +6,7 @@ const grade = {
   meaning: 90, grammar: 80, vocabulary: 85, overall: 86, fluency_note: "ok", heard: "x",
   corrected_translit: "ana baheb haad", corrected_arabic: "أنا بحب هاد", errors: [], encouragement: "Nice",
   consensus_note: "All three agreed.",
+  sound_errors: [],
 };
 const usage = { input_tokens: 10, output_tokens: 20, cache_read_input_tokens: 5, cache_creation_input_tokens: 0 };
 
@@ -23,8 +24,9 @@ const session: PromptSession = {
     {
       key: "1", status: "done", requestedModel: "claude-opus-5-5", model: "claude-opus-5-5", grade, ms: 4100, usage, attempts: 1,
       used: ["elevenlabs"], discarded: [{ providerId: "openai-whisper-1", label: "W", reason: "contains Latin letters: h a d" }],
+      skipped: [{ providerId: "openai-gpt-4o-transcribe", label: "G", reason: "opt-in, switched off" }], optIn: [],
     },
-    { key: "2", status: "error", requestedModel: "claude-sonnet-5-5", error: "boom", used: [], discarded: [] },
+    { key: "2", status: "error", requestedModel: "claude-sonnet-5-5", error: "boom", used: [], discarded: [], skipped: [], optIn: ["openai-gpt-4o-transcribe"] },
   ],
 };
 
@@ -47,7 +49,10 @@ describe("formatPromptText", () => {
     expect(text).toContain("Consensus: discarded: contains Latin letters: h a d");
     expect(text).toContain("STT error after 30 ms: HTTP 500");
     expect(text).toContain("not configured (missing AZURE_SPEECH_KEY)");
-    expect(text).toContain("=== Consensus grade 1 ===\nUsed: elevenlabs\nDiscarded: W — contains Latin letters: h a d");
+    expect(text).toContain(
+      "=== Consensus grade 1 ===\nUsed: elevenlabs\nOpt-in voters: none\nDiscarded: W — contains Latin letters: h a d\nNot counted: G — opt-in, switched off",
+    );
+    expect(text).toContain("=== Consensus grade 2 ===\nOpt-in voters: openai-gpt-4o-transcribe");
     expect(text).toContain("Grade (claude-opus-5-5) — latency 4100 ms");
     expect(text).toContain('"consensus_note": "All three agreed."');
     expect(text).toContain("Grade (claude-sonnet-5-5) error: boom");
@@ -60,7 +65,7 @@ describe("formatPromptText", () => {
 
 describe("formatEverythingText", () => {
   it("includes only prompts with results", () => {
-    const text = formatEverythingText(TEST_PROMPTS, { p1: session, s2: session }, new Date("2026-10-02T00:00:00Z"));
+    const text = formatEverythingText(TEST_PROMPTS, { p1: session, s2: session }, {}, new Date("2026-10-02T00:00:00Z"));
     expect(text).toContain("2 of 15 prompts");
     expect(text).toContain("Prompt p1 (phrase)");
     expect(text).toContain("Prompt s2 (sentence)");

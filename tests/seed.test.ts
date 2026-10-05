@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import seed from "@/levantine_seed.json";
 import { buildSystemPrompt, buildUserMessage } from "@/lib/grader/prompt";
 import { levantine } from "@/lib/langpacks/levantine";
+import { baseConcepts } from "@/lib/lexicon";
 import { TEST_PROMPTS } from "@/lib/seed";
 
 const t = (providerId: string, text: string) => ({ providerId, label: providerId, text });
@@ -32,8 +33,11 @@ describe("answer key in the seed", () => {
 
 describe("grader prompt", () => {
   it("includes vocab, grammar, review flags and the marking rules in the system prompt", () => {
-    const system = buildSystemPrompt(levantine);
+    const system = buildSystemPrompt(levantine, baseConcepts());
     expect(system).toContain("L1: ");
+    expect(system).toContain("<accepted_variants>");
+    expect(system).toContain("p-friends | Friends: preferred asdiqaa (أصدقاء); also accepted: ashab (أصحاب, levantine)");
+    expect(system).toContain("sound_errors: likely pronunciation swaps");
     expect(system).toContain("present_tense_prefixes_from_notes");
     expect(system).toContain("bisse");
     expect(system).toContain("errors_need_agreement_of");

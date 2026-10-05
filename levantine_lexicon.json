@@ -1,0 +1,4960 @@
+{
+ "meta": {
+  "about": "One concept per vocab item / phrase in levantine_seed.json. The notes form is preferred unless a review flag says it is a different word or a misspelling. Arabic spellings and alternatives are generated: confirm with the tutor.",
+  "built_by": "scripts/build_lexicon.py"
+ },
+ "concepts": [
+  {
+   "id": "l1-what",
+   "en": "What",
+   "lesson": 1,
+   "variants": [
+    {
+     "id": "l1-what:sho",
+     "form": "sho",
+     "translit": "sho",
+     "arabic": "شو",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l1-how-many-much",
+   "en": "How many..much",
+   "lesson": 1,
+   "variants": [
+    {
+     "id": "l1-how-many-much:kam",
+     "form": "kam",
+     "translit": "kam",
+     "arabic": "كم",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l1-i-can",
+   "en": "I can",
+   "lesson": 1,
+   "variants": [
+    {
+     "id": "l1-i-can:ana-aqdar",
+     "form": "ana aqdar",
+     "translit": "ana aqdar",
+     "arabic": "أنا أقدر",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    },
+    {
+     "id": "l1-i-can:ana-ba2dar",
+     "form": "ana ba2dar",
+     "translit": "ana ba2dar",
+     "arabic": "أنا بقدر",
+     "register": "levantine",
+     "source": "generated",
+     "preferred": false,
+     "tts": "أنا بأدر"
+    }
+   ]
+  },
+  {
+   "id": "l1-i-dont-know",
+   "en": "I dont know",
+   "lesson": 1,
+   "variants": [
+    {
+     "id": "l1-i-dont-know:ana-maa-aaref",
+     "form": "ana maa aaref",
+     "translit": "ana maa aaref",
+     "arabic": "أنا ما أعرف",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    },
+    {
+     "id": "l1-i-dont-know:ana-ma-ba3ref",
+     "form": "ana ma ba3ref",
+     "translit": "ana ma ba3ref",
+     "arabic": "أنا ما بعرف",
+     "register": "levantine",
+     "source": "generated",
+     "preferred": false
+    }
+   ]
+  },
+  {
+   "id": "l1-i-want",
+   "en": "I want",
+   "lesson": 1,
+   "variants": [
+    {
+     "id": "l1-i-want:ana-bedi",
+     "form": "ana bedi",
+     "translit": "ana bedi",
+     "arabic": "أنا بدّي",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l1-you-want",
+   "en": "You want",
+   "lesson": 1,
+   "variants": [
+    {
+     "id": "l1-you-want:anta-bedak",
+     "form": "anta bedak",
+     "translit": "anta bedak",
+     "arabic": "إنت بدّك",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l1-i-have",
+   "en": "I have",
+   "lesson": 1,
+   "variants": [
+    {
+     "id": "l1-i-have:ana-endi",
+     "form": "ana endi",
+     "translit": "ana endi",
+     "arabic": "أنا عندي",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l1-you-have",
+   "en": "You have",
+   "lesson": 1,
+   "variants": [
+    {
+     "id": "l1-you-have:anta-endak",
+     "form": "anta endak",
+     "translit": "anta endak",
+     "arabic": "إنت عندك",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l1-i-go",
+   "en": "I go",
+   "lesson": 1,
+   "variants": [
+    {
+     "id": "l1-i-go:ana-aroh",
+     "form": "ana aroh",
+     "translit": "ana aroh",
+     "arabic": "أنا أروح",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l1-i-eat",
+   "en": "I eat",
+   "lesson": 1,
+   "variants": [
+    {
+     "id": "l1-i-eat:ana-akol",
+     "form": "ana akol",
+     "translit": "ana akol",
+     "arabic": "أنا آكل",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l1-because",
+   "en": "Because",
+   "lesson": 1,
+   "variants": [
+    {
+     "id": "l1-because:ashan",
+     "form": "ashan",
+     "translit": "ashan",
+     "arabic": "عشان",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    },
+    {
+     "id": "l1-because:la2anno",
+     "form": "la2anno",
+     "translit": "la2anno",
+     "arabic": "لأنه",
+     "register": "levantine",
+     "source": "generated",
+     "preferred": false,
+     "tts": "لأنّو"
+    }
+   ]
+  },
+  {
+   "id": "l1-im-hungry",
+   "en": "Im hungry",
+   "lesson": 1,
+   "variants": [
+    {
+     "id": "l1-im-hungry:ana-joaan-m-ana-joanea-f",
+     "form": "ana joaan(m)-ana joanea(F)",
+     "translit": "ana joaan(m)-ana joanea(F)",
+     "arabic": "أنا جوعان / أنا جوعانة",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l1-when",
+   "en": "When",
+   "lesson": 1,
+   "variants": [
+    {
+     "id": "l1-when:mata",
+     "form": "mata",
+     "translit": "mata",
+     "arabic": "متى",
+     "register": "msa",
+     "source": "notes",
+     "preferred": true
+    },
+    {
+     "id": "l1-when:emta",
+     "form": "emta",
+     "translit": "emta",
+     "arabic": "إمتى",
+     "register": "levantine",
+     "source": "generated",
+     "preferred": false
+    }
+   ]
+  },
+  {
+   "id": "l1-now",
+   "en": "Now",
+   "lesson": 1,
+   "variants": [
+    {
+     "id": "l1-now:hasa",
+     "form": "hasa",
+     "translit": "hasa",
+     "arabic": "هسّا",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    },
+    {
+     "id": "l1-now:halla2",
+     "form": "halla2",
+     "translit": "halla2",
+     "arabic": "هلّق",
+     "register": "regional",
+     "source": "generated",
+     "preferred": false,
+     "tts": "هلّأ"
+    }
+   ]
+  },
+  {
+   "id": "l1-in",
+   "en": "In",
+   "lesson": 1,
+   "variants": [
+    {
+     "id": "l1-in:fee",
+     "form": "fee",
+     "translit": "fee",
+     "arabic": "في",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l1-from",
+   "en": "From",
+   "lesson": 1,
+   "variants": [
+    {
+     "id": "l1-from:min",
+     "form": "min",
+     "translit": "min",
+     "arabic": "من",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l1-to",
+   "en": "To",
+   "lesson": 1,
+   "variants": [
+    {
+     "id": "l1-to:ela",
+     "form": "ela",
+     "translit": "ela",
+     "arabic": "إلى",
+     "register": "msa",
+     "source": "notes",
+     "preferred": true
+    },
+    {
+     "id": "l1-to:3a",
+     "form": "3a",
+     "translit": "3a",
+     "arabic": "ع",
+     "register": "levantine",
+     "source": "generated",
+     "preferred": false,
+     "tts": "عَ"
+    },
+    {
+     "id": "l1-to:la",
+     "form": "la",
+     "translit": "la",
+     "arabic": "لـ",
+     "register": "levantine",
+     "source": "generated",
+     "preferred": false,
+     "tts": "لَ"
+    }
+   ],
+   "review_flag": "'ila' leans MSA; everyday Levantine often uses '3a' / 'la' (barooh 3al mat3am)."
+  },
+  {
+   "id": "l1-or",
+   "en": "Or",
+   "lesson": 1,
+   "variants": [
+    {
+     "id": "l1-or:aw",
+     "form": "aw",
+     "translit": "aw",
+     "arabic": "أو",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l1-a-lot",
+   "en": "A lot",
+   "lesson": 1,
+   "variants": [
+    {
+     "id": "l1-a-lot:ektheer",
+     "form": "ektheer",
+     "translit": "ektheer",
+     "arabic": "كتير",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l1-little",
+   "en": "Little",
+   "lesson": 1,
+   "variants": [
+    {
+     "id": "l1-little:eshway",
+     "form": "eshway",
+     "translit": "eshway",
+     "arabic": "شوي",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l1-after",
+   "en": "After",
+   "lesson": 1,
+   "variants": [
+    {
+     "id": "l1-after:baed",
+     "form": "baed",
+     "translit": "baed",
+     "arabic": "بعد",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l2-i-stay",
+   "en": "I stay",
+   "lesson": 2,
+   "variants": [
+    {
+     "id": "l2-i-stay:ana-adal",
+     "form": "ana-adal",
+     "translit": "ana-adal",
+     "arabic": "أنا أضل",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l2-i-go-out",
+   "en": "I go out",
+   "lesson": 2,
+   "variants": [
+    {
+     "id": "l2-i-go-out:ana-atl3",
+     "form": "ana atl3",
+     "translit": "ana atl3",
+     "arabic": "أنا أطلع",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l2-outside",
+   "en": "outside",
+   "lesson": 2,
+   "variants": [
+    {
+     "id": "l2-outside:bara",
+     "form": "bara",
+     "translit": "bara",
+     "arabic": "برّا",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l2-day",
+   "en": "day",
+   "lesson": 2,
+   "variants": [
+    {
+     "id": "l2-day:yoom",
+     "form": "yoom",
+     "translit": "yoom",
+     "arabic": "يوم",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l2-week",
+   "en": "Week",
+   "lesson": 2,
+   "variants": [
+    {
+     "id": "l2-week:osbo3",
+     "form": "osbo3",
+     "translit": "osbo3",
+     "arabic": "أسبوع",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l2-month",
+   "en": "Month",
+   "lesson": 2,
+   "variants": [
+    {
+     "id": "l2-month:shahar",
+     "form": "shahar",
+     "translit": "shahar",
+     "arabic": "شهر",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l2-year",
+   "en": "Year",
+   "lesson": 2,
+   "variants": [
+    {
+     "id": "l2-year:sanea",
+     "form": "sanea",
+     "translit": "sanea",
+     "arabic": "سنة",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l2-next-week",
+   "en": "Next week",
+   "lesson": 2,
+   "variants": [
+    {
+     "id": "l2-next-week:osbo3-aljay",
+     "form": "osbo3-aljay",
+     "translit": "osbo3-aljay",
+     "arabic": "الأسبوع الجاي",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l2-last-week",
+   "en": "Last week",
+   "lesson": 2,
+   "variants": [
+    {
+     "id": "l2-last-week:osbo3-almadi",
+     "form": "osbo3-almadi",
+     "translit": "osbo3-almadi",
+     "arabic": "الأسبوع الماضي",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l2-last-time",
+   "en": "Last time",
+   "lesson": 2,
+   "variants": [
+    {
+     "id": "l2-last-time:akher-mara",
+     "form": "akher-mara",
+     "translit": "akher-mara",
+     "arabic": "آخر مرة",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l2-every",
+   "en": "every",
+   "lesson": 2,
+   "variants": [
+    {
+     "id": "l2-every:kol",
+     "form": "kol",
+     "translit": "kol",
+     "arabic": "كل",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l2-before",
+   "en": "Before",
+   "lesson": 2,
+   "variants": [
+    {
+     "id": "l2-before:qabel",
+     "form": "qabel",
+     "translit": "qabel",
+     "arabic": "قبل",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l2-yesterday",
+   "en": "Yesterday",
+   "lesson": 2,
+   "variants": [
+    {
+     "id": "l2-yesterday:ams",
+     "form": "ams",
+     "translit": "ams",
+     "arabic": "أمس",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    },
+    {
+     "id": "l2-yesterday:embare7",
+     "form": "embare7",
+     "translit": "embare7",
+     "arabic": "مبارح",
+     "register": "levantine",
+     "source": "generated",
+     "preferred": false
+    }
+   ]
+  },
+  {
+   "id": "l2-which-any",
+   "en": "which//any",
+   "lesson": 2,
+   "variants": [
+    {
+     "id": "l2-which-any:ay",
+     "form": "ay",
+     "translit": "ay",
+     "arabic": "أي",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l2-usually",
+   "en": "Usually",
+   "lesson": 2,
+   "variants": [
+    {
+     "id": "l2-usually:ghaleban",
+     "form": "ghaleban",
+     "translit": "ghaleban",
+     "arabic": "غالباً",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l2-sometimes",
+   "en": "Sometimes",
+   "lesson": 2,
+   "variants": [
+    {
+     "id": "l2-sometimes:ahyanan",
+     "form": "ahyanan",
+     "translit": "ahyanan",
+     "arabic": "أحياناً",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    },
+    {
+     "id": "l2-sometimes:marrat",
+     "form": "marrat",
+     "translit": "marrat",
+     "arabic": "مرّات",
+     "register": "levantine",
+     "source": "generated",
+     "preferred": false
+    }
+   ]
+  },
+  {
+   "id": "l2-always",
+   "en": "Always",
+   "lesson": 2,
+   "variants": [
+    {
+     "id": "l2-always:dayman",
+     "form": "dayman",
+     "translit": "dayman",
+     "arabic": "دايماً",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l2-with",
+   "en": "With",
+   "lesson": 2,
+   "variants": [
+    {
+     "id": "l2-with:ma3",
+     "form": "ma3",
+     "translit": "ma3",
+     "arabic": "مع",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l2-who",
+   "en": "Who",
+   "lesson": 2,
+   "variants": [
+    {
+     "id": "l2-who:meen",
+     "form": "meen",
+     "translit": "meen",
+     "arabic": "مين",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l2-weekend-holiday-day-off",
+   "en": "weekend//holiday (day off)",
+   "lesson": 2,
+   "variants": [
+    {
+     "id": "l2-weekend-holiday-day-off:ejazea",
+     "form": "ejazea",
+     "translit": "ejazea",
+     "arabic": "إجازة",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    },
+    {
+     "id": "l2-weekend-holiday-day-off:3otle",
+     "form": "3otle",
+     "translit": "3otle",
+     "arabic": "عطلة",
+     "register": "levantine",
+     "source": "generated",
+     "preferred": false,
+     "tts": "عُطلة"
+    }
+   ]
+  },
+  {
+   "id": "l3-i-sleep",
+   "en": "I sleep",
+   "lesson": 3,
+   "variants": [
+    {
+     "id": "l3-i-sleep:ana-anam",
+     "form": "ana-anam",
+     "translit": "ana-anam",
+     "arabic": "أنا أنام",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l3-i-say-talk",
+   "en": "I say//talk",
+   "lesson": 3,
+   "variants": [
+    {
+     "id": "l3-i-say-talk:ana-ahki",
+     "form": "ana ahki",
+     "translit": "ana ahki",
+     "arabic": "أنا أحكي",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l3-im-thirsty",
+   "en": "Im thirsty",
+   "lesson": 3,
+   "variants": [
+    {
+     "id": "l3-im-thirsty:3tshan",
+     "form": "3tshan",
+     "translit": "3tshan",
+     "arabic": "عطشان",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l3-never",
+   "en": "Never",
+   "lesson": 3,
+   "variants": [
+    {
+     "id": "l3-never:abadan",
+     "form": "abadan",
+     "translit": "abadan",
+     "arabic": "أبداً",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l3-hour",
+   "en": "Hour",
+   "lesson": 3,
+   "variants": [
+    {
+     "id": "l3-hour:sa3",
+     "form": "sa3",
+     "translit": "sa3",
+     "arabic": "ساعة",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l3-minute",
+   "en": "Minute",
+   "lesson": 3,
+   "variants": [
+    {
+     "id": "l3-minute:daqeq",
+     "form": "daqeq",
+     "translit": "daqeq",
+     "arabic": "دقايق",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    },
+    {
+     "id": "l3-minute:da2ee2a",
+     "form": "da2ee2a",
+     "translit": "da2ee2a",
+     "arabic": "دقيقة",
+     "register": "levantine",
+     "source": "generated",
+     "preferred": false,
+     "tts": "دئيئة"
+    }
+   ]
+  },
+  {
+   "id": "l3-front-of",
+   "en": "Front of",
+   "lesson": 3,
+   "variants": [
+    {
+     "id": "l3-front-of:qodam",
+     "form": "qodam",
+     "translit": "qodam",
+     "arabic": "قدّام",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l3-behind-of",
+   "en": "Behind of",
+   "lesson": 3,
+   "variants": [
+    {
+     "id": "l3-behind-of:waraa",
+     "form": "waraa",
+     "translit": "waraa",
+     "arabic": "ورا",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l3-next-to",
+   "en": "Next to",
+   "lesson": 3,
+   "variants": [
+    {
+     "id": "l3-next-to:janb",
+     "form": "janb",
+     "translit": "janb",
+     "arabic": "جنب",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l3-weather",
+   "en": "Weather",
+   "lesson": 3,
+   "variants": [
+    {
+     "id": "l3-weather:jaw",
+     "form": "jaw",
+     "translit": "jaw",
+     "arabic": "جو",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l3-cold",
+   "en": "Cold",
+   "lesson": 3,
+   "variants": [
+    {
+     "id": "l3-cold:bared",
+     "form": "bared",
+     "translit": "bared",
+     "arabic": "بارد",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l3-hot",
+   "en": "Hot",
+   "lesson": 3,
+   "variants": [
+    {
+     "id": "l3-hot:haar",
+     "form": "haar",
+     "translit": "haar",
+     "arabic": "حار",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l3-more",
+   "en": "More",
+   "lesson": 3,
+   "variants": [
+    {
+     "id": "l3-more:akthar",
+     "form": "akthar",
+     "translit": "akthar",
+     "arabic": "أكتر",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l3-more-than",
+   "en": "More than",
+   "lesson": 3,
+   "variants": [
+    {
+     "id": "l3-more-than:akthar-men",
+     "form": "akthar-men",
+     "translit": "akthar-men",
+     "arabic": "أكتر من",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l3-why",
+   "en": "Why",
+   "lesson": 3,
+   "variants": [
+    {
+     "id": "l3-why:lesh",
+     "form": "lesh",
+     "translit": "lesh",
+     "arabic": "ليش",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l3-morning",
+   "en": "Morning",
+   "lesson": 3,
+   "variants": [
+    {
+     "id": "l3-morning:sabah",
+     "form": "sabah",
+     "translit": "sabah",
+     "arabic": "صباح",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l3-evening",
+   "en": "Evening",
+   "lesson": 3,
+   "variants": [
+    {
+     "id": "l3-evening:masa",
+     "form": "masa",
+     "translit": "masa",
+     "arabic": "مسا",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l3-sunday",
+   "en": "sunday",
+   "lesson": 3,
+   "variants": [
+    {
+     "id": "l3-sunday:al-ahad",
+     "form": "al-ahad",
+     "translit": "al-ahad",
+     "arabic": "الأحد",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l3-monday",
+   "en": "monday",
+   "lesson": 3,
+   "variants": [
+    {
+     "id": "l3-monday:al-ethneen",
+     "form": "al-ethneen",
+     "translit": "al-ethneen",
+     "arabic": "الإتنين",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l3-tuesday",
+   "en": "tuesday",
+   "lesson": 3,
+   "variants": [
+    {
+     "id": "l3-tuesday:al-tholatha",
+     "form": "al-tholatha",
+     "translit": "al-tholatha",
+     "arabic": "التلاتا",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l3-wednesday",
+   "en": "wednesday",
+   "lesson": 3,
+   "variants": [
+    {
+     "id": "l3-wednesday:al-arbe3",
+     "form": "al-arbe3",
+     "translit": "al-arbe3",
+     "arabic": "الأربعا",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l3-thursday",
+   "en": "thursday",
+   "lesson": 3,
+   "variants": [
+    {
+     "id": "l3-thursday:al-khames",
+     "form": "al-khames",
+     "translit": "al-khames",
+     "arabic": "الخميس",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l3-friday",
+   "en": "friday",
+   "lesson": 3,
+   "variants": [
+    {
+     "id": "l3-friday:al-jomaa",
+     "form": "al-jomaa",
+     "translit": "al-jomaa",
+     "arabic": "الجمعة",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l3-saturday",
+   "en": "saturday",
+   "lesson": 3,
+   "variants": [
+    {
+     "id": "l3-saturday:al-sabt",
+     "form": "al-sabt",
+     "translit": "al-sabt",
+     "arabic": "السبت",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l4-i-sit",
+   "en": "I sit",
+   "lesson": 4,
+   "variants": [
+    {
+     "id": "l4-i-sit:ana-aghod",
+     "form": "ana aghod",
+     "translit": "ana aghod",
+     "arabic": "أنا أقعد",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    },
+    {
+     "id": "l4-i-sit:ana-a23od",
+     "form": "ana a23od",
+     "translit": "ana a23od",
+     "arabic": "أنا أقعد",
+     "register": "levantine",
+     "source": "generated",
+     "preferred": false,
+     "tts": "أنا أأعُد"
+    }
+   ]
+  },
+  {
+   "id": "l4-i-will",
+   "en": "I will",
+   "lesson": 4,
+   "variants": [
+    {
+     "id": "l4-i-will:ana-rah",
+     "form": "ana rah",
+     "translit": "ana rah",
+     "arabic": "أنا رح",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l4-i-have-to-should-be",
+   "en": "I have to//should be",
+   "lesson": 4,
+   "variants": [
+    {
+     "id": "l4-i-have-to-should-be:ana-lazem",
+     "form": "ana lazem",
+     "translit": "ana lazem",
+     "arabic": "أنا لازم",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l4-early",
+   "en": "Early",
+   "lesson": 4,
+   "variants": [
+    {
+     "id": "l4-early:badri",
+     "form": "badri",
+     "translit": "badri",
+     "arabic": "بدري",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l4-late",
+   "en": "Late",
+   "lesson": 4,
+   "variants": [
+    {
+     "id": "l4-late:met-akhir",
+     "form": "met-akhir",
+     "translit": "met-akhir",
+     "arabic": "متأخر",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l4-busy",
+   "en": "Busy",
+   "lesson": 4,
+   "variants": [
+    {
+     "id": "l4-busy:mashghol",
+     "form": "mashghol",
+     "translit": "mashghol",
+     "arabic": "مشغول",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l4-happy",
+   "en": "Happy",
+   "lesson": 4,
+   "variants": [
+    {
+     "id": "l4-happy:mabsot",
+     "form": "mabsot",
+     "translit": "mabsot",
+     "arabic": "مبسوط",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l4-sad",
+   "en": "Sad",
+   "lesson": 4,
+   "variants": [
+    {
+     "id": "l4-sad:z3lan",
+     "form": "z3lan",
+     "translit": "z3lan",
+     "arabic": "زعلان",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l4-sea",
+   "en": "Sea",
+   "lesson": 4,
+   "variants": [
+    {
+     "id": "l4-sea:bahar",
+     "form": "bahar",
+     "translit": "bahar",
+     "arabic": "بحر",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l4-on",
+   "en": "On",
+   "lesson": 4,
+   "variants": [
+    {
+     "id": "l4-on:3ala",
+     "form": "3ala",
+     "translit": "3ala",
+     "arabic": "على",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l4-chair",
+   "en": "Chair",
+   "lesson": 4,
+   "variants": [
+    {
+     "id": "l4-chair:korsi",
+     "form": "korsi",
+     "translit": "korsi",
+     "arabic": "كرسي",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l4-room",
+   "en": "Room",
+   "lesson": 4,
+   "variants": [
+    {
+     "id": "l4-room:ghorfea",
+     "form": "ghorfea",
+     "translit": "ghorfea",
+     "arabic": "غرفة",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l4-bedroom",
+   "en": "bedroom",
+   "lesson": 4,
+   "variants": [
+    {
+     "id": "l4-bedroom:ghorfet-noom",
+     "form": "Ghorfet-noom",
+     "translit": "Ghorfet-noom",
+     "arabic": "غرفة نوم",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l4-living-room",
+   "en": "Living room",
+   "lesson": 4,
+   "variants": [
+    {
+     "id": "l4-living-room:salon",
+     "form": "salon",
+     "translit": "salon",
+     "arabic": "صالون",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l4-bathroom",
+   "en": "bathroom",
+   "lesson": 4,
+   "variants": [
+    {
+     "id": "l4-bathroom:hamam",
+     "form": "hamam",
+     "translit": "hamam",
+     "arabic": "حمّام",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l4-kitchen",
+   "en": "Kitchen",
+   "lesson": 4,
+   "variants": [
+    {
+     "id": "l4-kitchen:matbakh",
+     "form": "matbakh",
+     "translit": "matbakh",
+     "arabic": "مطبخ",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l4-office",
+   "en": "Office",
+   "lesson": 4,
+   "variants": [
+    {
+     "id": "l4-office:maktab",
+     "form": "maktab",
+     "translit": "maktab",
+     "arabic": "مكتب",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l5-i-pay",
+   "en": "I pay",
+   "lesson": 5,
+   "variants": [
+    {
+     "id": "l5-i-pay:ana-adf3",
+     "form": "ana adf3",
+     "translit": "ana adf3",
+     "arabic": "أنا أدفع",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l5-i-buy",
+   "en": "I buy",
+   "lesson": 5,
+   "variants": [
+    {
+     "id": "l5-i-buy:ana-ashtari",
+     "form": "ana ashtari",
+     "translit": "ana ashtari",
+     "arabic": "أنا أشتري",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l5-expensive",
+   "en": "Expensive",
+   "lesson": 5,
+   "variants": [
+    {
+     "id": "l5-expensive:ghali",
+     "form": "ghali",
+     "translit": "ghali",
+     "arabic": "غالي",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l5-cheap",
+   "en": "Cheap",
+   "lesson": 5,
+   "variants": [
+    {
+     "id": "l5-cheap:erkhes",
+     "form": "erkhes",
+     "translit": "erkhes",
+     "arabic": "أرخص",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    },
+    {
+     "id": "l5-cheap:rkhees",
+     "form": "rkhees",
+     "translit": "rkhees",
+     "arabic": "رخيص",
+     "register": "levantine",
+     "source": "generated",
+     "preferred": false
+    }
+   ],
+   "note": "erkhes (arkhas) usually means 'cheaper' — like eqdem for 'old'. Ask the tutor; tap rkhees to prefer it."
+  },
+  {
+   "id": "l5-money",
+   "en": "Money",
+   "lesson": 5,
+   "variants": [
+    {
+     "id": "l5-money:eflos",
+     "form": "eflos",
+     "translit": "eflos",
+     "arabic": "فلوس",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    },
+    {
+     "id": "l5-money:masari",
+     "form": "masari",
+     "translit": "masari",
+     "arabic": "مصاري",
+     "register": "levantine",
+     "source": "generated",
+     "preferred": false
+    }
+   ]
+  },
+  {
+   "id": "l5-price",
+   "en": "price",
+   "lesson": 5,
+   "variants": [
+    {
+     "id": "l5-price:se3r",
+     "form": "se3r",
+     "translit": "se3r",
+     "arabic": "سعر",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l5-family",
+   "en": "Family",
+   "lesson": 5,
+   "variants": [
+    {
+     "id": "l5-family:3ela-my-family-3ela-ty",
+     "form": "3ela  (My family - 3ela-ty)",
+     "translit": "3ela  (My family - 3ela-ty)",
+     "arabic": "عيلة",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l5-dad",
+   "en": "Dad",
+   "lesson": 5,
+   "variants": [
+    {
+     "id": "l5-dad:abo",
+     "form": "abo",
+     "translit": "abo",
+     "arabic": "أبو",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    },
+    {
+     "id": "l5-dad:baba",
+     "form": "baba",
+     "translit": "baba",
+     "arabic": "بابا",
+     "register": "levantine",
+     "source": "generated",
+     "preferred": false
+    }
+   ]
+  },
+  {
+   "id": "l5-mom",
+   "en": "Mom",
+   "lesson": 5,
+   "variants": [
+    {
+     "id": "l5-mom:om",
+     "form": "om",
+     "translit": "om",
+     "arabic": "أم",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    },
+    {
+     "id": "l5-mom:mama",
+     "form": "mama",
+     "translit": "mama",
+     "arabic": "ماما",
+     "register": "levantine",
+     "source": "generated",
+     "preferred": false
+    }
+   ]
+  },
+  {
+   "id": "l5-sister",
+   "en": "Sister",
+   "lesson": 5,
+   "variants": [
+    {
+     "id": "l5-sister:okht",
+     "form": "okht",
+     "translit": "okht",
+     "arabic": "أخت",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l5-brother",
+   "en": "Brother",
+   "lesson": 5,
+   "variants": [
+    {
+     "id": "l5-brother:akho",
+     "form": "akho",
+     "translit": "akho",
+     "arabic": "أخو",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l5-son",
+   "en": "Son",
+   "lesson": 5,
+   "variants": [
+    {
+     "id": "l5-son:ebn",
+     "form": "ebn",
+     "translit": "ebn",
+     "arabic": "ابن",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l5-daughter",
+   "en": "Daughter",
+   "lesson": 5,
+   "variants": [
+    {
+     "id": "l5-daughter:bent",
+     "form": "bent",
+     "translit": "bent",
+     "arabic": "بنت",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l5-kids",
+   "en": "Kids",
+   "lesson": 5,
+   "variants": [
+    {
+     "id": "l5-kids:awlad",
+     "form": "awlad",
+     "translit": "awlad",
+     "arabic": "أولاد",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l5-girl",
+   "en": "Girl",
+   "lesson": 5,
+   "variants": [
+    {
+     "id": "l5-girl:bent",
+     "form": "bent",
+     "translit": "bent",
+     "arabic": "بنت",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l5-boy",
+   "en": "Boy",
+   "lesson": 5,
+   "variants": [
+    {
+     "id": "l5-boy:walad",
+     "form": "walad",
+     "translit": "walad",
+     "arabic": "ولد",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l5-people",
+   "en": "People",
+   "lesson": 5,
+   "variants": [
+    {
+     "id": "l5-people:nas",
+     "form": "nas",
+     "translit": "nas",
+     "arabic": "ناس",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l5-person",
+   "en": "Person",
+   "lesson": 5,
+   "variants": [
+    {
+     "id": "l5-person:shakhs",
+     "form": "shakhs",
+     "translit": "shakhs",
+     "arabic": "شخص",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l6-i-take",
+   "en": "I take",
+   "lesson": 6,
+   "variants": [
+    {
+     "id": "l6-i-take:ana-akhod",
+     "form": "ana akhod",
+     "translit": "ana akhod",
+     "arabic": "أنا آخد",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l6-i-like",
+   "en": "I like",
+   "lesson": 6,
+   "variants": [
+    {
+     "id": "l6-i-like:ana-aheb",
+     "form": "Ana-aheb",
+     "translit": "Ana-aheb",
+     "arabic": "أنا أحب",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l6-i-do",
+   "en": "I do",
+   "lesson": 6,
+   "variants": [
+    {
+     "id": "l6-i-do:ana-aamal",
+     "form": "ana aamal",
+     "translit": "ana aamal",
+     "arabic": "أنا أعمل",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l6-close",
+   "en": "Close",
+   "lesson": 6,
+   "variants": [
+    {
+     "id": "l6-close:qareb",
+     "form": "qareb",
+     "translit": "qareb",
+     "arabic": "قريب",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    },
+    {
+     "id": "l6-close:2areeb",
+     "form": "2areeb",
+     "translit": "2areeb",
+     "arabic": "قريب",
+     "register": "levantine",
+     "source": "generated",
+     "preferred": false,
+     "tts": "أريب"
+    }
+   ],
+   "review_flag": "Means near/close (distance). 'To close' is a different verb (asaker, L17)."
+  },
+  {
+   "id": "l6-far",
+   "en": "Far",
+   "lesson": 6,
+   "variants": [
+    {
+     "id": "l6-far:ba3ed",
+     "form": "ba3ed",
+     "translit": "ba3ed",
+     "arabic": "بعيد",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l6-also-as-well",
+   "en": "also//as well",
+   "lesson": 6,
+   "variants": [
+    {
+     "id": "l6-also-as-well:kaman",
+     "form": "kaman",
+     "translit": "kaman",
+     "arabic": "كمان",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l6-again",
+   "en": "Again",
+   "lesson": 6,
+   "variants": [
+    {
+     "id": "l6-again:kaman-mara",
+     "form": "kaman-mara",
+     "translit": "kaman-mara",
+     "arabic": "كمان مرة",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l6-still-not-yet",
+   "en": "still//not yet",
+   "lesson": 6,
+   "variants": [
+    {
+     "id": "l6-still-not-yet:lesa",
+     "form": "lesa",
+     "translit": "lesa",
+     "arabic": "لسّا",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l6-thing",
+   "en": "Thing",
+   "lesson": 6,
+   "variants": [
+    {
+     "id": "l6-thing:eshi",
+     "form": "eshi",
+     "translit": "eshi",
+     "arabic": "إشي",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    },
+    {
+     "id": "l6-thing:shi",
+     "form": "shi",
+     "translit": "shi",
+     "arabic": "شي",
+     "register": "levantine",
+     "source": "generated",
+     "preferred": false
+    }
+   ]
+  },
+  {
+   "id": "l6-tired",
+   "en": "Tired",
+   "lesson": 6,
+   "variants": [
+    {
+     "id": "l6-tired:t3ban",
+     "form": "t3ban",
+     "translit": "t3ban",
+     "arabic": "تعبان",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l6-just-only",
+   "en": "just//only",
+   "lesson": 6,
+   "variants": [
+    {
+     "id": "l6-just-only:bas",
+     "form": "bas",
+     "translit": "bas",
+     "arabic": "بس",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l6-bad",
+   "en": "bad",
+   "lesson": 6,
+   "variants": [
+    {
+     "id": "l6-bad:say",
+     "form": "say",
+     "translit": "say",
+     "arabic": "سيء",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    },
+    {
+     "id": "l6-bad:mish-mnee7",
+     "form": "mish mnee7",
+     "translit": "mish mnee7",
+     "arabic": "مش منيح",
+     "register": "levantine",
+     "source": "generated",
+     "preferred": false
+    }
+   ]
+  },
+  {
+   "id": "l7-i-see",
+   "en": "I see",
+   "lesson": 7,
+   "variants": [
+    {
+     "id": "l7-i-see:ana-ashuf",
+     "form": "ana ashuf",
+     "translit": "ana ashuf",
+     "arabic": "أنا أشوف",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l7-i-walk",
+   "en": "I walk",
+   "lesson": 7,
+   "variants": [
+    {
+     "id": "l7-i-walk:ana-amshi",
+     "form": "ana amshi",
+     "translit": "ana amshi",
+     "arabic": "أنا أمشي",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l7-i-travel",
+   "en": "I travel",
+   "lesson": 7,
+   "variants": [
+    {
+     "id": "l7-i-travel:ana-asafer",
+     "form": "Ana asafer",
+     "translit": "Ana asafer",
+     "arabic": "أنا أسافر",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l7-street",
+   "en": "Street",
+   "lesson": 7,
+   "variants": [
+    {
+     "id": "l7-street:share3",
+     "form": "share3",
+     "translit": "share3",
+     "arabic": "شارع",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l7-airport",
+   "en": "Airport",
+   "lesson": 7,
+   "variants": [
+    {
+     "id": "l7-airport:matar",
+     "form": "Matar",
+     "translit": "Matar",
+     "arabic": "مطار",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l7-plane",
+   "en": "Plane",
+   "lesson": 7,
+   "variants": [
+    {
+     "id": "l7-plane:teyara",
+     "form": "Teyara",
+     "translit": "Teyara",
+     "arabic": "طيارة",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l7-food",
+   "en": "Food",
+   "lesson": 7,
+   "variants": [
+    {
+     "id": "l7-food:akel",
+     "form": "akel",
+     "translit": "akel",
+     "arabic": "أكل",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l7-this",
+   "en": "this",
+   "lesson": 7,
+   "variants": [
+    {
+     "id": "l7-this:had-m",
+     "form": "had(m)",
+     "translit": "had(m)",
+     "arabic": "هاد",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    },
+    {
+     "id": "l7-this:hatha",
+     "form": "hatha",
+     "translit": "hatha",
+     "arabic": "هذا",
+     "register": "msa",
+     "source": "generated",
+     "preferred": false
+    }
+   ]
+  },
+  {
+   "id": "l7-same",
+   "en": "Same",
+   "lesson": 7,
+   "variants": [
+    {
+     "id": "l7-same:nafs",
+     "form": "Nafs",
+     "translit": "Nafs",
+     "arabic": "نفس",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l8-i-clean",
+   "en": "I clean",
+   "lesson": 8,
+   "variants": [
+    {
+     "id": "l8-i-clean:ana-anathef",
+     "form": "ana anathef",
+     "translit": "ana anathef",
+     "arabic": "أنا أنظّف",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    },
+    {
+     "id": "l8-i-clean:ana-anaddef",
+     "form": "ana anaddef",
+     "translit": "ana anaddef",
+     "arabic": "أنا أنضّف",
+     "register": "levantine",
+     "source": "generated",
+     "preferred": false
+    }
+   ]
+  },
+  {
+   "id": "l8-tall",
+   "en": "Tall",
+   "lesson": 8,
+   "variants": [
+    {
+     "id": "l8-tall:taweel",
+     "form": "taweel",
+     "translit": "taweel",
+     "arabic": "طويل",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l8-short",
+   "en": "Short",
+   "lesson": 8,
+   "variants": [
+    {
+     "id": "l8-short:qaseer",
+     "form": "qaseer",
+     "translit": "qaseer",
+     "arabic": "قصير",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l8-clean",
+   "en": "Clean",
+   "lesson": 8,
+   "variants": [
+    {
+     "id": "l8-clean:enthef",
+     "form": "enthef",
+     "translit": "enthef",
+     "arabic": "نضيف",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l8-dirty",
+   "en": "Dirty",
+   "lesson": 8,
+   "variants": [
+    {
+     "id": "l8-dirty:wesekh",
+     "form": "wesekh",
+     "translit": "wesekh",
+     "arabic": "وسخ",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l8-less",
+   "en": "Less",
+   "lesson": 8,
+   "variants": [
+    {
+     "id": "l8-less:aqal",
+     "form": "aqal",
+     "translit": "aqal",
+     "arabic": "أقل",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l8-color",
+   "en": "Color",
+   "lesson": 8,
+   "variants": [
+    {
+     "id": "l8-color:lon",
+     "form": "lon",
+     "translit": "lon",
+     "arabic": "لون",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l8-yellow",
+   "en": "Yellow",
+   "lesson": 8,
+   "variants": [
+    {
+     "id": "l8-yellow:asfar",
+     "form": "asfar",
+     "translit": "asfar",
+     "arabic": "أصفر",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l8-city",
+   "en": "City",
+   "lesson": 8,
+   "variants": [
+    {
+     "id": "l8-city:madena",
+     "form": "madena",
+     "translit": "madena",
+     "arabic": "مدينة",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l8-country",
+   "en": "Country",
+   "lesson": 8,
+   "variants": [
+    {
+     "id": "l8-country:dawlea",
+     "form": "dawlea",
+     "translit": "dawlea",
+     "arabic": "دولة",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    },
+    {
+     "id": "l8-country:balad",
+     "form": "balad",
+     "translit": "balad",
+     "arabic": "بلد",
+     "register": "levantine",
+     "source": "generated",
+     "preferred": false
+    }
+   ]
+  },
+  {
+   "id": "l8-better",
+   "en": "Better",
+   "lesson": 8,
+   "variants": [
+    {
+     "id": "l8-better:ahsan",
+     "form": "ahsan",
+     "translit": "ahsan",
+     "arabic": "أحسن",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l9-i-wear",
+   "en": "I wear",
+   "lesson": 9,
+   "variants": [
+    {
+     "id": "l9-i-wear:ana-albes",
+     "form": "ana albes",
+     "translit": "ana albes",
+     "arabic": "أنا ألبس",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l9-season",
+   "en": "Season",
+   "lesson": 9,
+   "variants": [
+    {
+     "id": "l9-season:fasel",
+     "form": "fasel",
+     "translit": "fasel",
+     "arabic": "فصل",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l9-winter",
+   "en": "Winter",
+   "lesson": 9,
+   "variants": [
+    {
+     "id": "l9-winter:sheta",
+     "form": "sheta",
+     "translit": "sheta",
+     "arabic": "شتا",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l9-summer",
+   "en": "Summer",
+   "lesson": 9,
+   "variants": [
+    {
+     "id": "l9-summer:sef",
+     "form": "sef",
+     "translit": "sef",
+     "arabic": "صيف",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l9-spring",
+   "en": "Spring",
+   "lesson": 9,
+   "variants": [
+    {
+     "id": "l9-spring:rabe3",
+     "form": "rabe3",
+     "translit": "rabe3",
+     "arabic": "ربيع",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l9-autumn",
+   "en": "Autumn",
+   "lesson": 9,
+   "variants": [
+    {
+     "id": "l9-autumn:kharef",
+     "form": "kharef",
+     "translit": "kharef",
+     "arabic": "خريف",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l9-rain",
+   "en": "Rain",
+   "lesson": 9,
+   "variants": [
+    {
+     "id": "l9-rain:sheta",
+     "form": "sheta",
+     "translit": "sheta",
+     "arabic": "شتا",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l9-clothes",
+   "en": "Clothes",
+   "lesson": 9,
+   "variants": [
+    {
+     "id": "l9-clothes:malabes",
+     "form": "malabes",
+     "translit": "malabes",
+     "arabic": "ملابس",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    },
+    {
+     "id": "l9-clothes:awa3i",
+     "form": "awa3i",
+     "translit": "awa3i",
+     "arabic": "أواعي",
+     "register": "levantine",
+     "source": "generated",
+     "preferred": false
+    }
+   ]
+  },
+  {
+   "id": "l9-shirt",
+   "en": "Shirt",
+   "lesson": 9,
+   "variants": [
+    {
+     "id": "l9-shirt:qames",
+     "form": "qames",
+     "translit": "qames",
+     "arabic": "قميص",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    },
+    {
+     "id": "l9-shirt:2amees",
+     "form": "2amees",
+     "translit": "2amees",
+     "arabic": "قميص",
+     "register": "levantine",
+     "source": "generated",
+     "preferred": false,
+     "tts": "أميص"
+    }
+   ]
+  },
+  {
+   "id": "l9-t",
+   "en": "T",
+   "lesson": 9,
+   "variants": [
+    {
+     "id": "l9-t:shirt-ebloza",
+     "form": "shirt -ebloza",
+     "translit": "shirt -ebloza",
+     "arabic": "بلوزة",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l9-suite",
+   "en": "Suite",
+   "lesson": 9,
+   "variants": [
+    {
+     "id": "l9-suite:badlea",
+     "form": "badlea",
+     "translit": "badlea",
+     "arabic": "بدلة",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l9-pantes",
+   "en": "Pantes",
+   "lesson": 9,
+   "variants": [
+    {
+     "id": "l9-pantes:bantlon",
+     "form": "bantlon",
+     "translit": "bantlon",
+     "arabic": "بنطلون",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l9-opinion",
+   "en": "Opinion",
+   "lesson": 9,
+   "variants": [
+    {
+     "id": "l9-opinion:ra-ay",
+     "form": "ra`ay",
+     "translit": "ra`ay",
+     "arabic": "رأي",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l10-still-not-yet",
+   "en": "Still..not yet",
+   "lesson": 10,
+   "variants": [
+    {
+     "id": "l10-still-not-yet:lesa",
+     "form": "lesa",
+     "translit": "lesa",
+     "arabic": "لسّا",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l10-please",
+   "en": "Please",
+   "lesson": 10,
+   "variants": [
+    {
+     "id": "l10-please:law-samaht",
+     "form": "law-samaht",
+     "translit": "law-samaht",
+     "arabic": "لو سمحت",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l10-problem",
+   "en": "Problem",
+   "lesson": 10,
+   "variants": [
+    {
+     "id": "l10-problem:moshkela",
+     "form": "moshkela",
+     "translit": "moshkela",
+     "arabic": "مشكلة",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l10-bed",
+   "en": "Bed",
+   "lesson": 10,
+   "variants": [
+    {
+     "id": "l10-bed:esrer",
+     "form": "esrer",
+     "translit": "esrer",
+     "arabic": "سرير",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l10-nice",
+   "en": "Nice",
+   "lesson": 10,
+   "variants": [
+    {
+     "id": "l10-nice:helo",
+     "form": "helo",
+     "translit": "helo",
+     "arabic": "حلو",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l10-if",
+   "en": "If",
+   "lesson": 10,
+   "variants": [
+    {
+     "id": "l10-if:etha",
+     "form": "etha",
+     "translit": "etha",
+     "arabic": "إذا",
+     "register": "msa",
+     "source": "notes",
+     "preferred": true
+    },
+    {
+     "id": "l10-if:eza",
+     "form": "eza",
+     "translit": "eza",
+     "arabic": "إذا",
+     "register": "levantine",
+     "source": "generated",
+     "preferred": false,
+     "tts": "إزا"
+    }
+   ]
+  },
+  {
+   "id": "l10-even",
+   "en": "Even",
+   "lesson": 10,
+   "variants": [
+    {
+     "id": "l10-even:hatta",
+     "form": "hatta",
+     "translit": "hatta",
+     "arabic": "حتى",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l11-i-start",
+   "en": "I start",
+   "lesson": 11,
+   "variants": [
+    {
+     "id": "l11-i-start:ana-abdaa",
+     "form": "ana abdaa",
+     "translit": "ana abdaa",
+     "arabic": "أنا أبدأ",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l11-i-finish",
+   "en": "I finish",
+   "lesson": 11,
+   "variants": [
+    {
+     "id": "l11-i-finish:ana-akhales",
+     "form": "ana akhales",
+     "translit": "ana akhales",
+     "arabic": "أنا أخلّص",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l11-i-try",
+   "en": "I try",
+   "lesson": 11,
+   "variants": [
+    {
+     "id": "l11-i-try:ana-ahawel",
+     "form": "ana ahawel",
+     "translit": "ana ahawel",
+     "arabic": "أنا أحاول",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l11-i-hear",
+   "en": "I hear",
+   "lesson": 11,
+   "variants": [
+    {
+     "id": "l11-i-hear:ana-asm3",
+     "form": "ana asm3",
+     "translit": "ana asm3",
+     "arabic": "أنا أسمع",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l11-i-work",
+   "en": "I work",
+   "lesson": 11,
+   "variants": [
+    {
+     "id": "l11-i-work:ana-ashtaghel",
+     "form": "ana ashtaghel",
+     "translit": "ana ashtaghel",
+     "arabic": "أنا أشتغل",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l11-i-give",
+   "en": "I give",
+   "lesson": 11,
+   "variants": [
+    {
+     "id": "l11-i-give:ana-a3ti",
+     "form": "ana a3ti",
+     "translit": "ana a3ti",
+     "arabic": "أنا أعطي",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l11-sound-voice",
+   "en": "Sound //voice",
+   "lesson": 11,
+   "variants": [
+    {
+     "id": "l11-sound-voice:sot",
+     "form": "sot",
+     "translit": "sot",
+     "arabic": "صوت",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l11-building",
+   "en": "Building",
+   "lesson": 11,
+   "variants": [
+    {
+     "id": "l11-building:3emara",
+     "form": "3emara",
+     "translit": "3emara",
+     "arabic": "عمارة",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    },
+    {
+     "id": "l11-building:binaye",
+     "form": "binaye",
+     "translit": "binaye",
+     "arabic": "بناية",
+     "register": "levantine",
+     "source": "generated",
+     "preferred": false
+    }
+   ]
+  },
+  {
+   "id": "l11-apartment",
+   "en": "Apartment",
+   "lesson": 11,
+   "variants": [
+    {
+     "id": "l11-apartment:shaqa",
+     "form": "shaqa",
+     "translit": "shaqa",
+     "arabic": "شقة",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    },
+    {
+     "id": "l11-apartment:sha22a",
+     "form": "sha22a",
+     "translit": "sha22a",
+     "arabic": "شقة",
+     "register": "levantine",
+     "source": "generated",
+     "preferred": false,
+     "tts": "شأّة"
+    }
+   ]
+  },
+  {
+   "id": "l11-maybe",
+   "en": "Maybe",
+   "lesson": 11,
+   "variants": [
+    {
+     "id": "l11-maybe:yemken",
+     "form": "yemken",
+     "translit": "yemken",
+     "arabic": "يمكن",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    },
+    {
+     "id": "l11-maybe:mumken",
+     "form": "mumken",
+     "translit": "mumken",
+     "arabic": "ممكن",
+     "register": "levantine",
+     "source": "generated",
+     "preferred": false
+    }
+   ]
+  },
+  {
+   "id": "l11-about",
+   "en": "About",
+   "lesson": 11,
+   "variants": [
+    {
+     "id": "l11-about:3an",
+     "form": "3an",
+     "translit": "3an",
+     "arabic": "عن",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l12-new",
+   "en": "New",
+   "lesson": 12,
+   "variants": [
+    {
+     "id": "l12-new:jaded",
+     "form": "jaded",
+     "translit": "jaded",
+     "arabic": "جديد",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l12-old",
+   "en": "Old",
+   "lesson": 12,
+   "variants": [
+    {
+     "id": "l12-old:eqdem",
+     "form": "eqdem",
+     "translit": "eqdem",
+     "arabic": "أقدم",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": false
+    },
+    {
+     "id": "l12-old:adeem",
+     "form": "adeem",
+     "translit": "adeem",
+     "arabic": "قديم",
+     "register": "levantine",
+     "source": "generated",
+     "preferred": true,
+     "tts": "أديم"
+    }
+   ],
+   "review_flag": "'a2dam/eqdem' is 'older' (comparative); 'old' is 'adeem'."
+  },
+  {
+   "id": "l12-beautiful",
+   "en": "Beautiful",
+   "lesson": 12,
+   "variants": [
+    {
+     "id": "l12-beautiful:jameel",
+     "form": "jameel",
+     "translit": "jameel",
+     "arabic": "جميل",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l12-until-even",
+   "en": "until//even",
+   "lesson": 12,
+   "variants": [
+    {
+     "id": "l12-until-even:hatha",
+     "form": "hatha",
+     "translit": "hatha",
+     "arabic": "حتى",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": false
+    },
+    {
+     "id": "l12-until-even:hatta",
+     "form": "hatta",
+     "translit": "hatta",
+     "arabic": "حتى",
+     "register": "levantine",
+     "source": "generated",
+     "preferred": true
+    }
+   ],
+   "review_flag": "Likely 'hatta'. 'hatha' is MSA for 'this'."
+  },
+  {
+   "id": "l12-thats-why",
+   "en": "Thats why",
+   "lesson": 12,
+   "variants": [
+    {
+     "id": "l12-thats-why:3shan-heek",
+     "form": "3shan-heek",
+     "translit": "3shan-heek",
+     "arabic": "عشان هيك",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l12-experience",
+   "en": "Experience",
+   "lesson": 12,
+   "variants": [
+    {
+     "id": "l12-experience:khebra",
+     "form": "khebra",
+     "translit": "khebra",
+     "arabic": "خبرة",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l12-of-course",
+   "en": "Of course",
+   "lesson": 12,
+   "variants": [
+    {
+     "id": "l12-of-course:tab3an",
+     "form": "tab3an",
+     "translit": "tab3an",
+     "arabic": "طبعاً",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l12-sure",
+   "en": "Sure",
+   "lesson": 12,
+   "variants": [
+    {
+     "id": "l12-sure:aked",
+     "form": "aked",
+     "translit": "aked",
+     "arabic": "أكيد",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l12-level",
+   "en": "Level",
+   "lesson": 12,
+   "variants": [
+    {
+     "id": "l12-level:mostawa",
+     "form": "mostawa",
+     "translit": "mostawa",
+     "arabic": "مستوى",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l12-bel",
+   "en": "% bel",
+   "lesson": 12,
+   "variants": [
+    {
+     "id": "l12-bel:meyaa",
+     "form": "meyaa",
+     "translit": "meyaa",
+     "arabic": "بالمية",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l12-half",
+   "en": "Half",
+   "lesson": 12,
+   "variants": [
+    {
+     "id": "l12-half:nos",
+     "form": "nos",
+     "translit": "nos",
+     "arabic": "نص",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l13-i-need",
+   "en": "I need",
+   "lesson": 13,
+   "variants": [
+    {
+     "id": "l13-i-need:ana-ahtag",
+     "form": "ana ahtag",
+     "translit": "ana ahtag",
+     "arabic": "أنا أحتاج",
+     "register": "msa",
+     "source": "notes",
+     "preferred": true
+    },
+    {
+     "id": "l13-i-need:ana-mehtaj",
+     "form": "ana mehtaj",
+     "translit": "ana mehtaj",
+     "arabic": "أنا محتاج",
+     "register": "levantine",
+     "source": "generated",
+     "preferred": false
+    }
+   ]
+  },
+  {
+   "id": "l13-animal",
+   "en": "Animal",
+   "lesson": 13,
+   "variants": [
+    {
+     "id": "l13-animal:haywan",
+     "form": "haywan",
+     "translit": "haywan",
+     "arabic": "حيوان",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l13-cut",
+   "en": "Cut",
+   "lesson": 13,
+   "variants": [
+    {
+     "id": "l13-cut:besa",
+     "form": "besa",
+     "translit": "besa",
+     "arabic": "بسة",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ],
+   "review_flag": "Almost certainly 'Cat' (bisse). Fix the English gloss."
+  },
+  {
+   "id": "l13-correct",
+   "en": "Correct",
+   "lesson": 13,
+   "variants": [
+    {
+     "id": "l13-correct:sah",
+     "form": "sah",
+     "translit": "sah",
+     "arabic": "صح",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l13-wrong",
+   "en": "Wrong",
+   "lesson": 13,
+   "variants": [
+    {
+     "id": "l13-wrong:khataa",
+     "form": "khataa",
+     "translit": "khataa",
+     "arabic": "خطأ",
+     "register": "msa",
+     "source": "notes",
+     "preferred": true
+    },
+    {
+     "id": "l13-wrong:ghalat",
+     "form": "ghalat",
+     "translit": "ghalat",
+     "arabic": "غلط",
+     "register": "levantine",
+     "source": "generated",
+     "preferred": false
+    }
+   ]
+  },
+  {
+   "id": "l13-salary",
+   "en": "Salary",
+   "lesson": 13,
+   "variants": [
+    {
+     "id": "l13-salary:rateb",
+     "form": "rateb",
+     "translit": "rateb",
+     "arabic": "راتب",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l13-kind",
+   "en": "Kind",
+   "lesson": 13,
+   "variants": [
+    {
+     "id": "l13-kind:latef",
+     "form": "latef",
+     "translit": "latef",
+     "arabic": "لطيف",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l13-then-later",
+   "en": "then//later",
+   "lesson": 13,
+   "variants": [
+    {
+     "id": "l13-then-later:b3den",
+     "form": "b3den",
+     "translit": "b3den",
+     "arabic": "بعدين",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l13-between",
+   "en": "Between",
+   "lesson": 13,
+   "variants": [
+    {
+     "id": "l13-between:been",
+     "form": "been",
+     "translit": "been",
+     "arabic": "بين",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l13-time",
+   "en": "Time",
+   "lesson": 13,
+   "variants": [
+    {
+     "id": "l13-time:waqet",
+     "form": "waqet",
+     "translit": "waqet",
+     "arabic": "وقت",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    },
+    {
+     "id": "l13-time:wa2t",
+     "form": "wa2t",
+     "translit": "wa2t",
+     "arabic": "وقت",
+     "register": "levantine",
+     "source": "generated",
+     "preferred": false,
+     "tts": "وأت"
+    }
+   ]
+  },
+  {
+   "id": "l13-for-me",
+   "en": "For me",
+   "lesson": 13,
+   "variants": [
+    {
+     "id": "l13-for-me:eli",
+     "form": "eli",
+     "translit": "eli",
+     "arabic": "إلي",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l13-place",
+   "en": "Place",
+   "lesson": 13,
+   "variants": [
+    {
+     "id": "l13-place:makan",
+     "form": "makan",
+     "translit": "makan",
+     "arabic": "مكان",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l14-i-wake-up",
+   "en": "I wake up",
+   "lesson": 14,
+   "variants": [
+    {
+     "id": "l14-i-wake-up:ana-ashaa-as7aa",
+     "form": "ana ashaa (as7aa)",
+     "translit": "ana ashaa (as7aa)",
+     "arabic": "أنا أصحى",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l14-i-write",
+   "en": "I write",
+   "lesson": 14,
+   "variants": [
+    {
+     "id": "l14-i-write:ana-aktop",
+     "form": "ana aktop",
+     "translit": "ana aktop",
+     "arabic": "أنا أكتب",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l14-i-read",
+   "en": "I read",
+   "lesson": 14,
+   "variants": [
+    {
+     "id": "l14-i-read:ana-aqraa",
+     "form": "ana aqraa",
+     "translit": "ana aqraa",
+     "arabic": "أنا أقرأ",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    },
+    {
+     "id": "l14-i-read:ana-a2ra",
+     "form": "ana a2ra",
+     "translit": "ana a2ra",
+     "arabic": "أنا أقرا",
+     "register": "levantine",
+     "source": "generated",
+     "preferred": false,
+     "tts": "أنا أأرا"
+    }
+   ]
+  },
+  {
+   "id": "l14-south",
+   "en": "South",
+   "lesson": 14,
+   "variants": [
+    {
+     "id": "l14-south:janob",
+     "form": "janob",
+     "translit": "janob",
+     "arabic": "جنوب",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l14-north",
+   "en": "North",
+   "lesson": 14,
+   "variants": [
+    {
+     "id": "l14-north:shamal",
+     "form": "shamal",
+     "translit": "shamal",
+     "arabic": "شمال",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l14-west",
+   "en": "West",
+   "lesson": 14,
+   "variants": [
+    {
+     "id": "l14-west:gharb",
+     "form": "gharb",
+     "translit": "gharb",
+     "arabic": "غرب",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l14-east",
+   "en": "East",
+   "lesson": 14,
+   "variants": [
+    {
+     "id": "l14-east:sharq",
+     "form": "sharq",
+     "translit": "sharq",
+     "arabic": "شرق",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l14-ready",
+   "en": "Ready",
+   "lesson": 14,
+   "variants": [
+    {
+     "id": "l14-ready:jahez",
+     "form": "jahez",
+     "translit": "jahez",
+     "arabic": "جاهز",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l14-book",
+   "en": "Book",
+   "lesson": 14,
+   "variants": [
+    {
+     "id": "l14-book:ektab",
+     "form": "ektab",
+     "translit": "ektab",
+     "arabic": "كتاب",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l14-culture",
+   "en": "Culture",
+   "lesson": 14,
+   "variants": [
+    {
+     "id": "l14-culture:thaqafea",
+     "form": "thaqafea",
+     "translit": "thaqafea",
+     "arabic": "ثقافة",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l14-in-general",
+   "en": "In general",
+   "lesson": 14,
+   "variants": [
+    {
+     "id": "l14-in-general:beshakel-3am",
+     "form": "beshakel-3am",
+     "translit": "beshakel-3am",
+     "arabic": "بشكل عام",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l15-i-answer",
+   "en": "I answer",
+   "lesson": 15,
+   "variants": [
+    {
+     "id": "l15-i-answer:ana-ajaweb",
+     "form": "ana ajaweb",
+     "translit": "ana ajaweb",
+     "arabic": "أنا أجاوب",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l15-i-ask",
+   "en": "I ask",
+   "lesson": 15,
+   "variants": [
+    {
+     "id": "l15-i-ask:ana-as-al",
+     "form": "ana as`al",
+     "translit": "ana as`al",
+     "arabic": "أنا أسأل",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l15-i-call",
+   "en": "I call",
+   "lesson": 15,
+   "variants": [
+    {
+     "id": "l15-i-call:ana-atasel",
+     "form": "ana atasel",
+     "translit": "ana atasel",
+     "arabic": "أنا أتصل",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l15-i-wash",
+   "en": "I wash",
+   "lesson": 15,
+   "variants": [
+    {
+     "id": "l15-i-wash:ana-aghsel",
+     "form": "ana aghsel",
+     "translit": "ana aghsel",
+     "arabic": "أنا أغسل",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l15-pain",
+   "en": "Pain",
+   "lesson": 15,
+   "variants": [
+    {
+     "id": "l15-pain:waj3",
+     "form": "waj3",
+     "translit": "waj3",
+     "arabic": "وجع",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l15-hospital",
+   "en": "Hospital",
+   "lesson": 15,
+   "variants": [
+    {
+     "id": "l15-hospital:mostashfaa",
+     "form": "mostashfaa",
+     "translit": "mostashfaa",
+     "arabic": "مستشفى",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l15-even",
+   "en": "Even",
+   "lesson": 15,
+   "variants": [
+    {
+     "id": "l15-even:hata",
+     "form": "hata",
+     "translit": "hata",
+     "arabic": "حتى",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l15-since",
+   "en": "Since",
+   "lesson": 15,
+   "variants": [
+    {
+     "id": "l15-since:min",
+     "form": "min",
+     "translit": "min",
+     "arabic": "من",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l15-body",
+   "en": "Body",
+   "lesson": 15,
+   "variants": [
+    {
+     "id": "l15-body:jesem",
+     "form": "jesem",
+     "translit": "jesem",
+     "arabic": "جسم",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l15-head",
+   "en": "head",
+   "lesson": 15,
+   "variants": [
+    {
+     "id": "l15-head:ras",
+     "form": "ras",
+     "translit": "ras",
+     "arabic": "راس",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l15-hair",
+   "en": "Hair",
+   "lesson": 15,
+   "variants": [
+    {
+     "id": "l15-hair:sha3ar",
+     "form": "sha3ar",
+     "translit": "sha3ar",
+     "arabic": "شعر",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l15-face",
+   "en": "Face",
+   "lesson": 15,
+   "variants": [
+    {
+     "id": "l15-face:wejeh",
+     "form": "wejeh",
+     "translit": "wejeh",
+     "arabic": "وجه",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l15-eye",
+   "en": "eye",
+   "lesson": 15,
+   "variants": [
+    {
+     "id": "l15-eye:3en",
+     "form": "3en",
+     "translit": "3en",
+     "arabic": "عين",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l15-nose",
+   "en": "Nose",
+   "lesson": 15,
+   "variants": [
+    {
+     "id": "l15-nose:anf",
+     "form": "anf",
+     "translit": "anf",
+     "arabic": "أنف",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l15-neck",
+   "en": "Neck",
+   "lesson": 15,
+   "variants": [
+    {
+     "id": "l15-neck:raqabea",
+     "form": "raqabea",
+     "translit": "raqabea",
+     "arabic": "رقبة",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l15-back",
+   "en": "Back",
+   "lesson": 15,
+   "variants": [
+    {
+     "id": "l15-back:thaher",
+     "form": "thaher",
+     "translit": "thaher",
+     "arabic": "ظهر",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l15-stomitch",
+   "en": "Stomitch",
+   "lesson": 15,
+   "variants": [
+    {
+     "id": "l15-stomitch:baten",
+     "form": "baten",
+     "translit": "baten",
+     "arabic": "بطن",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l15-hand",
+   "en": "Hand",
+   "lesson": 15,
+   "variants": [
+    {
+     "id": "l15-hand:eed",
+     "form": "eed",
+     "translit": "eed",
+     "arabic": "إيد",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l15-foot",
+   "en": "Foot",
+   "lesson": 15,
+   "variants": [
+    {
+     "id": "l15-foot:ejr",
+     "form": "ejr",
+     "translit": "ejr",
+     "arabic": "إجر",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l16-i-come",
+   "en": "I come",
+   "lesson": 16,
+   "variants": [
+    {
+     "id": "l16-i-come:ana-aji",
+     "form": "ana aji",
+     "translit": "ana aji",
+     "arabic": "أنا أجي",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l16-i-come-back",
+   "en": "I come back",
+   "lesson": 16,
+   "variants": [
+    {
+     "id": "l16-i-come-back:ana-arj3",
+     "form": "ana arj3",
+     "translit": "ana arj3",
+     "arabic": "أنا أرجع",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l16-i-think",
+   "en": "I think",
+   "lesson": 16,
+   "variants": [
+    {
+     "id": "l16-i-think:ana-afaker",
+     "form": "ana afaker",
+     "translit": "ana afaker",
+     "arabic": "أنا أفكّر",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l16-government",
+   "en": "Government",
+   "lesson": 16,
+   "variants": [
+    {
+     "id": "l16-government:hokoma",
+     "form": "hokoma",
+     "translit": "hokoma",
+     "arabic": "حكومة",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l16-word",
+   "en": "Word",
+   "lesson": 16,
+   "variants": [
+    {
+     "id": "l16-word:kaleam",
+     "form": "kaleam",
+     "translit": "kaleam",
+     "arabic": "كلام",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": false
+    },
+    {
+     "id": "l16-word:kilme",
+     "form": "kilme",
+     "translit": "kilme",
+     "arabic": "كلمة",
+     "register": "levantine",
+     "source": "generated",
+     "preferred": true,
+     "tts": "كِلمة"
+    }
+   ],
+   "review_flag": "'kilme' = word; 'kalam' = speech/talk. Confirm with tutor."
+  },
+  {
+   "id": "l16-litter",
+   "en": "Litter",
+   "lesson": 16,
+   "variants": [
+    {
+     "id": "l16-litter:haraf",
+     "form": "haraf",
+     "translit": "haraf",
+     "arabic": "حرف",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ],
+   "review_flag": "English gloss is 'Letter'."
+  },
+  {
+   "id": "l16-sentence",
+   "en": "Sentence",
+   "lesson": 16,
+   "variants": [
+    {
+     "id": "l16-sentence:jomlea",
+     "form": "jomlea",
+     "translit": "jomlea",
+     "arabic": "جملة",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l16-instead-of",
+   "en": "Instead of",
+   "lesson": 16,
+   "variants": [
+    {
+     "id": "l16-instead-of:badel-men",
+     "form": "badel men",
+     "translit": "badel men",
+     "arabic": "بدل من",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l16-meaning",
+   "en": "Meaning",
+   "lesson": 16,
+   "variants": [
+    {
+     "id": "l16-meaning:ma3na",
+     "form": "ma3na",
+     "translit": "ma3na",
+     "arabic": "معنى",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l16-other",
+   "en": "Other",
+   "lesson": 16,
+   "variants": [
+    {
+     "id": "l16-other:m-thani",
+     "form": "(m)-thani",
+     "translit": "(m)-thani",
+     "arabic": "تاني",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l16-other-f",
+   "en": "Other (f)",
+   "lesson": 16,
+   "variants": [
+    {
+     "id": "l16-other-f:thanyaa",
+     "form": "thanyaa",
+     "translit": "thanyaa",
+     "arabic": "تانية",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l16-park-garden",
+   "en": "Park //garden",
+   "lesson": 16,
+   "variants": [
+    {
+     "id": "l16-park-garden:hadeqa",
+     "form": "hadeqa",
+     "translit": "hadeqa",
+     "arabic": "حديقة",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    },
+    {
+     "id": "l16-park-garden:jneine",
+     "form": "jneine",
+     "translit": "jneine",
+     "arabic": "جنينة",
+     "register": "levantine",
+     "source": "generated",
+     "preferred": false
+    }
+   ]
+  },
+  {
+   "id": "l17-i-send",
+   "en": "I send",
+   "lesson": 17,
+   "variants": [
+    {
+     "id": "l17-i-send:ana-arsel",
+     "form": "ana arsel",
+     "translit": "ana arsel",
+     "arabic": "أنا أرسل",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l17-i-open",
+   "en": "I open",
+   "lesson": 17,
+   "variants": [
+    {
+     "id": "l17-i-open:ana-aftah",
+     "form": "ana aftah",
+     "translit": "ana aftah",
+     "arabic": "أنا أفتح",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l17-i-close",
+   "en": "I close",
+   "lesson": 17,
+   "variants": [
+    {
+     "id": "l17-i-close:ana-asaker",
+     "form": "ana asaker",
+     "translit": "ana asaker",
+     "arabic": "أنا أسكّر",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l17-door",
+   "en": "Door",
+   "lesson": 17,
+   "variants": [
+    {
+     "id": "l17-door:bab",
+     "form": "bab",
+     "translit": "bab",
+     "arabic": "باب",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l17-window",
+   "en": "Window",
+   "lesson": 17,
+   "variants": [
+    {
+     "id": "l17-window:shobak",
+     "form": "shobak",
+     "translit": "shobak",
+     "arabic": "شبّاك",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l17-sun",
+   "en": "Sun",
+   "lesson": 17,
+   "variants": [
+    {
+     "id": "l17-sun:shams",
+     "form": "shams",
+     "translit": "shams",
+     "arabic": "شمس",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l17-sky",
+   "en": "Sky",
+   "lesson": 17,
+   "variants": [
+    {
+     "id": "l17-sky:sama",
+     "form": "sama",
+     "translit": "sama",
+     "arabic": "سما",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l17-strong",
+   "en": "Strong",
+   "lesson": 17,
+   "variants": [
+    {
+     "id": "l17-strong:qawi",
+     "form": "qawi",
+     "translit": "qawi",
+     "arabic": "قوي",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l17-weak",
+   "en": "Weak",
+   "lesson": 17,
+   "variants": [
+    {
+     "id": "l17-weak:da3ef",
+     "form": "da3ef",
+     "translit": "da3ef",
+     "arabic": "ضعيف",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l17-during",
+   "en": "During",
+   "lesson": 17,
+   "variants": [
+    {
+     "id": "l17-during:khelal",
+     "form": "khelal",
+     "translit": "khelal",
+     "arabic": "خلال",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l17-through",
+   "en": "Through",
+   "lesson": 17,
+   "variants": [
+    {
+     "id": "l17-through:men-khelal",
+     "form": "men-khelal",
+     "translit": "men-khelal",
+     "arabic": "من خلال",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l17-by",
+   "en": "By",
+   "lesson": 17,
+   "variants": [
+    {
+     "id": "l17-by:bel",
+     "form": "bel",
+     "translit": "bel",
+     "arabic": "بال",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l17-msg",
+   "en": "Msg",
+   "lesson": 17,
+   "variants": [
+    {
+     "id": "l17-msg:resala",
+     "form": "resala",
+     "translit": "resala",
+     "arabic": "رسالة",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l17-conversation",
+   "en": "Conversation",
+   "lesson": 17,
+   "variants": [
+    {
+     "id": "l17-conversation:mohadathea",
+     "form": "mohadathea",
+     "translit": "mohadathea",
+     "arabic": "محادثة",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l18-i-feel",
+   "en": "I feel",
+   "lesson": 18,
+   "variants": [
+    {
+     "id": "l18-i-feel:ana-ahes",
+     "form": "ana ahes",
+     "translit": "ana ahes",
+     "arabic": "أنا أحس",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l18-specific",
+   "en": "Specific",
+   "lesson": 18,
+   "variants": [
+    {
+     "id": "l18-specific:mo3yan",
+     "form": "mo3yan",
+     "translit": "mo3yan",
+     "arabic": "معيّن",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l18-idea",
+   "en": "Idea",
+   "lesson": 18,
+   "variants": [
+    {
+     "id": "l18-idea:fekra",
+     "form": "fekra",
+     "translit": "fekra",
+     "arabic": "فكرة",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l18-life",
+   "en": "Life",
+   "lesson": 18,
+   "variants": [
+    {
+     "id": "l18-life:hayaa",
+     "form": "hayaa",
+     "translit": "hayaa",
+     "arabic": "حياة",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l18-allowed",
+   "en": "Allowed",
+   "lesson": 18,
+   "variants": [
+    {
+     "id": "l18-allowed:masmoh",
+     "form": "masmoh",
+     "translit": "masmoh",
+     "arabic": "مسموح",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l18-prohibited",
+   "en": "Prohibited",
+   "lesson": 18,
+   "variants": [
+    {
+     "id": "l18-prohibited:mamno3",
+     "form": "mamno3",
+     "translit": "mamno3",
+     "arabic": "ممنوع",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l18-hard",
+   "en": "Hard",
+   "lesson": 18,
+   "variants": [
+    {
+     "id": "l18-hard:sa3eb",
+     "form": "sa3eb",
+     "translit": "sa3eb",
+     "arabic": "صعب",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l18-easy",
+   "en": "easy",
+   "lesson": 18,
+   "variants": [
+    {
+     "id": "l18-easy:sahel",
+     "form": "sahel",
+     "translit": "sahel",
+     "arabic": "سهل",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l18-almost-nearly",
+   "en": "almost//nearly",
+   "lesson": 18,
+   "variants": [
+    {
+     "id": "l18-almost-nearly:taqreban",
+     "form": "taqreban",
+     "translit": "taqreban",
+     "arabic": "تقريباً",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l19-when-for-not-question",
+   "en": "when(For not question )",
+   "lesson": 19,
+   "variants": [
+    {
+     "id": "l19-when-for-not-question:lama",
+     "form": "lama",
+     "translit": "lama",
+     "arabic": "لمّا",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l19-energy",
+   "en": "Energy",
+   "lesson": 19,
+   "variants": [
+    {
+     "id": "l19-energy:taqa",
+     "form": "taqa",
+     "translit": "taqa",
+     "arabic": "طاقة",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l19-difference",
+   "en": "Difference",
+   "lesson": 19,
+   "variants": [
+    {
+     "id": "l19-difference:farq",
+     "form": "farq",
+     "translit": "farq",
+     "arabic": "فرق",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "l19-crowded",
+   "en": "Crowded",
+   "lesson": 19,
+   "variants": [
+    {
+     "id": "l19-crowded:azmea",
+     "form": "azmea",
+     "translit": "azmea",
+     "arabic": "زحمة",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    },
+    {
+     "id": "l19-crowded:3aj2a",
+     "form": "3aj2a",
+     "translit": "3aj2a",
+     "arabic": "عجقة",
+     "register": "regional",
+     "source": "generated",
+     "preferred": false,
+     "tts": "عجأة"
+    }
+   ]
+  },
+  {
+   "id": "p-with-me",
+   "en": "With me",
+   "lesson": null,
+   "variants": [
+    {
+     "id": "p-with-me:maa-ii",
+     "form": "maa-ii",
+     "translit": "maa-ii",
+     "arabic": "معي",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "p-i-like-this",
+   "en": "I like this",
+   "lesson": null,
+   "variants": [
+    {
+     "id": "p-i-like-this:ana-baheb-haad",
+     "form": "ana baheb haad",
+     "translit": "ana baheb haad",
+     "arabic": "أنا بحب هاد",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "p-this-is-my-food",
+   "en": "This is my food",
+   "lesson": null,
+   "variants": [
+    {
+     "id": "p-this-is-my-food:haad-akli",
+     "form": "haad akli",
+     "translit": "haad akli",
+     "arabic": "هاد أكلي",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "p-for-me-him-her-them-us",
+   "en": "For me / him / her / them / us",
+   "lesson": null,
+   "variants": [
+    {
+     "id": "p-for-me-him-her-them-us:ily-iloh-il-haa-il-hom-il-naa",
+     "form": "ily / iloh / il-haa / il-hom / il-naa",
+     "translit": "ily / iloh / il-haa / il-hom / il-naa",
+     "arabic": "إلي / إله / إلها / إلهم / إلنا",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "p-with-us",
+   "en": "With us",
+   "lesson": null,
+   "variants": [
+    {
+     "id": "p-with-us:maa-na",
+     "form": "maa-na",
+     "translit": "maa-na",
+     "arabic": "معنا",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "p-i-don-t-understand",
+   "en": "I don't understand",
+   "lesson": null,
+   "variants": [
+    {
+     "id": "p-i-don-t-understand:la-afham",
+     "form": "la afham",
+     "translit": "la afham",
+     "arabic": "لا أفهم",
+     "register": "msa",
+     "source": "notes",
+     "preferred": true
+    },
+    {
+     "id": "p-i-don-t-understand:ma-befham",
+     "form": "ma befham",
+     "translit": "ma befham",
+     "arabic": "ما بفهم",
+     "register": "levantine",
+     "source": "generated",
+     "preferred": false
+    }
+   ]
+  },
+  {
+   "id": "p-what-happened",
+   "en": "What happened?",
+   "lesson": null,
+   "variants": [
+    {
+     "id": "p-what-happened:shoo-malak-malik",
+     "form": "shoo malak / malik",
+     "translit": "shoo malak / malik",
+     "arabic": "شو مالك / مالِك",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "p-good-job",
+   "en": "Good job",
+   "lesson": null,
+   "variants": [
+    {
+     "id": "p-good-job:shater",
+     "form": "shater",
+     "translit": "shater",
+     "arabic": "شاطر",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "p-i-don-t-want-to-go-anywhere",
+   "en": "I don't want to go anywhere",
+   "lesson": null,
+   "variants": [
+    {
+     "id": "p-i-don-t-want-to-go-anywhere:ana-ma-bedi-aroh-ay-makan",
+     "form": "ana ma bedi aroh ay makan",
+     "translit": "ana ma bedi aroh ay makan",
+     "arabic": "أنا ما بدّي أروح أي مكان",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "p-i-play-with-my-kids",
+   "en": "I play with my kids",
+   "lesson": null,
+   "variants": [
+    {
+     "id": "p-i-play-with-my-kids:ana-al3ab-maa-awladi",
+     "form": "ana al3ab maa awladi",
+     "translit": "ana al3ab maa awladi",
+     "arabic": "أنا ألعب مع أولادي",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "p-9-30",
+   "en": "9:30",
+   "lesson": null,
+   "variants": [
+    {
+     "id": "p-9-30:sa3a-tis3a-w-nos",
+     "form": "sa3a tis3a w nos",
+     "translit": "sa3a tis3a w nos",
+     "arabic": "الساعة تسعة ونص",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "p-drop-him-them-off",
+   "en": "Drop him / them off",
+   "lesson": null,
+   "variants": [
+    {
+     "id": "p-drop-him-them-off:bawasl-oh-bawasal-hom",
+     "form": "bawasl-oh / bawasal-hom",
+     "translit": "bawasl-oh / bawasal-hom",
+     "arabic": "بوصّله / بوصّلهم",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "p-friends",
+   "en": "Friends",
+   "lesson": null,
+   "variants": [
+    {
+     "id": "p-friends:asdiqaa",
+     "form": "asdiqaa",
+     "translit": "asdiqaa",
+     "arabic": "أصدقاء",
+     "register": "msa",
+     "source": "notes",
+     "preferred": true
+    },
+    {
+     "id": "p-friends:ashab",
+     "form": "ashab",
+     "translit": "ashab",
+     "arabic": "أصحاب",
+     "register": "levantine",
+     "source": "generated",
+     "preferred": false
+    }
+   ]
+  },
+  {
+   "id": "p-so",
+   "en": "So",
+   "lesson": null,
+   "variants": [
+    {
+     "id": "p-so:fa",
+     "form": "fa",
+     "translit": "fa",
+     "arabic": "فـ",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "p-not",
+   "en": "Not",
+   "lesson": null,
+   "variants": [
+    {
+     "id": "p-not:mish",
+     "form": "mish",
+     "translit": "mish",
+     "arabic": "مش",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "p-he-has",
+   "en": "He has",
+   "lesson": null,
+   "variants": [
+    {
+     "id": "p-he-has:howa-endoh",
+     "form": "howa endoh",
+     "translit": "howa endoh",
+     "arabic": "هو عنده",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "p-he-sees-her",
+   "en": "He sees her",
+   "lesson": null,
+   "variants": [
+    {
+     "id": "p-he-sees-her:howa-byishufha",
+     "form": "howa byishufha",
+     "translit": "howa byishufha",
+     "arabic": "هو بيشوفها",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "p-different",
+   "en": "Different",
+   "lesson": null,
+   "variants": [
+    {
+     "id": "p-different:mukhtalif",
+     "form": "mukhtalif",
+     "translit": "mukhtalif",
+     "arabic": "مختلف",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "p-nothing-never-mind",
+   "en": "Nothing / never mind",
+   "lesson": null,
+   "variants": [
+    {
+     "id": "p-nothing-never-mind:wala-eshi-ma3lesh",
+     "form": "wala eshi / ma3lesh",
+     "translit": "wala eshi / ma3lesh",
+     "arabic": "ولا إشي / معلش",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "p-better-than-you",
+   "en": "Better than you",
+   "lesson": null,
+   "variants": [
+    {
+     "id": "p-better-than-you:ahsan-minak",
+     "form": "ahsan minak",
+     "translit": "ahsan minak",
+     "arabic": "أحسن منك",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "p-are-you-sure",
+   "en": "Are you sure?",
+   "lesson": null,
+   "variants": [
+    {
+     "id": "p-are-you-sure:enta-mit2akked",
+     "form": "enta mit2akked?",
+     "translit": "enta mit2akked?",
+     "arabic": "إنت متأكد؟",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "p-please-repeat",
+   "en": "Please repeat",
+   "lesson": null,
+   "variants": [
+    {
+     "id": "p-please-repeat:mumkin-t3eed",
+     "form": "mumkin t3eed",
+     "translit": "mumkin t3eed",
+     "arabic": "ممكن تعيد",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "p-middle-east",
+   "en": "Middle East",
+   "lesson": null,
+   "variants": [
+    {
+     "id": "p-middle-east:sharq-al-awsat",
+     "form": "sharq al awsat",
+     "translit": "sharq al awsat",
+     "arabic": "الشرق الأوسط",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "p-exactly",
+   "en": "Exactly",
+   "lesson": null,
+   "variants": [
+    {
+     "id": "p-exactly:bizabt",
+     "form": "bizabt",
+     "translit": "bizabt",
+     "arabic": "بالزبط",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "p-stressed",
+   "en": "Stressed",
+   "lesson": null,
+   "variants": [
+    {
+     "id": "p-stressed:madh-hoot",
+     "form": "madh'hoot",
+     "translit": "madh'hoot",
+     "arabic": "مضغوط",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "p-please-bring-the-bill",
+   "en": "Please bring the bill",
+   "lesson": null,
+   "variants": [
+    {
+     "id": "p-please-bring-the-bill:law-samaht-l-hsab",
+     "form": "law samaht l'hsab",
+     "translit": "law samaht l'hsab",
+     "arabic": "لو سمحت الحساب",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "p-she-gave-me-he-gave-me",
+   "en": "She gave me / He gave me",
+   "lesson": null,
+   "variants": [
+    {
+     "id": "p-she-gave-me-he-gave-me:a3tatni-a3tani",
+     "form": "a3tatni / a3tani",
+     "translit": "a3tatni / a3tani",
+     "arabic": "أعطتني / أعطاني",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "p-he-gives-me-she-gives-me",
+   "en": "He gives me / She gives me",
+   "lesson": null,
+   "variants": [
+    {
+     "id": "p-he-gives-me-she-gives-me:bya3teeni-bta3teeni",
+     "form": "bya3teeni / bta3teeni",
+     "translit": "bya3teeni / bta3teeni",
+     "arabic": "بيعطيني / بتعطيني",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "p-relatives",
+   "en": "Relatives",
+   "lesson": null,
+   "variants": [
+    {
+     "id": "p-relatives:araib",
+     "form": "araib",
+     "translit": "araib",
+     "arabic": "قرايب",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "p-all-the-best",
+   "en": "All the best",
+   "lesson": null,
+   "variants": [
+    {
+     "id": "p-all-the-best:bittawfiq",
+     "form": "bittawfiq",
+     "translit": "bittawfiq",
+     "arabic": "بالتوفيق",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  },
+  {
+   "id": "p-revise-follow-up",
+   "en": "Revise / follow up",
+   "lesson": null,
+   "variants": [
+    {
+     "id": "p-revise-follow-up:moraja3a",
+     "form": "moraja3a",
+     "translit": "moraja3a",
+     "arabic": "مراجعة",
+     "register": "levantine",
+     "source": "notes",
+     "preferred": true
+    }
+   ]
+  }
+ ]
+}

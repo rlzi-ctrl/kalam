@@ -1,7 +1,7 @@
 import seed from "@/levantine_seed.json";
 import { structuredCall } from "@/lib/claude/structured";
 import { levantine } from "@/lib/langpacks/levantine";
-import { vocabForGrader } from "@/lib/seed";
+import { preferredVariant, type Concept } from "@/lib/lexicon";
 import { SAY_JSON_SCHEMA, SayOutputSchema, type SayOutput } from "./schema";
 
 const EXAMPLE_COUNT = 6;
@@ -14,12 +14,22 @@ function styleExamples(): string {
     .join("\n\n");
 }
 
-export function buildSaySystemPrompt(): string {
+/** Vocabulary in preferred forms, with ids so each word can point at its concept. */
+function vocabWithIds(concepts: Concept[]): string {
+  return concepts
+    .map((c) => {
+      const p = preferredVariant(c);
+      return `[${c.id}] ${c.en} = ${p.translit} (${p.arabic})`;
+    })
+    .join("\n");
+}
+
+export function buildSaySystemPrompt(concepts: Concept[]): string {
   return `${levantine.sayRules}
 
 <learner_known_vocabulary>
-Format: English = transliteration (Arabic, when the notes have it).
-${vocabForGrader()}
+Format: [concept_id] English = preferred transliteration (Arabic).
+${vocabWithIds(concepts)}
 </learner_known_vocabulary>
 
 <example_answers>
@@ -44,14 +54,30 @@ export function checkSayOutput(out: SayOutput): string | null {
   return null;
 }
 
-export async function generateSentence(english: string, model: string) {
-  return structuredCall({
+/** Drops concept ids the model invented and alternative forms that aren't usable Arabic. */
+export function cleanSayOutput(out: SayOutput, concepts: Concept[]): SayOutput {
+  const ids = new Set(concepts.map((c) => c.id));
+  return {
+    ...out,
+    words: out.words.map((w) => ({
+      ...w,
+      concept_id: ids.has(w.concept_id) ? w.concept_id : "",
+      other_forms: w.other_forms
+        .filter((f) => f.translit.trim() && !levantine.transcriptProblem(f.arabic) && f.translit !== w.translit)
+        .slice(0, 2),
+    })),
+  };
+}
+
+export async function generateSentence(english: string, model: string, concepts: Concept[]) {
+  const result = await structuredCall({
     model,
-    system: buildSaySystemPrompt(),
+    system: buildSaySystemPrompt(concepts),
     user: `<english>${english}</english>`,
     jsonSchema: SAY_JSON_SCHEMA,
     schema: SayOutputSchema,
     effort: "medium",
     check: checkSayOutput,
   });
+  return { ...result, data: cleanSayOutput(result.data, concepts) };
 }

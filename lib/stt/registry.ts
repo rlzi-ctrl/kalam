@@ -1,4 +1,4 @@
-import { CONSENSUS_PROVIDER_IDS } from "@/lib/consensus";
+import { OPT_IN_VOTERS, isConsensusProvider } from "@/lib/consensus";
 import { levantine } from "@/lib/langpacks/levantine";
 import { azureTranscriber } from "./azure";
 import { elevenlabs } from "./elevenlabs";
@@ -23,7 +23,10 @@ export type ProviderInfo = {
   label: string;
   configured: boolean;
   missing: string[];
+  /** Can vote in consensus grading (Azure locales share one vote). */
   inConsensus: boolean;
+  /** Votes only when the user switches it on. */
+  optIn: boolean;
 };
 
 export function providerInfo(): ProviderInfo[] {
@@ -34,7 +37,8 @@ export function providerInfo(): ProviderInfo[] {
       label: p.label,
       configured: missing.length === 0,
       missing,
-      inConsensus: CONSENSUS_PROVIDER_IDS.includes(p.id),
+      inConsensus: isConsensusProvider(p.id),
+      optIn: OPT_IN_VOTERS.includes(p.id),
     };
   });
 }

@@ -14,7 +14,7 @@ const { deleteCard, getCard, listCards, saveCard } = await import("@/lib/store/c
 
 const out = {
   translit: "ana bedi aroh", arabic: "أنا بدي أروح", tts_spelling: "أنا بِدّي أروح", notes: "",
-  words: [{ en: "I", translit: "ana", arabic: "أنا", tts_spelling: "أنا", known: true }],
+  words: [{ en: "I", translit: "ana", arabic: "أنا", tts_spelling: "أنا", known: true, concept_id: "", other_forms: [] }],
 };
 
 describe("cards", () => {
