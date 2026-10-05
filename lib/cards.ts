@@ -11,6 +11,9 @@ export type Card = SayOutput & {
   updated_at: string;
   source_model: string;
   review: { due_at: string; ease: number; interval_days: number; reps: number };
+  /** Set when the sentence is an answer-key sentence (its text then comes from the key). */
+  sentence_id?: string;
+  key_status?: "unverified" | "verified";
 };
 
 export function newCard(english: string, out: SayOutput, model: string, now = new Date(), id = crypto.randomUUID()): Card {

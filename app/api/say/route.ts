@@ -3,7 +3,9 @@ import { newCard } from "@/lib/cards";
 import { resolveGraderModel } from "@/lib/grader/models";
 import { generateSentence } from "@/lib/say/generate";
 import { cardStoreConfigured, getCard, saveCard } from "@/lib/store/cards";
+import { allAnswerKeyOverrides } from "@/lib/store/answerKeys";
 import { loadLexicon } from "@/lib/store/lexicon";
+import { findSentenceByEnglish, sentenceId } from "@/lib/store/review";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -28,14 +30,19 @@ export async function POST(req: Request) {
 
   const started = Date.now();
   let generated;
+  let linked: { sentence_id: string; key_status: "unverified" | "verified" } | undefined;
   try {
-    generated = await generateSentence(english, model, await loadLexicon());
+    // An answer-key sentence keeps its key's text, so a reviewer recording of it matches the card.
+    const sentence = findSentenceByEnglish(english);
+    const key = sentence ? ((await allAnswerKeyOverrides())[sentence.en] ?? sentence.answer_key) : undefined;
+    generated = await generateSentence(english, model, await loadLexicon(), key);
+    if (sentence && key) linked = { sentence_id: sentenceId(sentence.en), key_status: key.status as "unverified" | "verified" };
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
     return Response.json({ error: message, ms: Date.now() - started }, { status: 502 });
   }
   const previous = body?.cardId && cardStoreConfigured() ? await getCard(body.cardId).catch(() => null) : null;
-  const fresh = newCard(english, generated.data, generated.model);
+  const fresh = { ...newCard(english, generated.data, generated.model), ...linked };
   const card = previous
     ? { ...fresh, id: previous.id, starred: previous.starred, created_at: previous.created_at, review: previous.review }
     : fresh;

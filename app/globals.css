@@ -233,3 +233,18 @@ pre { white-space: pre-wrap; word-break: break-word; font-size: 0.78rem; backgro
 .variant-tr { font-family: ui-monospace, Menlo, monospace; }
 .add-variant { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
 .mine { color: #b7791f; }
+.native-picks { margin-top: 12px; }
+.native-list { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+.native-pick { text-align: left; }
+
+/* Reviewer page */
+.review .review-item { margin-top: 12px; }
+.review-en { font-weight: 600; margin: 0 0 6px; }
+.review-filter { display: flex; gap: 6px; margin: 8px 0; }
+.review-actions { display: flex; gap: 6px; flex-wrap: wrap; margin: 6px 0; }
+.review-edit { display: flex; flex-direction: column; gap: 4px; margin: 6px 0; }
+.review-edit textarea, .review-edit input {
+  font: inherit; font-size: 16px; padding: 8px 10px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg); color: var(--text);
+}
+.review-edit textarea[dir="rtl"] { font-size: 1.3rem; }
+.review-recording { margin-top: 6px; }

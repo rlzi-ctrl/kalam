@@ -93,7 +93,7 @@ export const SOUNDS: Sound[] = [
     symbol: "q → 2",
     name: "qaf, the Levantine rule",
     letters: ["ق"],
-    tip: "In city Levantine, ق is usually said as a glottal stop (2): قلب → 2alb, قديم → 2adeem. Many Jordanians say g instead. Your notes write q (qabel, aqdar); all of these are understood. Avoid a plain English k.",
+    tip: "In urban Palestinian and Jordanian speech, ق is usually said as a glottal stop (2): قلب → 2alb, قديم → 2adeem. Many Jordanians (and rural Palestinians) say g instead. Your notes write q (qabel, aqdar); all of these are understood. Avoid a plain English k.",
     demo: { arabic: "ألب", translit: "2alb", en: "heart (قلب)" },
     heardAs: ["ك"],
     swapNote: "Only a k (ك) for ق is flagged: 2, q and g are all fine.",

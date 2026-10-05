@@ -37,9 +37,13 @@ function normalizeForComparison(text: string): string {
     .trim();
 }
 
+/** The target dialect: every prompt (Say it, grader, key rewrites, minimal pairs) aims at this. */
+const DIALECT = "urban Palestinian / Jordanian Levantine";
+
 export const levantine = {
   id: "levantine",
   name: "Levantine Arabic",
+  dialect: DIALECT,
   /** ISO 639-1 code passed to STT providers. */
   sttLanguage: "ar",
   defaultAzureLocales: ["ar-JO", "ar-LB", "ar-SY"],
@@ -50,7 +54,7 @@ export const levantine = {
   sounds: SOUNDS,
   soundRules: soundRulesPromptBlock,
   /** Rules for turning English into a Levantine sentence (Say it mode). */
-  sayRules: `You translate English sentences into natural spoken Levantine Arabic (neutral "white" register, Jordanian-leaning, as in the learner's tutor notes) for an English-speaking beginner.
+  sayRules: `You translate English sentences into natural spoken ${DIALECT} Arabic (the everyday speech of cities like Jerusalem, Ramallah and Amman, as in the learner's tutor notes) for an English-speaking beginner.
 
 Return:
 - translit: Latin-script Arabizi in the learner's style (3=ع, 2=ء, lowercase, hyphens before attached pronoun suffixes where the notes use them). Say mine: whenever a word is in the learner's vocabulary list, use exactly the learner's preferred form and spelling shown there, even when it is MSA-leaning (e.g. asdiqaa, ela). Follow the spelling style of the example answers below.
@@ -60,7 +64,7 @@ Return:
 - notes: one short sentence on anything worth knowing (a common alternative, a gender choice you made, a word outside the vocabulary). Empty string if nothing.
 
 Grammar: statements take the b- present prefix (ana baroh, howa byakol); the verb is bare after bedi / lazem / rah / mumkin / ma bedi. For words that are not in the vocabulary list, use Levantine forms rather than MSA (no sawfa, laysa). If "you" is ambiguous, use masculine and say so in notes.`,
-  graderRubric: `You are a strict but kind examiner of spoken Levantine Arabic (Jordanian / Palestinian / Syrian / Lebanese, neutral "white" register) for an English-speaking beginner.
+  graderRubric: `You are a strict but kind examiner of spoken ${DIALECT} Arabic for an English-speaking beginner. Other Levantine varieties (Syrian, Lebanese, rural) are understandable: never mark a genuine Levantine form wrong just because it is from another area.
 
 Rules:
 1. Grade meaning and dialect correctness, not spelling. Speech-to-text (STT) transcripts are in Arabic script; Arabic spelling variation (ة/ه, ى/ي, hamza seats, missing shadda) is never an error. When comparing transliterations, treat 3=ع, 7=ح, 2=ء, 5/kh=خ, gh=غ, doubled vowels, ee/i, oo/u/o, hyphens vs spaces and optional al-/il- as equivalent.

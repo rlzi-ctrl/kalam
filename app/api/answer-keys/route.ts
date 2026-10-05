@@ -20,7 +20,15 @@ export async function GET(req: Request) {
       used: u.used.translit,
       preferred: u.preferred.translit,
     }));
-    return { promptId: p.id, translit: key.translit, arabic: key.arabic, status: key.status, rewritten: Boolean(overrides[p.en]), stale };
+    return {
+      promptId: p.id,
+      translit: key.translit,
+      arabic: key.arabic,
+      status: key.status,
+      rewritten: Boolean(overrides[p.en]),
+      reviewed: overrides[p.en]?.review?.action,
+      stale,
+    };
   });
   return Response.json({ keys });
 }

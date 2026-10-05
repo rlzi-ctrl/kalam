@@ -15,7 +15,9 @@ import { useAppApi } from "@/lib/client/useAppApi";
 import { useRecorder } from "@/lib/client/useRecorder";
 import { useLexicon } from "@/lib/client/useLexicon";
 import { useTts } from "@/lib/client/useTts";
+import { useNativeAudio } from "@/lib/client/useNativeAudio";
 import { findNonPreferred } from "@/lib/lexicon";
+import { recordingFor } from "@/lib/review/match";
 import { OPT_IN_VOTERS, selectForConsensus, type Discarded } from "@/lib/consensus";
 import type { GradeDone } from "@/lib/results";
 
@@ -33,6 +35,7 @@ export default function SayPage() {
   const { model, choose, label: modelLabel } = useModelChoice(meta);
   const getSpeech = useTts(api);
   const lexicon = useLexicon(api, Boolean(meta));
+  const native = useNativeAudio(api, Boolean(meta?.storageConfigured));
   const [prefNotice, setPrefNotice] = useState("");
   const recorder = useRecorder(MAX_SECONDS);
   const { optIn, toggle: toggleOptIn } = useConsensusOptIn();
@@ -175,7 +178,11 @@ export default function SayPage() {
       let done = 0;
       const clips = await Promise.all(
         chosen.map(async (c) => {
-          const clip = await getSpeech(voiceId, c.tts_spelling);
+          // The reviewer's recording when there is one, TTS otherwise.
+          const rec = recordingFor(c, native.recordings).recording;
+          const clip = rec
+            ? await native.load(rec.id).catch(() => getSpeech(voiceId, c.tts_spelling))
+            : await getSpeech(voiceId, c.tts_spelling);
           setPlaylist({ busy: true, progress: `Fetching audio ${++done}/${chosen.length}` });
           return clip.bytes;
         }),
@@ -214,6 +221,20 @@ export default function SayPage() {
         {genError && <p className="warn">{genError}</p>}
       </form>
 
+      {native.recordings.length > 0 && (
+        <section className="card native-picks">
+          <h2>Recorded by your reviewer</h2>
+          <p className="muted small">Native recordings, checked sentences. Tap one to practise it.</p>
+          <div className="native-list">
+            {native.recordings.map((r) => (
+              <button key={r.id} className="link native-pick" disabled={generating} onClick={() => say(r.en)}>
+                🎙 {r.en}
+              </button>
+            ))}
+          </div>
+        </section>
+      )}
+
       {current && (
         <section className="card sentence">
           <div className="sentence-head">
@@ -231,6 +252,15 @@ export default function SayPage() {
             Spoken spelling (sent to TTS): <span dir="rtl" lang="ar" className="tts-spelling">{current.tts_spelling}</span>
           </p>
           {current.notes && <p className="small">{current.notes}</p>}
+          {current.key_status === "verified" && <p className="small encourage">✓ Checked by your reviewer</p>}
+          {recordingFor(current, native.recordings).outdated && (
+            <div className="pref-notice small">
+              <p>Your reviewer recorded this sentence. Re-say it to get the checked version and their recording.</p>
+              <button className="btn" disabled={generating} onClick={() => say(current.english, current)}>
+                {generating ? "Re-saying…" : "Use the reviewed sentence"}
+              </button>
+            </div>
+          )}
           {(() => {
             const stale = findNonPreferred(current.translit, lexicon.concepts);
             if (!prefNotice && stale.length === 0) return null;
@@ -268,6 +298,10 @@ export default function SayPage() {
               concepts={lexicon.concepts}
               lexicon={lexicon}
               onPreferred={setPrefNotice}
+              native={(() => {
+                const rec = recordingFor(current, native.recordings).recording;
+                return rec ? { key: rec.id + rec.recorded_at, load: () => native.load(rec.id) } : undefined;
+              })()}
             />
           )}
 

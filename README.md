@@ -20,6 +20,9 @@ saved as a card; ★ = ask my tutor; saved sentences export as one MP3 with paus
 **Words** (`/words`): every concept with its forms. ★ is yours (used by Say it, answer keys and audio);
 the others are accepted without penalty. One tap changes your form; a reviewer can add forms.
 
+**Review** (`/review`): for a native reviewer, with its own `REVIEWER_PASSCODE` (and nothing else).
+Each answer-key sentence can be marked correct, edited, or recorded; recordings replace TTS in Say it.
+
 **Sounds** (`/sounds`): tips, audio and examples for ء ع ح خ غ ط ص and ق→2, "my weak sounds" (from
 the grader's `sound_errors`), and a minimal-pair listening drill whose pairs need reviewer approval.
 

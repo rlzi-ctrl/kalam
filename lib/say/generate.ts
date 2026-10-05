@@ -69,15 +69,33 @@ export function cleanSayOutput(out: SayOutput, concepts: Concept[]): SayOutput {
   };
 }
 
-export async function generateSentence(english: string, model: string, concepts: Concept[]) {
+/**
+ * With `fixed` (an answer key, possibly checked by the native reviewer), the sentence itself is given:
+ * Claude only adds tts_spelling and the word breakdown, and translit/arabic are kept exactly.
+ */
+export async function generateSentence(
+  english: string,
+  model: string,
+  concepts: Concept[],
+  fixed?: { translit: string; arabic: string },
+) {
+  const user = fixed
+    ? `<english>${english}</english>
+<use_this_sentence>
+translit: ${fixed.translit}
+arabic: ${fixed.arabic}
+</use_this_sentence>
+This sentence is the reviewed answer key: copy translit and arabic exactly as given and derive tts_spelling and words from it. Do not change any word.`
+    : `<english>${english}</english>`;
   const result = await structuredCall({
     model,
     system: buildSaySystemPrompt(concepts),
-    user: `<english>${english}</english>`,
+    user,
     jsonSchema: SAY_JSON_SCHEMA,
     schema: SayOutputSchema,
     effort: "medium",
     check: checkSayOutput,
   });
-  return { ...result, data: cleanSayOutput(result.data, concepts) };
+  const data = cleanSayOutput(result.data, concepts);
+  return { ...result, data: fixed ? { ...data, translit: fixed.translit, arabic: fixed.arabic } : data };
 }

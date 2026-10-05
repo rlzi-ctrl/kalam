@@ -10,6 +10,8 @@ type KeyInfo = {
   arabic: string;
   status: string;
   rewritten: boolean;
+  /** Set when the native reviewer checked it: "correct" or "edited". */
+  reviewed?: string;
   stale: { concept: string; used: string; preferred: string }[];
 };
 type Proposal = { translit: string; arabic: string; changes: { from: string; to: string }[] };
@@ -81,7 +83,10 @@ export function AnswerKeyPanel({ api, prompt, model }: { api: Api; prompt: TestP
 
   return (
     <div className="answer">
-      <span className="tag">answer key · {key.status}{key.rewritten ? " · rewritten" : ""}</span>
+      <span className="tag">
+        answer key · {key.status}
+        {"reviewed" in key && key.reviewed ? (key.reviewed === "edited" ? " · corrected by reviewer" : " · checked by reviewer") : key.rewritten ? " · rewritten" : ""}
+      </span>
       <p>{key.translit}</p>
       <p className="arabic" dir="rtl" lang="ar">{key.arabic}</p>
       {key.stale.length > 0 && !proposal && (
