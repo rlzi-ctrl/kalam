@@ -10,8 +10,11 @@ function azureLocales(): string[] {
   return fromEnv?.length ? fromEnv : levantine.defaultAzureLocales;
 }
 
+/** AZURE_STT_ENABLED=false takes Azure out of speech-to-text entirely; Azure TTS is unaffected. */
+export const azureSttEnabled = () => process.env.AZURE_STT_ENABLED?.trim().toLowerCase() !== "false";
+
 export function allProviders(): SttProvider[] {
-  return [elevenlabs, openaiGpt4oTranscribe, openaiWhisper, ...azureLocales().map(azureTranscriber)];
+  return [elevenlabs, openaiGpt4oTranscribe, openaiWhisper, ...(azureSttEnabled() ? azureLocales().map(azureTranscriber) : [])];
 }
 
 export function getProvider(id: string): SttProvider | undefined {

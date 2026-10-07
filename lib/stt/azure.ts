@@ -1,3 +1,4 @@
+import { fetchWithRetry } from "@/lib/http/retry";
 import { failOnHttpError, type SttProvider } from "./types";
 
 /**
@@ -27,7 +28,8 @@ export function azureTranscriber(locale: string): SttProvider {
       const url = azureShortAudioUrl(process.env.AZURE_SPEECH_REGION!, locale);
       // The key goes in a header, so the URL is safe to log.
       console.info(`[azure-stt] POST ${url} (${wav.length} bytes)`);
-      const res = await fetch(url, {
+      // F0 allows one request at a time: the page sends locales one by one, and a 429 is retried here.
+      const res = await fetchWithRetry(url, {
         method: "POST",
         headers: {
           "Ocp-Apim-Subscription-Key": process.env.AZURE_SPEECH_KEY!,
@@ -35,7 +37,7 @@ export function azureTranscriber(locale: string): SttProvider {
           Accept: "application/json",
         },
         body: new Uint8Array(wav),
-      });
+      }, { onRetry: (n, ms) => console.warn(`[azure-stt] ${locale} got 429, retry ${n} in ${ms} ms`) });
       await failOnHttpError(res, `Azure (${url})`);
       const json = (await res.json()) as { RecognitionStatus?: string; DisplayText?: string };
       console.info(`[azure-stt] ${locale} → ${res.status} ${json.RecognitionStatus}: ${JSON.stringify(json.DisplayText ?? "")}`);

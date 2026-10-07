@@ -5,7 +5,8 @@ provider → transcripts side by side → one consensus grade from Claude → co
 
 Consensus grading combines ElevenLabs, whisper-1 and Azure (all Azure locales together are one
 vote: their majority reading, or ar-JO if they disagree); gpt-4o-transcribe votes only when
-switched on. Transcripts containing non-Arabic letters are discarded first, and an error only
+switched on (`AZURE_STT_ENABLED=false` drops Azure from STT; Azure F0 calls are made one at a time).
+Transcripts containing non-Arabic letters are discarded first, and an error only
 counts if most of the remaining votes show it. Azure columns show the exact request URL, which
 is also logged as `[azure-stt]` in the Vercel function logs. Practice sentences are marked against the unverified `answer_key` in the seed.
 The grader toggle switches between Opus 5.5 and Sonnet 5.5; each grade shows its latency.

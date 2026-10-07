@@ -1,7 +1,13 @@
 "use client";
 
 import { useCallback, useRef } from "react";
+import { serialQueue } from "@/lib/queue";
 import type { Api } from "./useAppApi";
+
+// One queue per browser tab for every Azure TTS request (Voices page, word prefetches, playlists):
+// Azure Speech F0 rejects parallel requests with 429. Other providers aren't queued.
+const azureInTurn = serialQueue();
+const isAzureVoice = (voiceId: string) => voiceId.startsWith("azure:");
 
 export type TtsClip = { url: string; bytes: ArrayBuffer; cache: string; chars: number; ms: number };
 
@@ -18,11 +24,20 @@ export function useTts(api: Api) {
       let clip = memo.current.get(key);
       if (!clip) {
         clip = (async () => {
-          const res = await api("/api/tts", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ voiceId, text }),
-          });
+          const request = () =>
+            api("/api/tts", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ voiceId, text }),
+            });
+          // Queued until the response is fully read, so the next Azure call starts only after this one.
+          const res = isAzureVoice(voiceId)
+            ? await azureInTurn(async () => {
+                const r = await request();
+                const body = await r.arrayBuffer();
+                return new Response(body, { status: r.status, headers: r.headers });
+              })
+            : await request();
           if (!res.ok) {
             const json = await res.json().catch(() => ({}));
             throw new Error(json.error ?? `HTTP ${res.status}`);
